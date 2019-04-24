@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class categories {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -12,10 +12,17 @@ public class categories {
     private String category;
 
     @OneToMany
-    private List<product> products;
+    private List<Product> Products;
 
-    public List<product> getProducts() {
-        return products;
+    @ManyToMany
+    private List<Law> laws;
+
+    public List<Law> getLaws() {
+        return laws;
+    }
+
+    public List<Product> getProducts() {
+        return Products;
     }
 
     public int getId() {

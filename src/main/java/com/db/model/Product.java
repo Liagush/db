@@ -1,12 +1,9 @@
 package com.db.model;
 
-import org.hibernate.annotations.Generated;
-
 import javax.persistence.*;
-import java.util.Locale;
 
 @Entity
-public class product {
+public class Product {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     private long id;
@@ -16,9 +13,9 @@ public class product {
     private String productName;
 
     @ManyToOne
-    private categories categories;
+    private Category categories;
 
-    public categories getCategories() {
+    public Category getCategories() {
         return categories;
     }
 
