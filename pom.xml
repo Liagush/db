@@ -70,6 +70,7 @@
                 <configuration>
                     <inputPath>${basedir}/src/main/resources/templates/sass/</inputPath>
                     <outputPath>${basedir}/src/main/resources/templates/sass/</outputPath>
+                    <inputSyntax>sass</inputSyntax>
                 </configuration>
             </plugin>
         </plugins>
