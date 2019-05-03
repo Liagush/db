@@ -5,6 +5,6 @@ import com.db.model.Product;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ProductRepo extends CrudRepository<Product, Long> {
-    Iterable<Product> findByCategories(Category categories);
-    Iterable<Product> findByVendorCode(String vendorCode);
+    Iterable<Product> findByCategory(Category category);
+    Product findOneByVendorCode(String vendorCode);
 }

@@ -1,0 +1,1096 @@
+@charset "UTF-8";
+@import url(c:\Users\Lyagush\Desktop\GitVScode\Reshala\src\main\resources\templates\libs\normalize-css\normalize.css);
+@font-face {
+  font-family: 'raleway-example';
+  src: url("../fonts/RalewayRegular.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'raleway-example';
+  src: url("../fonts/RalewayBold.woff") format("woff");
+  font-weight: bold;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.65;
+  font-family: raleway-example, sans-serif;
+  overflow-x: hidden;
+  opacity: 1;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ОБЩИЕ СВОЙСТВА: НАЧАЛО */
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0px;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+/* ОБЩИЕ СВОЙСТВА: КОНЕЦ */
+/* СВОЙСТВА ГРИДОВ: НАЧАЛО */
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px 1fr;
+      grid-template-columns: 300px 1fr;
+  grid-auto-rows: 60px 1fr 60px;
+  height: 100vh;
+}
+
+.grid .logo-container {
+  background-color: #F6A821;
+}
+
+.grid .search-container {
+  background-color: #FFFFFF;
+}
+
+.grid div:nth-child(3) {
+  background-color: #2A2D35;
+}
+
+.grid div:nth-child(4) {
+  background-color: #343740;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  grid-row: 2 / 4;
+}
+
+.grid div:nth-child(5) {
+  background-color: #24262D;
+}
+
+/* СВОЙСТВА ГРИДОВ: КОНЕЦ */
+/* СОВЙСТВА ВСЕХ ССЫЛОК: Начало */
+a {
+  text-decoration: none;
+  color: #949BA2;
+}
+
+a:active {
+  color: #F5F5F5;
+}
+
+a:hover {
+  color: #F5F5F5;
+}
+
+a:visited {
+  color: #949BA2;
+}
+
+.user-mail a {
+  font-weight: 600;
+  color: #6a727a;
+  margin-right: 18px;
+}
+
+.user-mail a:hover {
+  color: #3b3f44;
+}
+
+/* СОВЙСТВА ВСЕХ ССЫЛОК: КОНЕЦ */
+/* СОВЙСТВА ГРИДА С ЛОГОТИПОМ: НАЧАЛО */
+.logo h1 a {
+  color: White;
+  font-weight: 400;
+  letter-spacing: 10px;
+  vertical-align: middle;
+  padding: 0 0 0 65px;
+  float: left;
+  line-height: 30px;
+}
+
+/* СОВЙСТВА ГРИДА С ЛОГОТИПОМ: КОНЕЦ */
+/* СОВЙСТВА ГРИДА ПОИСКА: НАЧАЛО */
+.user {
+  float: right;
+  margin-top: 8px;
+  margin-right: 25px;
+}
+
+.user div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-photo {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.round {
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.search {
+  float: left;
+  vertical-align: middle;
+  display: inline-block;
+  width: calc(100vw - 670px);
+}
+
+.search-icon img {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: 16px;
+  left: 25px;
+}
+
+.search .form-control {
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #949ba2;
+  background-color: #ffffff;
+  border-radius: 4px;
+  -webkit-transition: none;
+  transition: none;
+  font-size: 0.88rem;
+  height: calc(2.25rem + 2px);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow: visible;
+  position: relative;
+  top: -26px;
+  left: 75px;
+  outline: none;
+  width: 100%;
+}
+
+/* СОВЙСТВА ГРИДА ПОИСКА: КОНЕЦ */
+/* СОВЙСТВА ГРИДА С КОНТЕНТОМ: НАЧАЛО */
+.content-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 150px;
+      grid-template-columns: 1fr 150px;
+  padding: 40px 45px 40px 45px;
+  grid-gap: 45px;
+}
+
+.content-container .content {
+  margin-top: 55px;
+  overflow: auto;
+  border-radius: 4px;
+}
+
+.content-container .content::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.content-item {
+  font-size: 0.88rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: minmax(auto, 150px) minmax(auto, auto);
+      grid-template-rows: minmax(auto, 150px) minmax(auto, auto);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.content-item-text {
+  color: #949BA2;
+  background-color: #3B3E47;
+  overflow: hidden;
+  padding: 12px 20px 20px 20px;
+  text-align: justify;
+  font-weight: 600;
+}
+
+.content-item-buttons {
+  padding-top: 5px;
+  font-size: 0.88rem;
+  background-color: #3B3E47;
+}
+
+.content-item-buttons a {
+  float: right;
+  padding: 0px 15px;
+  margin: 0 0 0 2px;
+  color: #949BA2;
+  background-color: #494B54;
+}
+
+.content-item-buttons a:hover {
+  background-color: #52555F;
+}
+
+.content-item-buttons a:active {
+  background-color: #F6A821;
+  color: #F5F5F5;
+}
+
+.content-item-buttons a:first-child {
+  padding-right: 22px;
+}
+
+.search-and-bookmarks {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto;
+      grid-template-columns: 1fr auto;
+  height: 35px;
+  background-color: #3B3E47;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  top: 100px;
+  width: calc(100vw - 585px);
+}
+
+.search-and-bookmarks .search-info {
+  line-height: 35px;
+  vertical-align: middle;
+  color: white;
+  width: 100%;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: #F6A821;
+}
+
+.search-and-bookmarks .search-info span {
+  color: #949BA2;
+  padding-left: 10px;
+}
+
+.search-and-bookmarks .bookmarks {
+  float: right;
+  line-height: 35px;
+  vertical-align: middle;
+}
+
+.search-and-bookmarks .bookmarks a {
+  color: #949BA2;
+  background-color: #494B54;
+  padding: 10px 20px 10px 20px;
+}
+
+.search-and-bookmarks .bookmarks a:hover {
+  background-color: #52555F;
+}
+
+.search-and-bookmarks .bookmarks a:active {
+  background-color: #F6A821;
+  color: #F5F5F5;
+}
+
+.templates {
+  background-color: #3B3E47;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 35px;
+      grid-template-rows: 35px;
+  grid-auto-rows: auto;
+  text-align: center;
+  -ms-flex-line-pack: start;
+      align-content: start;
+  overflow: auto;
+  overflow-x: hidden;
+  border-radius: 4px;
+  height: auto;
+}
+
+.templates::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.templates .template-column-name {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.templates .template {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.templates .template .template-name {
+  color: #949BA2;
+  font-weight: bold;
+  line-height: 1.1rem;
+  font-size: 0.88rem;
+  padding: 0px 18px 5px;
+}
+
+.templates .template .template-icon img {
+  height: 80px;
+}
+
+.templates a {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.templates a:hover {
+  background-color: #F6A821;
+}
+
+.templates a:hover .template .template-name {
+  color: #F5F5F5;
+}
+
+.template-column-name {
+  color: #F6A821;
+  font-size: 1.1rem;
+  vertical-align: middle;
+  line-height: 35px;
+  background-color: #2A2D35;
+  letter-spacing: 2px;
+}
+
+/* СОВЙСТВА ГРИДА С КОНТЕНТОМ: КОНЕЦ */
+/* СОВЙСТВА ГРИДА SIDE-MENU: НАЧАЛО */
+.side-menu .list-of-laws {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu .list-of-laws .law-item a {
+  display: block;
+  padding: 5px 15px 5px 10px;
+  margin-bottom: 2px;
+  border-left: 5px solid #3B3E47;
+  background-color: #3B3E47;
+  line-height: 1.3rem;
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: #949BA2;
+  text-align: justify;
+}
+
+.side-menu .list-of-laws .law-item:first-child {
+  margin-top: 2px;
+}
+
+.side-menu .list-of-laws .law-item a:hover {
+  background-color: #24262D;
+  border-left: 5px solid #24262D;
+  color: #6A737B;
+  font-weight: bold;
+}
+
+.side-menu .list-of-laws .law-item a:active {
+  border-left: 5px solid #F6A821;
+  background-color: #24262D;
+  color: #F6A821;
+  font-weight: bold;
+}
+
+/* СОВЙСТВА ГРИДА SIDE-MENU: КОНЕЦ */
+/* ФОРМА АВТОРИЗАЦИИ И РЕГИСТРАЦИИ: НАЧАЛО */
+.background-autorize {
+  background-color: #2A2D35;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.dws-wrapper {
+  color: #6A737B;
+  width: 100%;
+  max-width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: relative;
+}
+
+.dws-form {
+  position: relative;
+  padding: 60px 50px 20px 50px;
+  width: 100%;
+  background-color: #343740;
+  border-radius: 10px;
+}
+
+.dws-form a {
+  text-decoration: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+  color: #F5F5F5;
+}
+
+.dws-form a:hover {
+  color: #F6A821;
+}
+
+.dws-form input {
+  display: block;
+  width: 100%;
+}
+
+.tab-form {
+  display: none;
+  padding: 30px 0;
+}
+
+.tab-form.active {
+  display: block;
+}
+
+label.tab {
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 8px;
+  display: block;
+  width: 140px;
+  position: absolute;
+  text-align: center;
+  background-color: #33353c;
+  border-bottom: 2px solid #2A2D35;
+  font-size: 0.8rem;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+label.tab:nth-child(1) {
+  border-right: 1px solid #2A2D35;
+  top: 0px;
+  left: 0px;
+  border-radius: 10px 0 0 0;
+}
+
+label.tab:nth-child(2) {
+  border-left: 1px solid #2A2D35;
+  top: 0px;
+  left: 140px;
+  border-radius: 0 10px 0 0;
+}
+
+label.tab.active {
+  color: #F6A821;
+}
+
+label.tab:hover {
+  background-color: #F6A821;
+  color: #F5F5F5;
+}
+
+.input {
+  font-size: 1.5rem;
+  border: 0px;
+  border-bottom: 1px solid #2A2D35;
+  padding: 12px 14px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  color: #F6A821;
+  background-color: #343740;
+  outline: none;
+  text-align: center;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.input:focus {
+  border-bottom: 1px solid #F6A821;
+}
+
+a.login-button {
+  display: block;
+  width: 280px;
+  padding: 5px;
+  text-align: center;
+  margin: 65px 20px 50px;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  position: absolute;
+  bottom: -50px;
+  left: -20px;
+  background-color: #33353c;
+  border-radius: 0 0 10px 10px;
+  border-top: 2px solid #2A2D35;
+  color: #e2940d;
+}
+
+a.login-button:hover {
+  background-color: #F6A821;
+  color: #F5F5F5;
+}
+
+a.forgot-button {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #5c5f67;
+  font-weight: 600;
+  margin-bottom: 35px;
+  padding-top: 20px;
+  display: block;
+}
+
+.tab-form .recover {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20px 155px;
+      grid-template-columns: 20px 155px;
+  position: relative;
+  vertical-align: middle;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: end;
+  font-size: 0.7rem;
+  grid-gap: 10px;
+  padding-top: 30px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 0.88rem;
+}
+
+.tab-form .recover a {
+  color: #949BA2;
+}
+
+.tab-form .recover a:hover {
+  color: #F6A821;
+}
+
+/* ФОРМА АВТОРИЗАЦИИ И РЕГИСТРАЦИИ: КОНЕЦ */
+/* ЗАСТАВКА GLITCH: НАЧАЛО */
+.wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #2A2D35;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.box .glitch {
+  color: #F6A821;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 100px;
+  position: relative;
+  padding: 30px;
+}
+
+.box .glitch:before, .box .glitch:after {
+  content: 'RESHALA';
+  color: #F6A821;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.box .glitch:before {
+  left: 3px;
+  text-shadow: -3px 0 #c47600;
+  animation: glitch-before 2s linear 0.5s infinite alternate-reverse;
+}
+
+.box .glitch:after {
+  left: -3px;
+  text-shadow: -3px 0 #924400;
+  -webkit-animation: glitch-after 2s linear 0.5s infinite alternate;
+          animation: glitch-after 2s linear 0.5s infinite alternate;
+}
+
+@-webkit-keyframes glitch-before {
+  0% {
+    clip: rect(123px, 500px, 93px, 30px);
+  }
+  3.33333% {
+    clip: rect(35px, 500px, 2px, 30px);
+  }
+  6.66667% {
+    clip: rect(112px, 500px, 16px, 30px);
+  }
+  10% {
+    clip: rect(27px, 500px, 90px, 30px);
+  }
+  13.33333% {
+    clip: rect(81px, 500px, 34px, 30px);
+  }
+  16.66667% {
+    clip: rect(125px, 500px, 141px, 30px);
+  }
+  20% {
+    clip: rect(8px, 500px, 124px, 30px);
+  }
+  23.33333% {
+    clip: rect(112px, 500px, 92px, 30px);
+  }
+  26.66667% {
+    clip: rect(136px, 500px, 102px, 30px);
+  }
+  30% {
+    clip: rect(107px, 500px, 51px, 30px);
+  }
+  33.33333% {
+    clip: rect(12px, 500px, 115px, 30px);
+  }
+  36.66667% {
+    clip: rect(83px, 500px, 35px, 30px);
+  }
+  40% {
+    clip: rect(78px, 500px, 76px, 30px);
+  }
+  43.33333% {
+    clip: rect(108px, 500px, 36px, 30px);
+  }
+  46.66667% {
+    clip: rect(121px, 500px, 103px, 30px);
+  }
+  50% {
+    clip: rect(50px, 500px, 140px, 30px);
+  }
+  53.33333% {
+    clip: rect(57px, 500px, 105px, 30px);
+  }
+  56.66667% {
+    clip: rect(115px, 500px, 14px, 30px);
+  }
+  60% {
+    clip: rect(25px, 500px, 105px, 30px);
+  }
+  63.33333% {
+    clip: rect(27px, 500px, 123px, 30px);
+  }
+  66.66667% {
+    clip: rect(150px, 500px, 26px, 30px);
+  }
+  70% {
+    clip: rect(30px, 500px, 104px, 30px);
+  }
+  73.33333% {
+    clip: rect(73px, 500px, 82px, 30px);
+  }
+  76.66667% {
+    clip: rect(122px, 500px, 78px, 30px);
+  }
+  80% {
+    clip: rect(35px, 500px, 3px, 30px);
+  }
+  83.33333% {
+    clip: rect(9px, 500px, 95px, 30px);
+  }
+  86.66667% {
+    clip: rect(56px, 500px, 19px, 30px);
+  }
+  90% {
+    clip: rect(39px, 500px, 98px, 30px);
+  }
+  93.33333% {
+    clip: rect(68px, 500px, 66px, 30px);
+  }
+  96.66667% {
+    clip: rect(135px, 500px, 98px, 30px);
+  }
+  100% {
+    clip: rect(51px, 500px, 72px, 30px);
+  }
+}
+
+@keyframes glitch-before {
+  0% {
+    clip: rect(123px, 500px, 93px, 30px);
+  }
+  3.33333% {
+    clip: rect(35px, 500px, 2px, 30px);
+  }
+  6.66667% {
+    clip: rect(112px, 500px, 16px, 30px);
+  }
+  10% {
+    clip: rect(27px, 500px, 90px, 30px);
+  }
+  13.33333% {
+    clip: rect(81px, 500px, 34px, 30px);
+  }
+  16.66667% {
+    clip: rect(125px, 500px, 141px, 30px);
+  }
+  20% {
+    clip: rect(8px, 500px, 124px, 30px);
+  }
+  23.33333% {
+    clip: rect(112px, 500px, 92px, 30px);
+  }
+  26.66667% {
+    clip: rect(136px, 500px, 102px, 30px);
+  }
+  30% {
+    clip: rect(107px, 500px, 51px, 30px);
+  }
+  33.33333% {
+    clip: rect(12px, 500px, 115px, 30px);
+  }
+  36.66667% {
+    clip: rect(83px, 500px, 35px, 30px);
+  }
+  40% {
+    clip: rect(78px, 500px, 76px, 30px);
+  }
+  43.33333% {
+    clip: rect(108px, 500px, 36px, 30px);
+  }
+  46.66667% {
+    clip: rect(121px, 500px, 103px, 30px);
+  }
+  50% {
+    clip: rect(50px, 500px, 140px, 30px);
+  }
+  53.33333% {
+    clip: rect(57px, 500px, 105px, 30px);
+  }
+  56.66667% {
+    clip: rect(115px, 500px, 14px, 30px);
+  }
+  60% {
+    clip: rect(25px, 500px, 105px, 30px);
+  }
+  63.33333% {
+    clip: rect(27px, 500px, 123px, 30px);
+  }
+  66.66667% {
+    clip: rect(150px, 500px, 26px, 30px);
+  }
+  70% {
+    clip: rect(30px, 500px, 104px, 30px);
+  }
+  73.33333% {
+    clip: rect(73px, 500px, 82px, 30px);
+  }
+  76.66667% {
+    clip: rect(122px, 500px, 78px, 30px);
+  }
+  80% {
+    clip: rect(35px, 500px, 3px, 30px);
+  }
+  83.33333% {
+    clip: rect(9px, 500px, 95px, 30px);
+  }
+  86.66667% {
+    clip: rect(56px, 500px, 19px, 30px);
+  }
+  90% {
+    clip: rect(39px, 500px, 98px, 30px);
+  }
+  93.33333% {
+    clip: rect(68px, 500px, 66px, 30px);
+  }
+  96.66667% {
+    clip: rect(135px, 500px, 98px, 30px);
+  }
+  100% {
+    clip: rect(51px, 500px, 72px, 30px);
+  }
+}
+
+@-webkit-keyframes glitch-after {
+  0% {
+    clip: rect(1px, 500px, 6px, 30px);
+  }
+  3.33333% {
+    clip: rect(7px, 500px, 19px, 30px);
+  }
+  6.66667% {
+    clip: rect(144px, 500px, 141px, 30px);
+  }
+  10% {
+    clip: rect(122px, 500px, 63px, 30px);
+  }
+  13.33333% {
+    clip: rect(113px, 500px, 47px, 30px);
+  }
+  16.66667% {
+    clip: rect(27px, 500px, 42px, 30px);
+  }
+  20% {
+    clip: rect(63px, 500px, 43px, 30px);
+  }
+  23.33333% {
+    clip: rect(57px, 500px, 148px, 30px);
+  }
+  26.66667% {
+    clip: rect(145px, 500px, 87px, 30px);
+  }
+  30% {
+    clip: rect(68px, 500px, 29px, 30px);
+  }
+  33.33333% {
+    clip: rect(21px, 500px, 149px, 30px);
+  }
+  36.66667% {
+    clip: rect(119px, 500px, 15px, 30px);
+  }
+  40% {
+    clip: rect(91px, 500px, 105px, 30px);
+  }
+  43.33333% {
+    clip: rect(106px, 500px, 25px, 30px);
+  }
+  46.66667% {
+    clip: rect(75px, 500px, 140px, 30px);
+  }
+  50% {
+    clip: rect(115px, 500px, 47px, 30px);
+  }
+  53.33333% {
+    clip: rect(63px, 500px, 73px, 30px);
+  }
+  56.66667% {
+    clip: rect(47px, 500px, 105px, 30px);
+  }
+  60% {
+    clip: rect(44px, 500px, 80px, 30px);
+  }
+  63.33333% {
+    clip: rect(119px, 500px, 47px, 30px);
+  }
+  66.66667% {
+    clip: rect(148px, 500px, 126px, 30px);
+  }
+  70% {
+    clip: rect(77px, 500px, 38px, 30px);
+  }
+  73.33333% {
+    clip: rect(67px, 500px, 84px, 30px);
+  }
+  76.66667% {
+    clip: rect(81px, 500px, 82px, 30px);
+  }
+  80% {
+    clip: rect(85px, 500px, 132px, 30px);
+  }
+  83.33333% {
+    clip: rect(39px, 500px, 29px, 30px);
+  }
+  86.66667% {
+    clip: rect(103px, 500px, 137px, 30px);
+  }
+  90% {
+    clip: rect(109px, 500px, 40px, 30px);
+  }
+  93.33333% {
+    clip: rect(57px, 500px, 132px, 30px);
+  }
+  96.66667% {
+    clip: rect(105px, 500px, 44px, 30px);
+  }
+  100% {
+    clip: rect(46px, 500px, 101px, 30px);
+  }
+}
+
+@keyframes glitch-after {
+  0% {
+    clip: rect(1px, 500px, 6px, 30px);
+  }
+  3.33333% {
+    clip: rect(7px, 500px, 19px, 30px);
+  }
+  6.66667% {
+    clip: rect(144px, 500px, 141px, 30px);
+  }
+  10% {
+    clip: rect(122px, 500px, 63px, 30px);
+  }
+  13.33333% {
+    clip: rect(113px, 500px, 47px, 30px);
+  }
+  16.66667% {
+    clip: rect(27px, 500px, 42px, 30px);
+  }
+  20% {
+    clip: rect(63px, 500px, 43px, 30px);
+  }
+  23.33333% {
+    clip: rect(57px, 500px, 148px, 30px);
+  }
+  26.66667% {
+    clip: rect(145px, 500px, 87px, 30px);
+  }
+  30% {
+    clip: rect(68px, 500px, 29px, 30px);
+  }
+  33.33333% {
+    clip: rect(21px, 500px, 149px, 30px);
+  }
+  36.66667% {
+    clip: rect(119px, 500px, 15px, 30px);
+  }
+  40% {
+    clip: rect(91px, 500px, 105px, 30px);
+  }
+  43.33333% {
+    clip: rect(106px, 500px, 25px, 30px);
+  }
+  46.66667% {
+    clip: rect(75px, 500px, 140px, 30px);
+  }
+  50% {
+    clip: rect(115px, 500px, 47px, 30px);
+  }
+  53.33333% {
+    clip: rect(63px, 500px, 73px, 30px);
+  }
+  56.66667% {
+    clip: rect(47px, 500px, 105px, 30px);
+  }
+  60% {
+    clip: rect(44px, 500px, 80px, 30px);
+  }
+  63.33333% {
+    clip: rect(119px, 500px, 47px, 30px);
+  }
+  66.66667% {
+    clip: rect(148px, 500px, 126px, 30px);
+  }
+  70% {
+    clip: rect(77px, 500px, 38px, 30px);
+  }
+  73.33333% {
+    clip: rect(67px, 500px, 84px, 30px);
+  }
+  76.66667% {
+    clip: rect(81px, 500px, 82px, 30px);
+  }
+  80% {
+    clip: rect(85px, 500px, 132px, 30px);
+  }
+  83.33333% {
+    clip: rect(39px, 500px, 29px, 30px);
+  }
+  86.66667% {
+    clip: rect(103px, 500px, 137px, 30px);
+  }
+  90% {
+    clip: rect(109px, 500px, 40px, 30px);
+  }
+  93.33333% {
+    clip: rect(57px, 500px, 132px, 30px);
+  }
+  96.66667% {
+    clip: rect(105px, 500px, 44px, 30px);
+  }
+  100% {
+    clip: rect(46px, 500px, 101px, 30px);
+  }
+}
+
+/* ЗАСТАВКА GLITCH: КОНЕЦ */
+/*==========  Desktop First  ==========*/
+/* Large Devices, Wide Screens */
+@media only screen and (max-width: 1200px) {
+  /**/
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  /**/
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  /**/
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+  /**/
+}
+
+/*==========  Mobile First  ==========*/
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  /**/
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  /**/
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  /**/
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  /**/
+}
+/*# sourceMappingURL=main.css.map */

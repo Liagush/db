@@ -1,0 +1,573 @@
+@import "fonts"
+@import "libs"
+@import "base"
+@import "vars"
+
+// Пользовательские стили
+
+/* ОБЩИЕ СВОЙСТВА: НАЧАЛО */
+
+html
+    font-size: 16px   
+
+body
+    margin: 0px
+
+h1
+    font-size: 1.5rem       
+
+/* ОБЩИЕ СВОЙСТВА: КОНЕЦ */    
+
+
+/* СВОЙСТВА ГРИДОВ: НАЧАЛО */
+
+.grid
+    display: grid
+    grid-template-columns: 300px 1fr
+    grid-auto-rows: 60px 1fr 60px
+    height: 100vh
+
+.grid .logo-container /* Главный контейнер  */
+    background-color: $accent 
+
+.grid .search-container /* Главный контейнер строки поиска */ 
+    background-color: #FFFFFF
+
+.grid div:nth-child(3)
+    background-color: $bg_dark_light
+
+.grid div:nth-child(4)
+    background-color: $bg_main_gray
+    grid-column: 2 / 3
+    grid-row: 2 / 4
+    
+.grid div:nth-child(5)
+    background-color: $bg_dark
+
+/* СВОЙСТВА ГРИДОВ: КОНЕЦ */
+
+
+/* СОВЙСТВА ВСЕХ ССЫЛОК: Начало */    
+
+a /* Цвет ссылок */
+    text-decoration: none 
+    color: $text_color_light_gray
+   
+a:active /* Цвет посещенных ссылок */ 
+    color: $text_color_milk 
+
+a:hover /* Цвет ссылок при наведении на них курсора мыши */ 
+    color: $text_color_milk  
+
+a:visited /* Цвет посещенных ссылок */ 
+    color: $text_color_light_gray 
+
+
+///// Общий контейнер для фото и почты в ячейче поиска справа
+.user-mail a /* Цвет ссылок */
+    font-weight: 600
+    color: $text_color_user_mail
+    margin-right: 18px
+
+.user-mail a:hover /* Цвет ссылок при наведении на них курсора мыши */ 
+    color: $text_color_user_mail_HOVER
+
+/////
+
+/* СОВЙСТВА ВСЕХ ССЫЛОК: КОНЕЦ */
+
+
+/* СОВЙСТВА ГРИДА С ЛОГОТИПОМ: НАЧАЛО */
+
+.logo h1 a /* Свойства логотипа в левом верхнем углу */ 
+    color: White
+    font-weight: 400
+    letter-spacing: 10px
+    vertical-align: middle
+    padding: 0 0 0 65px
+    float: left
+    line-height: 30px
+
+/* СОВЙСТВА ГРИДА С ЛОГОТИПОМ: КОНЕЦ */
+
+
+/* СОВЙСТВА ГРИДА ПОИСКА: НАЧАЛО */
+
+.user /* свойства контейнера с фото и почтой */
+    float: right
+    margin-top: 8px
+    margin-right: 25px
+
+.user div /* выравнивание дивов */
+    display: inline-block
+    vertical-align: middle
+    
+.user-photo /* скругляем контейнер для фото и отсекаем края */
+    width: 45px
+    height: 45px
+    margin: 0 auto
+    overflow: hidden
+    border-radius: 50%
+    
+.round /* свойства фото */
+    width: auto
+    height: 100%
+    margin: 0 auto
+
+.search /* свойства контейнера с кнопкой меню и строкой ввода */
+    float: left
+    vertical-align: middle
+    display: inline-block
+    width: calc(100vw - 670px)
+    
+.search-icon img /* свойства логотипа меню */
+    height: 30px
+    width: 30px 
+    position: relative
+    top: 16px
+    left: 25px
+
+.search .form-control /* свойства строки ввода */
+    margin: 0
+    border: none
+    box-shadow: none
+    color: #949ba2
+    background-color: #ffffff
+    border-radius: 4px
+    transition: none
+    font-size: 0.88rem
+    height: calc(2.25rem + 2px)
+    font-weight: 400
+    line-height: 1.5
+    overflow: visible
+    position: relative
+    top: -26px
+    left: 75px
+    outline: none
+    width: 100%
+    
+    
+
+/* СОВЙСТВА ГРИДА ПОИСКА: КОНЕЦ */
+
+
+/* СОВЙСТВА ГРИДА С КОНТЕНТОМ: НАЧАЛО */
+
+.content-container
+    display: grid
+    grid-template-columns: 1fr 150px
+    padding: 40px 45px 40px 45px
+    grid-gap: 45px
+    
+    
+.content-container .content
+    margin-top: 55px
+    overflow: auto
+    border-radius: 4px
+    
+
+.content-container .content::-webkit-scrollbar /* скрывает полосу прокрутки и оставляет возможность прокрутки */
+    width: 0px  
+    background: transparent  
+
+///// Стили колонки с поисковой выдачей и заметками
+
+.content-item
+    font-size: 0.88rem
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: minmax(auto, 150px) minmax(auto, auto)
+    border-radius: 4px
+    overflow: hidden
+    margin-bottom: 20px
+    
+.content-item-text
+    color: $text_color_light_gray
+    background-color: $bg_form_gray
+    overflow: hidden
+    padding: 12px 20px 20px 20px
+    text-align: justify
+    font-weight: 600   
+    
+.content-item-buttons
+    padding-top: 5px
+    font-size: 0.88rem
+    background-color: $bg_form_gray
+
+.content-item-buttons a
+    float: right
+    padding: 0px 15px
+    margin: 0 0 0 2px
+    color: $text_color_light_gray
+    background-color: $color_button_item
+
+.content-item-buttons a:hover
+    background-color: $color_button_item_HOVER
+
+.content-item-buttons a:active
+    background-color: $accent
+    color: $text_color_milk
+
+.content-item-buttons a:first-child
+    padding-right: 22px
+    
+.search-and-bookmarks
+    display: grid
+    grid-template-columns: 1fr auto
+    height: 35px
+    background-color: $bg_form_gray
+    margin-bottom: 20px
+    border-radius: 4px
+    overflow: hidden
+    position: absolute
+    top: 100px
+    width: calc(100vw - 585px)
+    
+.search-and-bookmarks .search-info
+    line-height: 35px
+    vertical-align: middle
+    color: white
+    width: 100%
+    padding-left: 20px 
+    font-size: 0.88rem
+    font-weight: bold
+    color: $accent
+
+.search-and-bookmarks .search-info span
+    color: $text_color_light_gray
+    padding-left: 10px
+    
+
+.search-and-bookmarks .bookmarks
+    float: right
+    line-height: 35px
+    vertical-align: middle
+    
+.search-and-bookmarks .bookmarks a
+    color: $text_color_light_gray
+    background-color: $color_button_item
+    padding: 10px 20px 10px 20px
+    
+.search-and-bookmarks .bookmarks a:hover
+    background-color: $color_button_item_HOVER
+    
+.search-and-bookmarks .bookmarks a:active
+    background-color: $accent
+    color: $text_color_milk    
+
+
+///// Стили колонки ШАБЛОНЫ  
+
+.templates
+    background-color: $bg_form_gray  
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: 35px
+    grid-auto-rows: auto
+    text-align: center
+    align-content: start
+    overflow: auto
+    overflow-x: hidden
+    border-radius: 4px
+    height: auto
+    
+.templates::-webkit-scrollbar /* скрывает полосу прокрутки и оставляет возможность прокрутки */
+    width: 0px  
+    background: transparent  
+
+.templates .template-column-name
+    position: sticky
+    top: 0
+
+.templates .template 
+    padding-top: 10px
+    padding-bottom: 5px
+    
+.templates .template .template-name
+    color: $text_color_light_gray
+    font-weight: bold
+    line-height: 1.1rem
+    font-size: 0.88rem
+    padding: 0px 18px 5px
+
+.templates .template .template-icon img
+    height: 80px
+
+.templates a
+    height: max-content
+
+.templates a:hover
+    background-color: $accent
+
+.templates a:hover .template .template-name
+    color: $text_color_milk
+    
+.template-column-name
+    color: $accent 
+    font-size: 1.1rem
+    vertical-align: middle
+    line-height: 35px
+    background-color: $bg_dark_light
+    letter-spacing: 2px
+
+/* СОВЙСТВА ГРИДА С КОНТЕНТОМ: КОНЕЦ */
+
+
+/* СОВЙСТВА ГРИДА SIDE-MENU: НАЧАЛО */
+
+.side-menu .list-of-laws
+    list-style: none
+    padding: 0
+    margin: 0
+
+.side-menu .list-of-laws .law-item a
+    display: block
+    padding: 5px 15px 5px 10px
+    margin-bottom: 2px
+    border-left: 5px solid $bg_form_gray
+    background-color: $bg_form_gray
+    line-height: 1.3rem
+    font-size: 0.88rem
+    font-weight: bold
+    color: $text_color_light_gray
+    text-align: justify
+
+.side-menu .list-of-laws .law-item:first-child
+    margin-top: 2px
+
+.side-menu .list-of-laws .law-item a:hover
+    background-color: $bg_dark
+    border-left: 5px solid $bg_dark
+    color: $text_color_gray
+    font-weight: bold
+
+.side-menu .list-of-laws .law-item a:active
+    border-left: 5px solid $accent
+    background-color: $bg_dark
+    color: $accent 
+    font-weight: bold
+
+/* СОВЙСТВА ГРИДА SIDE-MENU: КОНЕЦ */
+
+/* ФОРМА АВТОРИЗАЦИИ И РЕГИСТРАЦИИ: НАЧАЛО */
+
+
+.background-autorize
+    background-color: $bg_dark_light
+    position: absolute
+    height: 100%
+    width: 100%
+
+.dws-wrapper
+    color: $text_color_gray
+    width: 100%
+    max-width: 280px
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    position: relative
+
+    
+.dws-form
+    position: relative
+    padding: 60px 50px 20px 50px
+    width: 100%
+    background-color: $bg_main_gray
+    border-radius: 10px
+    
+.dws-form a
+    text-decoration: none
+    transition: .5s
+    color: $text_color_milk
+
+.dws-form a:hover
+    color: $accent
+
+.dws-form input
+    display: block
+    width: 100%
+
+.tab-form
+     display: none
+     padding: 30px 0
+
+.tab-form.active
+     display: block
+     
+
+label.tab
+    font-weight: 400
+    text-transform: uppercase
+    padding: 8px
+    display: block
+    width: 140px
+    position: absolute
+    text-align: center
+    background-color: $bg_dark + 15%
+    border-bottom: 2px solid $bg_dark_light
+    font-size: 0.8rem
+    transition: .5s
+
+label.tab:nth-child(1)
+    border-right: 1px solid $bg_dark_light
+    top: 0px
+    left: 0px
+    border-radius: 10px 0 0 0
+
+label.tab:nth-child(2)
+    border-left: 1px solid $bg_dark_light
+    top: 0px
+    left: 140px
+    border-radius: 0 10px 0 0
+    
+
+label.tab.active
+    color: $accent
+    
+
+label.tab:hover
+    background-color: $accent
+    color: $text_color_milk
+
+.input
+    font-size: 1.5rem
+    border: 0px
+    border-bottom: 1px solid $bg_dark_light
+    padding: 12px 14px
+    box-sizing: border-box 
+    margin-bottom: 30px
+    margin-top: 10px
+    color: $accent
+    background-color: $bg_main_gray
+    outline: none
+    text-align: center 
+    transition: .5s
+
+.input:focus
+    border-bottom: 1px solid $accent
+
+
+a.login-button
+    display: block
+    width: 280px
+    padding: 5px
+    text-align: center
+    margin: 65px 20px 50px
+    font-weight: 400
+    text-transform: uppercase
+    font-size: 1.4rem
+    position: absolute
+    bottom: -50px
+    left: -20px
+    background-color: $bg_dark + 15%
+    border-radius: 0 0 10px 10px
+    border-top: 2px solid $bg_dark_light
+    color: $accent - 20%
+    
+
+    
+
+a.login-button:hover
+    background-color: $accent
+    color: $text_color_milk
+    
+
+a.forgot-button
+    text-align: center
+    font-size: 0.85rem
+    color: $bg_dark_light + 50%
+    font-weight: 600
+    margin-bottom: 35px
+    padding-top: 20px 
+    display: block
+    
+
+.tab-form .recover
+    display: grid
+    grid-template-columns: 20px 155px
+    position: relative
+    vertical-align: middle
+    align-items: center
+    justify-items: end
+    font-size: 0.7rem
+    grid-gap: 10px
+    padding-top: 30px
+    margin-bottom: 30px
+    font-weight: 600
+    line-height: 0.88rem
+
+.tab-form .recover a
+    color: $text_color_light_gray
+
+.tab-form .recover a:hover
+    color: $accent
+
+
+
+/* ФОРМА АВТОРИЗАЦИИ И РЕГИСТРАЦИИ: КОНЕЦ */
+
+
+/* ЗАСТАВКА GLITCH: НАЧАЛО */
+
+.wrapper
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: $bg_dark_light
+
+.box 
+   display: flex
+   justify-content: center
+   align-items: center
+   height: 100%
+   .glitch 
+      color: $accent
+      font-family: 'Poppins', sans-serif
+      font-weight: 600
+      font-size: 100px
+      position: relative
+      padding: 30px
+      &:before, &:after 
+         content: 'RESHALA'
+         color:  $accent
+         position: absolute
+         top: 0
+         overflow: hidden
+         padding: 30px
+      
+      &:before 
+         left: 3px
+         text-shadow: -3px 0 $accent - 50%
+         animation: glitch-before 2s linear 0.5s infinite alternate-reverse
+      
+      &:after 
+         left: -3px
+         text-shadow: -3px 0 $accent - 100%
+         animation: glitch-after 2s linear 0.5s infinite alternate
+      
+
+@keyframes glitch-before 
+   $steps: 30;
+   @for $i from 0 through $steps 
+      #{percentage($i*(1/$steps))} 
+         clip: rect(random(150)+px, 500px, random(150)+px, 30px)
+      
+   
+
+
+@keyframes glitch-after 
+   $steps: 30;
+   @for $i from 0 through $steps 
+      #{percentage($i*(1/$steps))} 
+         clip: rect(random(150)+px, 500px, random(150)+px, 30px)
+      
+   
+/* ЗАСТАВКА GLITCH: КОНЕЦ */
+        
+    
+
+
+        
+
+@import "media" // Всегда в конце

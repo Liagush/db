@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Material Compact Login Animation</title>
+
+   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext'>
+   <link rel="stylesheet" href="/src/main/resources/templates/sass/main.css">
+   
+</head>
+
+<body>
+<div class="background-autorize">
+   <div class="dws-wrapper">
+      <div class="dws-form">
+         <label class="tab active" title="Вкладка авторизации">Авторизация</label>
+         <label class="tab" title="Вкладка регистрация">Регистрация</label>
+
+         <form class="tab-form">
+            <input class="input" type="email" placeholder="e-mail">
+            <input class="input" type="password" placeholder="пароль">
+            <a href="#" class="login-button">Вход</a>
+            <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
+         </form>
+
+         <form class="tab-form active">
+               <input class="input" type="email" placeholder="e-mail">
+               <input class="input" type="text" placeholder="имя">
+               <input class="input" type="password" placeholder="пароль">
+               <a href="#" class="login-button">Регистрация</a>
+               
+               <div class="recover">
+                  <input type="checkbox" id="ckbox">
+                  <label for="ckbox">Ознакомлен(-а) и принимаю <a href="#">условия регистрации</a></label>
+
+               </div>
+
+            </form>
+         
+      </div>
+   </div>
+</div>
+   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+   <script src="/src/main/resources/templates/js/autorize.js"></script>
+
+</body>
+</html>
+
+

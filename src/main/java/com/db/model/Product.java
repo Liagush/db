@@ -13,10 +13,10 @@ public class Product {
     private String productName;
 
     @ManyToOne
-    private Category categories;
+    private Category category;
 
-    public Category getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
     public long getId() {

@@ -31,17 +31,16 @@ public class MainController {
         return "greeting";
     }
 
-    @GetMapping("/product/{vendorCode}/categories")
-    public String main(@PathVariable String vendorCode, Model model) {
-        Product products = productRepo.findByVendorCode(vendorCode).get();
-        model.addAttribute("products", products);
-        List<Category> categories = products.getCategories();
-        model.addAttribute("categories", categories);
-
-        Iterable<Category> categoriesFromRepo = categoryRepo.findByLawsContains(products);
-        model.addAttribute("categories", findByLawsContains);
-        model.addAttribute("categories", categoryRepo);
-        return "main";
+    @GetMapping
+    public String index() {
+        return "index";
     }
 
+    @GetMapping("/product/{vendorCode}/category")
+    public String main(@PathVariable String vendorCode, Model model) {
+        Product product = productRepo.findOneByVendorCode(vendorCode);
+        Category category = product.getCategory();
+        model.addAttribute("category", category);
+        return "main";
+    }
 }
