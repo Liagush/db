@@ -1,11 +1,9 @@
 package com.db.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Law {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
