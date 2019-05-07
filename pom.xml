@@ -68,8 +68,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <inputPath>${basedir}/src/main/resources/templates/sass/</inputPath>
-                    <outputPath>${basedir}/src/main/resources/templates/sass/</outputPath>
+                    <inputPath>${basedir}/src/main/resources/sass/</inputPath>
+                    <outputPath>${basedir}/src/main/resources/sass/</outputPath>
                     <inputSyntax>sass</inputSyntax>
                 </configuration>
             </plugin>

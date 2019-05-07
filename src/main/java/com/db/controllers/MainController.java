@@ -31,7 +31,7 @@ public class MainController {
         return "greeting";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index() {
         return "index";
     }
