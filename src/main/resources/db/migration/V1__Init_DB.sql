@@ -8,6 +8,7 @@ create table category_laws (
     category_id integer not null,
     laws_id integer not null
 ) engine=MyISAM
+
 create table category_products (
     category_id integer not null,
     products_id bigint not null
