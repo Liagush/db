@@ -34,6 +34,11 @@ public class MainController {
         return "editlaw";
     }
 
+    @GetMapping("/productediting")
+    public String productediting() {
+        return "productediting";
+    }
+
     @GetMapping("/")
     public String index() {
         return "index";

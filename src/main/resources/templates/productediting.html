@@ -9,18 +9,18 @@
 <body>
 
 <div>
-    <form id="editLaw">
+    <form id="productEditing">
+        <h5>Загрузка списка товаров</h5>
+        <input type="text" placeholder="Артикул"><br>
+        <input type="text" placeholder="Наименование"><br>
+        <input type="submit" value="Загрузить списком">
+
         <h5>Выбор категории товаров</h5>
         <select required name="hero[]">
             <option disabled>Категория</option>
             <option value=""></option>
         </select><br>
         <input type="button" value="добавить новую категорию">
-
-        <h5>Выбор законов для категории</h5>
-
-        <input type="button" onclick="existingLaw();" value="Выбрать из базы данных">
-        <input type="button" onclick="addNewLaw();" value="Добавить новый закон">
 
         <input type="submit" value="Отправить форму">
 
