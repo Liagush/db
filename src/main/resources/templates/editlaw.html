@@ -4,11 +4,9 @@
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/static/sass/main.css">
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="/static/js/editLaw.js"></script>
+
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
 
 <div>
     <form id="editLaw">
@@ -25,12 +23,15 @@
 
         <h5>Законы</h5>
 
-        <input type="submit" onclick="existingLaw();" value="Выбрать из базы данных">
-        <input type="submit" onclick="addNewLaw();" value="Добавить новый закон"><br>
+        <input type="button" onclick="existingLaw();" value="Выбрать из базы данных">
+        <input type="button" onclick="addNewLaw();" value="Добавить новый закон">
 
         <input type="submit" value="Загрузить">
 
     </form>
 </div>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src="/static/js/editLaw.js"></script>
 </body>
 </html>

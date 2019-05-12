@@ -14,6 +14,7 @@ function existingLaw() {
 
 // Модуль добавления новых законов
 function addNewLaw() {
+
     var elementForm = document.createElement("div");
     var inputHeadOfLaw = document.createElement("input");
     var inputArticleOfTheLaw = document.createElement("input");
@@ -27,10 +28,12 @@ function addNewLaw() {
     inputTextOfTheLaw.setAttribute("name", "textOfTheLaw");
     inputTextOfTheLaw.setAttribute("placeholder", "Текст закона");
 
+
     elementForm.appendChild(inputHeadOfLaw);
     elementForm.appendChild(br);
     elementForm.appendChild(inputArticleOfTheLaw);
     elementForm.appendChild(br);
     elementForm.appendChild(inputTextOfTheLaw);
     elementForm.appendChild(br);
+    wrapped.appendChild(elementForm);
 }
