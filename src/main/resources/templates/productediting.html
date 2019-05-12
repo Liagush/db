@@ -9,10 +9,10 @@
 <body>
 
 <div>
-    <form id="productEditing">
+    <form id="productEditing" action="productEditing" method="post">
         <h5>Загрузка списка товаров</h5>
-        <input type="text" placeholder="Артикул"><br>
-        <input type="text" placeholder="Наименование"><br>
+        <input type="text" placeholder="Артикул" name="productItem"><br>
+        <input type="text" placeholder="Наименование" name="productName"><br>
         <input type="submit" value="Загрузить списком">
 
         <h5>Выбор категории товаров</h5>
@@ -23,8 +23,13 @@
         <input type="button" value="добавить новую категорию">
 
         <input type="submit" value="Отправить форму">
-
     </form>
+
+    <tr th:each="prod : ${products}">
+        <td th:text="${prod.id}"></td>
+        <td th:text="${prod.vendorCode}"></td>
+        <td th:text="${prod.productName}"></td>
+    </tr>
 </div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>

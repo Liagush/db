@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -35,7 +38,18 @@ public class MainController {
     }
 
     @GetMapping("/productediting")
-    public String productediting() {
+    public String productediting(Map<String,Object> model) {
+
+        Iterable<Product> products = productRepo.findAll();
+        model.put("products", products);
+        return "productediting";
+    }
+
+    @PostMapping("productEditing")
+    public String productEditing(@RequestParam Map<String,String> reqPar) {
+        reqPar.get("productItem");
+        reqPar.get("productName");
+        //String model = new String("formsend");
         return "productediting";
     }
 
