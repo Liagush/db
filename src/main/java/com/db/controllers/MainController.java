@@ -41,6 +41,8 @@ public class MainController {
     public String productediting(Map<String,Object> model) {
 
         Iterable<Product> products = productRepo.findAll();
+        Iterable<Category> categories = categoryRepo.findAll();
+        model.put("categories",categories);
         model.put("products", products);
         return "productediting";
     }

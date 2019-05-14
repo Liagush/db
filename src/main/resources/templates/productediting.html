@@ -17,9 +17,9 @@
 
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active" name="category">
-            <select th:each="cat : ${category}" name="category">
+            <select th:each="cat : ${categories}" name="category">
                 <option disabled>Категория</option>
-                <option th:value="" value=""></option>
+                <option th:value="${cat.category}" value=""></option>
             </select><br>
             <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">
         </div>
