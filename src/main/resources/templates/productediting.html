@@ -11,16 +11,24 @@
 <div>
     <form id="productEditing" action="productEditing" method="post">
         <h5>Загрузка списка товаров</h5>
-        <input type="text" placeholder="Артикул" name="productItem"><br>
+        <input type="text" placeholder="Артикул" name="vendorCode"><br>
         <input type="text" placeholder="Наименование" name="productName"><br>
-        <input type="submit" value="Загрузить списком">
+        <input type="button" value="Загрузить списком">
 
         <h5>Выбор категории товаров</h5>
-        <select required name="hero[]">
-            <option disabled>Категория</option>
-            <option value=""></option>
-        </select><br>
-        <input type="button" value="добавить новую категорию">
+        <div class="listCategory active" name="category">
+            <select th:each="cat : ${category}" name="category">
+                <option disabled>Категория</option>
+                <option th:value="" value=""></option>
+            </select><br>
+            <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">
+        </div>
+        <div class="addNewCategory">
+            <input id="categoryID">
+            <lable for="categoryID">Название новой категории товаров</lable>
+            <input type="button" value="Выбрать категорию из базы данных" onclick="switchOnListCategoryProduct();">
+        </div>
+
 
         <input type="submit" value="Отправить форму">
     </form>

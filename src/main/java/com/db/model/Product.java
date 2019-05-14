@@ -12,6 +12,15 @@ public class Product {
 
     private String productName;
 
+    public Product() {
+    }
+
+    public Product(String vendorCode, String productName, Category category) {
+        this.vendorCode = vendorCode;
+        this.productName = productName;
+        this.category = category;
+    }
+
     @ManyToOne
     private Category category;
 
