@@ -48,13 +48,11 @@ public class MainController {
     }
 
     @PostMapping("productEditing")
-    public String productEditing(@RequestParam String vendorCode, @RequestParam String productName, @RequestParam Category category, Map<String,Object> model) {
-//        String vendorCode = reqPar.get("vendorCode");
-//        String productName = reqPar.get("productName");
-//        Category category = category.get("category");
-        Product products = new Product (vendorCode, productName, category);
+    public String productEditing(@RequestParam String vendorCode, @RequestParam String productName, @RequestParam String category, Map<String,Object> model) {
+        Category cat = new Category();
+        cat.setCategory(category);
+        Product products = new Product (vendorCode, productName, cat);
         productRepo.save(products);
-        //String model = new String("formsend");
         return "productediting";
     }
 

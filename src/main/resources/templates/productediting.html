@@ -16,10 +16,10 @@
         <input type="button" value="Загрузить списком">
 
         <h5>Выбор категории товаров</h5>
-        <div class="listCategory active" name="category">
+        <div class="listCategory active">
             <select th:each="cat : ${categories}" name="category">
                 <option disabled>Категория</option>
-                <option th:value="${cat.category}" value=""></option>
+                <option th:value="${cat.category}"></option>
             </select><br>
             <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">
         </div>
