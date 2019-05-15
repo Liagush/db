@@ -44,33 +44,24 @@ function addNewLaw() {
 
 function switchOnAddNewCategoryProduct() {
 
-    //$("#productEditing").find(".active").removeClass("active");
-    //$("#productEditing").find("").removeClass("active");
-    //addNewCategory.classList.add("active");
-
     // удаляем класс active и имя category у выбранных элементов формы
-    var activeDel = document.getElementsByClassName("active");
-    activeDel.classList.remove("active");
-    var delName = activeDel.getElementsByTagName("select");
-    delName.removeAttribute("name");
-    //var nameDel = document.getElementsByName("category");
+    $(".active").removeClass("active");
+    $("#productEditing.listCategory").removeAttr("name");
 
     // добавляем класс active и имя category к выбранным элементам формы
-    addNewCategory.classList.add("active");
-    var addName = addNewCategory.getElementsByTagName("input");
-    addName.setAttribute("name","category");
+    addNewCategory[0].classList.add("active");
+    var addName = addNewCategory[0].getElementsByTagName("input");
+    addName[0].setAttribute("name","category");
 }
 
 function switchOnListCategoryProduct() {
 
     // удаляем класс active и имя category у выбранных элементов формы
-    var activeDel = document.getElementsByClassName("active");
-    activeDel.classList.remove("active");
-    var delName = activeDel.getElementsByTagName("input");
-    delName.removeAttribute("name");
+    $(".active").removeClass("active");
+    $("#productEditing.addNewCategory").removeAttr("name");
 
     // добавляем класс active и имя category к выбранным элементам формы
-    listCategory.classList.add("active");
-    var addName = addNewCategory.getElementsByTagName("select");
-    addName.setAttribute("name","category");
+    listCategory[0].classList.add("active");
+    var addName = listCategory[0].getElementsByTagName("select");
+    addName[0].setAttribute("name","category");
 }
