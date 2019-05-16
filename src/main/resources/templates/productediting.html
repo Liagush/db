@@ -17,15 +17,18 @@
 
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
-            <select th:each="cat : ${categories}" name="category">
+            <select th:each="cat : ${categories}" name="category" th:if="${not #lists.isEmpty(categories)}">
                 <option disabled>Категория</option>
                 <option th:value="${cat.category}"></option>
-            </select><br>
+                <br>
+            </select>
+            <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
             <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">
         </div>
         <div class="addNewCategory">
-            <input id="categoryID">
             <lable for="categoryID">Название новой категории товаров</lable>
+            <input id="categoryID">
+            <br>
             <input type="button" value="Выбрать категорию из базы данных" onclick="switchOnListCategoryProduct();">
         </div>
 

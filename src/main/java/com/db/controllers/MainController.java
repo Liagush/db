@@ -53,6 +53,9 @@ public class MainController {
         cat.setCategory(category);
         Product products = new Product (vendorCode, productName, cat);
         productRepo.save(products);
+        Category categorySaveDB = new Category();
+        categorySaveDB.setCategory(category);
+        categoryRepo.save(categorySaveDB);
         return "productediting";
     }
 
