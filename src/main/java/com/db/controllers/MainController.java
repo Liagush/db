@@ -51,11 +51,9 @@ public class MainController {
     public String productEditing(@RequestParam String vendorCode, @RequestParam String productName, @RequestParam String category, Map<String,Object> model) {
         Category cat = new Category();
         cat.setCategory(category);
+        categoryRepo.save(cat);
         Product products = new Product (vendorCode, productName, cat);
         productRepo.save(products);
-        Category categorySaveDB = new Category();
-        categorySaveDB.setCategory(category);
-        categoryRepo.save(categorySaveDB);
         return "productediting";
     }
 
