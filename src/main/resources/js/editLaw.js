@@ -65,3 +65,44 @@ function switchOnListCategoryProduct() {
     var addName = listCategory[0].getElementsByTagName("select");
     addName[0].setAttribute("name","category");
 }
+
+
+// Модуль парсинга CSV файлов и вывода на страницу всего списка товаров
+const input = document.querySelector('input[type = "file"]');
+const reader = new FileReader();
+reader.onload = function() {
+    reader.readAsText(input.files[0]);
+}
+
+function readListProduct() {
+    Papa.parse(input.files[0], {
+        skipEmptyLines: true,
+        complete: function(results) {
+                //console.log(results.data);
+                loadListProducts(results.data);
+        }
+    });
+}
+
+function loadListProducts(data) {
+    for (var i=0; i < data.length; i++) {
+        //console.log(data[i]);
+        for (var g=0; g < data[i].length; g++) {
+            console.log(data[i][g]);
+        }
+    }
+}
+
+// Парсинг Papa parse на JQuery
+// function readListProduct() {
+//     $('input[type=file]').parse({
+//         config: {
+//             complete: function(results, file) {
+//                 console.log("This file done:", file, results);
+//             }
+//         },
+//             complete: function() {
+//                 console.log("All files done!");
+//         }
+//     });
+// }

@@ -13,13 +13,14 @@
         <h5>Загрузка списка товаров</h5>
         <input type="text" placeholder="Артикул" name="vendorCode"><br>
         <input type="text" placeholder="Наименование" name="productName"><br>
-        <input type="button" value="Загрузить списком">
+        <input type="file">
+        <input type="button" value="Загрузить" onclick="readListProduct();">
 
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
-            <select th:each="cat : ${categories}" name="category" th:if="${not #lists.isEmpty(categories)}">
+            <select name="category" th:if="${not #lists.isEmpty(categories)}">
                 <option disabled>Категория</option>
-                <option th:value="${cat.category}"></option>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
             </select>
             <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
@@ -45,5 +46,6 @@
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="/static/js/editLaw.js"></script>
+<script src="/static/js/papaparse.js"></script>
 </body>
 </html>
