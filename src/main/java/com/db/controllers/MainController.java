@@ -48,7 +48,7 @@ public class MainController {
     }
 
     @PostMapping("productEditing")
-    public String productEditing(@RequestParam String vendorCode[], @RequestParam String productName[], @RequestParam String category,  Map<String,Object> model) {
+    public String productEditing(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam String category,  Map<String,Object> model) {
         Category cat = new Category();
         cat.setCategory(category);
         categoryRepo.save(cat);

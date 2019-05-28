@@ -90,23 +90,26 @@ function loadListProducts(data) {
         //console.log(data[i]);
         for (var g=0; g < data[i].length; g++) {
             console.log(data[i][g]);
-            switch (i) {
+            switch (g) {
                 case 0:
                     var input = document.createElement("input");
                     //input.setAttribute("name", String(i) + String(g));
                     input.setAttribute("name", "vendorCode");
                     input.setAttribute("value", data[i][g]);
-                    productEditList.appendChild(input);
+                    productEditList[0].appendChild(input);
                     break;
                 case 1:
                     var input = document.createElement("input");
                     input.setAttribute("name", "productName");
                     input.setAttribute("value", data[i][g]);
-                    productEditList.appendChild(input);
+                    productEditList[0].appendChild(br);
+                    productEditList[0].appendChild(input);
                     break;
                 default:
-                    alert( 'В файле должно быть только два столбца: Артикул и Наименование товара.' );
+                    //alert( 'В файле должно быть только два столбца: Артикул и Наименование товара.' );
+                    break;
             }
+
         }
     }
 }
