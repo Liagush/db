@@ -16,6 +16,10 @@
         <input type="file">
         <input type="button" value="Загрузить" onclick="readListProduct();">
 
+        <div class="productEditList">
+
+        </div>
+
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
             <select name="category" th:if="${not #lists.isEmpty(categories)}">
@@ -36,11 +40,13 @@
 
         <input type="submit" value="Отправить форму">
     </form>
+    <br>
 
     <tr th:each="prod : ${products}">
         <td th:text="${prod.id}"></td>
         <td th:text="${prod.vendorCode}"></td>
         <td th:text="${prod.productName}"></td>
+        <br>
     </tr>
 </div>
 
