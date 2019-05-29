@@ -4,6 +4,7 @@ var br = document.createElement("br");
 var listCategory = document.getElementsByClassName("listCategory");
 var addNewCategory = document.getElementsByClassName("addNewCategory");
 var productEditList = document.getElementsByClassName("productEditList");
+var count = 0; // количество элементов input в списке продуктов
 
 // Модуль добавления существующих законов
 function existingLaw() {
@@ -42,7 +43,6 @@ function addNewLaw() {
 }
 
 // модуль добавления новых категорий
-
 function switchOnAddNewCategoryProduct() {
 
     // удаляем класс active и имя category у выбранных элементов формы
@@ -90,13 +90,19 @@ function addOneProduct() {
     var inputVendorCode = document.createElement("input");
     var inputProductName = document.createElement("input");
     var deleteProductButton = document.createElement("input");
+    var br = document.createElement("br");
     deleteProductButton.setAttribute("class", "deleteProductButton");
     deleteProductButton.setAttribute("type", "button");
     deleteProductButton.setAttribute("value", "Удалить строку");
-    deleteProductButton.setAttribute("onclick", "deleteOneProduct();");
-    var br = document.createElement("br");
+    deleteProductButton.setAttribute("onclick", "deleteOneProduct(this.id);");
     inputVendorCode.setAttribute("class", "vendorCode");
     inputProductName.setAttribute("class", "productName");
+
+    // inputVendorCode.setAttribute("id", "input" + String(count = count++));
+    // inputProductName.setAttribute("id", "input" + String(count = count++));
+    // br.setAttribute("id", "input" + String(count = count++));
+    deleteProductButton.setAttribute("id", "input" + String(count = count++));
+
     var addOneProduct = document.getElementsByClassName("addOneProduct");
     addOneProduct[0].appendChild(inputVendorCode);
     addOneProduct[0].appendChild(inputProductName);
@@ -105,21 +111,19 @@ function addOneProduct() {
 }
 
 // Модуль удаления продуктов по одной позиции
-function deleteOneProduct() {
-    var inputVendorCode = document.getElementsByClassName("vendorCode");
-    var inputProductName = document.getElementsByClassName("productName");
-    var deleteProductButton = document.getElementsByClassName("deleteProductButton");
+function deleteOneProduct(id) {
 
-    var lastVendorCode = inputVendorCode.pop();
-    var lastProductName = inputProductName.pop();
-    var lastDeleteProductButton = deleteProductButton.pop();
-    // productName.remove();
-    // lastVendorCode.remove();
+    var inputVendorCode = $(".vendorCode").prev(id);
+    var inputProductName = $(".productName").prev(id);
+    var br = $(".vendorCode").after(id);
 
-    var addOneProduct = document.getElementsByClassName("addOneProduct");
-    addOneProduct.removeChild(lastVendorCode);
-    addOneProduct.removeChild(productName);
-    addOneProduct.removeChild(lastDeleteProductButton);
+    var deleteProductButton = document.getElementById(id);
+
+    inputVendorCode.remove();
+    inputProductName.remove();
+    br.remove();
+    deleteProductButton.remove();
+
 }
 
 //модуль загрузки из CSV
