@@ -95,7 +95,7 @@ function addOneProduct() {
     deleteProductButton.setAttribute("name", "deleteProductButton");
     deleteProductButton.setAttribute("type", "button");
     deleteProductButton.setAttribute("value", "Удалить строку");
-    deleteProductButton.setAttribute("onclick", "deleteOneProduct(this.id);");
+    deleteProductButton.setAttribute("onclick", deleteOneProduct);
     inputVendorCode.setAttribute("class", "vendorCode");
     inputProductName.setAttribute("class", "productName");
     inputVendorCode.setAttribute("name", "vendorCode");
@@ -114,13 +114,13 @@ function addOneProduct() {
 }
 
 // Модуль удаления продуктов по одной позиции
-function deleteOneProduct(id) {
+function deleteOneProduct() {
 
-    var inputVendorCode = $(".vendorCode").prev(id);
-    var inputProductName = $(".productName").prev(id);
-    var br = $(".vendorCode").after(id);
-
-    var deleteProductButton = document.getElementById(id);
+    var Id = this.id
+    var deleteProductButton = document.getElementById(Id);
+    var inputVendorCode = $(".vendorCode").prev(Id);
+    var inputProductName = $(".productName").prev(Id);
+    var br = $(".vendorCode").after(Id);
 
     inputVendorCode.remove();
     inputProductName.remove();
