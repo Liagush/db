@@ -85,6 +85,44 @@ function readListProduct() {
     });
 }
 
+// модуль добавления продуктов по одной позиции
+function addOneProduct() {
+    var inputVendorCode = document.createElement("input");
+    var inputProductName = document.createElement("input");
+    var deleteProductButton = document.createElement("input");
+    deleteProductButton.setAttribute("class", "deleteProductButton");
+    deleteProductButton.setAttribute("type", "button");
+    deleteProductButton.setAttribute("value", "Удалить строку");
+    deleteProductButton.setAttribute("onclick", "deleteOneProduct();");
+    var br = document.createElement("br");
+    inputVendorCode.setAttribute("class", "vendorCode");
+    inputProductName.setAttribute("class", "productName");
+    var addOneProduct = document.getElementsByClassName("addOneProduct");
+    addOneProduct[0].appendChild(inputVendorCode);
+    addOneProduct[0].appendChild(inputProductName);
+    addOneProduct[0].appendChild(deleteProductButton);
+    addOneProduct[0].appendChild(br);
+}
+
+// Модуль удаления продуктов по одной позиции
+function deleteOneProduct() {
+    var inputVendorCode = document.getElementsByClassName("vendorCode");
+    var inputProductName = document.getElementsByClassName("productName");
+    var deleteProductButton = document.getElementsByClassName("deleteProductButton");
+
+    var lastVendorCode = inputVendorCode.pop();
+    var lastProductName = inputProductName.pop();
+    var lastDeleteProductButton = deleteProductButton.pop();
+    // productName.remove();
+    // lastVendorCode.remove();
+
+    var addOneProduct = document.getElementsByClassName("addOneProduct");
+    addOneProduct.removeChild(lastVendorCode);
+    addOneProduct.removeChild(productName);
+    addOneProduct.removeChild(lastDeleteProductButton);
+}
+
+//модуль загрузки из CSV
 function loadListProducts(data) {
     for (var i=0; i < data.length; i++) {
         //console.log(data[i]);
@@ -99,11 +137,12 @@ function loadListProducts(data) {
                     productEditList[0].appendChild(input);
                     break;
                 case 1:
+                    var br = document.createElement("br");
                     var input = document.createElement("input");
                     input.setAttribute("name", "productName");
                     input.setAttribute("value", data[i][g]);
-                    productEditList[0].appendChild(br);
                     productEditList[0].appendChild(input);
+                    productEditList[0].appendChild(br);
                     break;
                 default:
                     //alert( 'В файле должно быть только два столбца: Артикул и Наименование товара.' );
