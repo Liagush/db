@@ -92,11 +92,14 @@ function addOneProduct() {
     var deleteProductButton = document.createElement("input");
     var br = document.createElement("br");
     deleteProductButton.setAttribute("class", "deleteProductButton");
+    deleteProductButton.setAttribute("name", "deleteProductButton");
     deleteProductButton.setAttribute("type", "button");
     deleteProductButton.setAttribute("value", "Удалить строку");
     deleteProductButton.setAttribute("onclick", "deleteOneProduct(this.id);");
     inputVendorCode.setAttribute("class", "vendorCode");
     inputProductName.setAttribute("class", "productName");
+    inputVendorCode.setAttribute("name", "vendorCode");
+    inputProductName.setAttribute("name", "productName");
 
     // inputVendorCode.setAttribute("id", "input" + String(count = count++));
     // inputProductName.setAttribute("id", "input" + String(count = count++));
