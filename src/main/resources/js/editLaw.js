@@ -90,7 +90,7 @@ function addOneProduct() {
     var inputVendorCode = document.createElement("input");
     var inputProductName = document.createElement("input");
     var deleteProductButton = document.createElement("input");
-    var br = document.createElement("br");
+    var div = document.createElement("div");
     deleteProductButton.setAttribute("class", "deleteProductButton");
     deleteProductButton.setAttribute("name", "deleteProductButton");
     deleteProductButton.setAttribute("type", "button");
@@ -107,24 +107,26 @@ function addOneProduct() {
     deleteProductButton.setAttribute("id", "input" + String(count = count++));
 
     var addOneProduct = document.getElementsByClassName("addOneProduct");
-    addOneProduct[0].appendChild(inputVendorCode);
-    addOneProduct[0].appendChild(inputProductName);
-    addOneProduct[0].appendChild(deleteProductButton);
-    addOneProduct[0].appendChild(br);
+    div.appendChild(inputVendorCode);
+    div.appendChild(inputProductName);
+    div.appendChild(deleteProductButton);
+    addOneProduct[0].appendChild(div);
 }
 
 // Модуль удаления продуктов по одной позиции
-function deleteOneProduct() {
+function deleteOneProduct(event) {
 
-    var deleteProductButton = this;
-    var inputVendorCode = $(".vendorCode").prev(this);
-    var inputProductName = $(".productName").prev(this);
-    var br = $(".vendorCode").after(this);
+    $(this).parent().remove();
 
-    inputVendorCode.remove();
-    inputProductName.remove();
-    br.remove();
-    deleteProductButton.remove();
+    // var deleteProductButton = this;
+    // var inputVendorCode = $(".vendorCode").prev(this);
+    // var inputProductName = $(".productName").prev(this);
+    // var br = $(".vendorCode").after(this);
+
+    // inputVendorCode.remove();
+    // inputProductName.remove();
+    // br.remove();
+    // deleteProductButton.remove();
 
 }
 
