@@ -116,11 +116,10 @@ function addOneProduct() {
 // Модуль удаления продуктов по одной позиции
 function deleteOneProduct() {
 
-    var Id = this.id
-    var deleteProductButton = document.getElementById(Id);
-    var inputVendorCode = $(".vendorCode").prev(Id);
-    var inputProductName = $(".productName").prev(Id);
-    var br = $(".vendorCode").after(Id);
+    var deleteProductButton = this;
+    var inputVendorCode = $(".vendorCode").prev(this);
+    var inputProductName = $(".productName").prev(this);
+    var br = $(".vendorCode").after(this);
 
     inputVendorCode.remove();
     inputProductName.remove();
