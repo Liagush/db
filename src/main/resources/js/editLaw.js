@@ -95,16 +95,13 @@ function addOneProduct() {
     deleteProductButton.setAttribute("name", "deleteProductButton");
     deleteProductButton.setAttribute("type", "button");
     deleteProductButton.setAttribute("value", "Удалить строку");
-    deleteProductButton.setAttribute("onclick", deleteOneProduct);
+    // deleteProductButton.setAttribute("onclick", deleteOneProduct);
+    deleteProductButton.onclick = deleteOneProduct;
     inputVendorCode.setAttribute("class", "vendorCode");
     inputProductName.setAttribute("class", "productName");
     inputVendorCode.setAttribute("name", "vendorCode");
     inputProductName.setAttribute("name", "productName");
-
-    // inputVendorCode.setAttribute("id", "input" + String(count = count++));
-    // inputProductName.setAttribute("id", "input" + String(count = count++));
-    // br.setAttribute("id", "input" + String(count = count++));
-    deleteProductButton.setAttribute("id", "input" + String(count = count++));
+    //deleteProductButton.setAttribute("id", "input" + String(count = count++));
 
     var addOneProduct = document.getElementsByClassName("addOneProduct");
     div.appendChild(inputVendorCode);
@@ -117,16 +114,6 @@ function addOneProduct() {
 function deleteOneProduct(event) {
 
     $(this).parent().remove();
-
-    // var deleteProductButton = this;
-    // var inputVendorCode = $(".vendorCode").prev(this);
-    // var inputProductName = $(".productName").prev(this);
-    // var br = $(".vendorCode").after(this);
-
-    // inputVendorCode.remove();
-    // inputProductName.remove();
-    // br.remove();
-    // deleteProductButton.remove();
 
 }
 
