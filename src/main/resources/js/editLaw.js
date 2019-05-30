@@ -89,25 +89,28 @@ function readListProduct() {
 function addOneProduct() {
     var inputVendorCode = document.createElement("input");
     var inputProductName = document.createElement("input");
-    var deleteProductButton = document.createElement("input");
     var div = document.createElement("div");
-    deleteProductButton.setAttribute("class", "deleteProductButton");
-    deleteProductButton.setAttribute("name", "deleteProductButton");
-    deleteProductButton.setAttribute("type", "button");
-    deleteProductButton.setAttribute("value", "Удалить строку");
-    // deleteProductButton.setAttribute("onclick", deleteOneProduct);
-    deleteProductButton.onclick = deleteOneProduct;
     inputVendorCode.setAttribute("class", "vendorCode");
     inputProductName.setAttribute("class", "productName");
     inputVendorCode.setAttribute("name", "vendorCode");
     inputProductName.setAttribute("name", "productName");
-    //deleteProductButton.setAttribute("id", "input" + String(count = count++));
 
     var addOneProduct = document.getElementsByClassName("addOneProduct");
     div.appendChild(inputVendorCode);
     div.appendChild(inputProductName);
-    div.appendChild(deleteProductButton);
+    deleteButton(div);
     addOneProduct[0].appendChild(div);
+}
+
+// Модуль добавления кнопки построчного удаления
+function deleteButton(div) {
+    var deleteProductButton = document.createElement("input");
+    deleteProductButton.setAttribute("class", "deleteProductButton");
+    deleteProductButton.setAttribute("name", "deleteProductButton");
+    deleteProductButton.setAttribute("type", "button");
+    deleteProductButton.setAttribute("value", "Удалить строку");
+    deleteProductButton.onclick = deleteOneProduct;
+    div.appendChild(deleteProductButton);
 }
 
 // Модуль удаления продуктов по одной позиции
@@ -120,31 +123,31 @@ function deleteOneProduct(event) {
 //модуль загрузки из CSV
 function loadListProducts(data) {
     for (var i=0; i < data.length; i++) {
-        //console.log(data[i]);
+        var div = document.createElement("div");
+        productEditList[0].appendChild(div);
+
         for (var g=0; g < data[i].length; g++) {
             console.log(data[i][g]);
             switch (g) {
                 case 0:
                     var input = document.createElement("input");
-                    //input.setAttribute("name", String(i) + String(g));
                     input.setAttribute("name", "vendorCode");
                     input.setAttribute("value", data[i][g]);
-                    productEditList[0].appendChild(input);
+                    div.appendChild(input);
                     break;
                 case 1:
-                    var br = document.createElement("br");
                     var input = document.createElement("input");
                     input.setAttribute("name", "productName");
                     input.setAttribute("value", data[i][g]);
-                    productEditList[0].appendChild(input);
-                    productEditList[0].appendChild(br);
+                    div.appendChild(input);
                     break;
                 default:
                     //alert( 'В файле должно быть только два столбца: Артикул и Наименование товара.' );
                     break;
             }
-
         }
+
+        deleteButton(div);
     }
 }
 
