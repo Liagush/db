@@ -11,11 +11,14 @@
 <div>
     <form id="editLaw">
         <h5>Выбор категории товаров</h5>
-        <select required name="hero[]">
-            <option disabled>Категория</option>
-            <option value=""></option>
-        </select><br>
-        <input type="button" value="добавить новую категорию">
+        <div class="listCategory active">
+            <select name="category" th:if="${not #lists.isEmpty(categories)}">
+                <option disabled>Категория</option>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
+                <br>
+            </select>
+            <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
+        </div>
 
         <h5>Выбор законов для категории</h5>
 
@@ -29,5 +32,6 @@
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="/static/js/editLaw.js"></script>
+<script src="/static/js/addCategory.js"></script>
 </body>
 </html>

@@ -9,6 +9,8 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String itemLaw;
+
     private String law;
 
     @ManyToMany
@@ -24,6 +26,14 @@ public class Law {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getItemLaw() {
+        return itemLaw;
+    }
+
+    public void setItemLaw(String itemLaw) {
+        this.itemLaw = itemLaw;
     }
 
     public String getLaw() {

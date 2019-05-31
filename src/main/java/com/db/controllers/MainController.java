@@ -1,6 +1,7 @@
 package com.db.controllers;
 
 import com.db.model.Category;
+import com.db.model.Law;
 import com.db.model.Product;
 import com.db.repos.CategoryRepo;
 import com.db.repos.LawRepo;
@@ -33,7 +34,12 @@ public class MainController {
     }
 
     @GetMapping("/editlaw")
-    public String editlaw() {
+    public String editlaw(Map<String,Object> model) {
+
+        Iterable<Law> laws = lawRepo.findAll();
+        Iterable<Category> categories = categoryRepo.findAll();
+        model.put("categories",categories);
+        model.put("laws", laws);
         return "editlaw";
     }
 
