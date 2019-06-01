@@ -35,3 +35,11 @@ function addNewLaw() {
     elementForm.appendChild(br);
     wrapped.appendChild(elementForm);
 }
+
+// Модуль отображения законов по выбранной категории
+function selectChange() {
+    $('input[type=text]').each(function(){
+        $(this).val('');
+    });
+    document.getElementById("editLaw").submit();
+}

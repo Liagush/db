@@ -12,7 +12,7 @@
     <form id="editLaw">
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
-            <select name="category" th:if="${not #lists.isEmpty(categories)}">
+            <select name="category" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">
                 <option disabled>Категория</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
