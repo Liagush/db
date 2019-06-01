@@ -24,6 +24,7 @@ insert into hibernate_sequence values ( 1 )
 
 create table law (
     id integer not null,
+    item_law varchar(255),
     law varchar(255),
     primary key (id)
 ) engine=MyISAM
