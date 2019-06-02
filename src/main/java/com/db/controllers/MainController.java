@@ -34,15 +34,13 @@ public class MainController {
     }
 
     @GetMapping("/editlaw")
-    public String editlaw(@RequestParam(name="category", required=false, defaultValue="") String category, Map<String,Object> model) {
+    public String editlaw(@RequestParam Integer categoryId, Map<String,Object> model) {
 
-        if(category.isEmpty()) {
+        if(categoryId == null ) {
             Iterable<Law> laws = lawRepo.findAll();
             model.put("laws", laws);
         } else {
-            Category cat = new Category();
-            cat.setCategory(category);
-            Iterable<Law> lawsCategory = lawRepo.findByCategoriesContains(cat);
+            Iterable<Law> lawsCategory = lawRepo.findByCategoryIdContains(categoryId);
             model.put("laws", lawsCategory);
         }
 

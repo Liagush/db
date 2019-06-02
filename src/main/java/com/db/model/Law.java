@@ -9,7 +9,7 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String itemLaw;
+    private String lawNumber;
 
     private String law;
 
@@ -28,12 +28,12 @@ public class Law {
         this.id = id;
     }
 
-    public String getItemLaw() {
-        return itemLaw;
+    public String getLawNumber() {
+        return lawNumber;
     }
 
-    public void setItemLaw(String itemLaw) {
-        this.itemLaw = itemLaw;
+    public void setLawNumber(String itemLaw) {
+        this.lawNumber = itemLaw;
     }
 
     public String getLaw() {
