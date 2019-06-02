@@ -27,6 +27,13 @@
 
         <input type="submit" value="Отправить форму">
 
+        <h5>Список законов в базе данных</h5>
+        <div class="listOfLaws" th:if="${not #lists.isEmpty(laws)}">
+            <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
+            <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
+            <p th:unless="${not #lists.isEmpty(laws)}">Законы в базе данных отсутствуют.</p>
+        </div>
+
     </form>
 </div>
 

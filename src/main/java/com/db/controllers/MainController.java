@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -34,13 +35,14 @@ public class MainController {
     }
 
     @GetMapping("/editlaw")
-    public String editlaw(@RequestParam Integer categoryId, Map<String,Object> model) {
+    public String editlaw(@RequestParam (required = false) Optional<Integer> category, Map<String,Object> model) {
 
-        if(categoryId == null ) {
+        if(!category.isPresent()) {
             Iterable<Law> laws = lawRepo.findAll();
             model.put("laws", laws);
         } else {
-            Iterable<Law> lawsCategory = lawRepo.findByCategoryIdContains(categoryId);
+            Optional<Category> cat = categoryRepo.findById(category.get());
+            Iterable<Law> lawsCategory = lawRepo.findByCategoriesContains(cat.get());
             model.put("laws", lawsCategory);
         }
 
