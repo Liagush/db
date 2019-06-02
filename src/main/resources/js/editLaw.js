@@ -45,10 +45,12 @@ function addNewLaw() {
 
 // Модуль отображения законов по выбранной категории
 function selectChange() {
+    // var select = $('#categoryId').val();
     $('input[type=text]').each(function(){
         $(this).val('');
     });
-    document.getElementById("editLaw").submit();
+    document.getElementById("categoryChoice").submit();
+    // $("#categoryId [value='select']").attr("selected", "selected");
 }
 
 // Модуль добавления кнопки построчного удаления
