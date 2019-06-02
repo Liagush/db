@@ -21,20 +21,18 @@
         </div>
 
         <h5>Выбор законов для категории</h5>
-
         <input type="button" onclick="existingLaw();" value="Выбрать из базы данных">
         <input type="button" onclick="addNewLaw();" value="Добавить новый закон">
-
-        <input type="submit" value="Отправить форму">
-
-        <h5>Список законов в базе данных</h5>
-        <div class="listOfLaws" th:if="${not #lists.isEmpty(laws)}">
-            <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
-            <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
-            <p th:unless="${not #lists.isEmpty(laws)}">Законы в базе данных отсутствуют.</p>
-        </div>
-
+        <input type="submit" value="Отправить форму" th:if="${not #lists.isEmpty(categories)}">
+        <p th:unless="${not #lists.isEmpty(categories)}">Невозможно отправить форму так как категории товаров в базе данных отсутствуют.</p>
     </form>
+
+    <h5>Список законов в базе данных</h5>
+    <div name="listOfLaws" class="listOfLaws" th:if="${not #lists.isEmpty(laws)}">
+        <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
+        <p th:class="law" th:each="law : ${laws}" th:text="${law.law}"></p>
+        <p th:unless="${not #lists.isEmpty(laws)}">Законы в базе данных отсутствуют.</p>
+    </div>
 </div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>

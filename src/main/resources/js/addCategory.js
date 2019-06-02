@@ -25,3 +25,4 @@ function switchOnListCategoryProduct() {
     var addName = listCategory[0].getElementsByTagName("select");
     addName[0].setAttribute("name","category");
 }
+
