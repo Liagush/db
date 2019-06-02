@@ -46,10 +46,9 @@ public class MainController {
             model.put("laws", lawsCategory);
         }
 
-        Integer categoryId = category.get();
         Iterable<Category> categories = categoryRepo.findAll();
         model.put("categories",categories);
-        model.put("categoryId", categoryId);
+        model.put("categoryId", category);
         return "editlaw";
     }
 
