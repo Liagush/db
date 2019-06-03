@@ -13,9 +13,9 @@
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
             <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">
-                <option>Все категории</option>
+                <option value="" th:selected="${categoryId.empty()}">Все категории</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"
-                th:selected = "${categoryId.isPresent()} && ${cat.id} == ${categoryId.get()}"
+                th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"
                 ></option>
                 <!--th:selected="(${cat.id} == ${categoryId})"-->
                 <br>
