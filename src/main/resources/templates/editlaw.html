@@ -8,28 +8,39 @@
 </head>
 <body>
 
+
 <div>
-    <form id="categoryChoice">
-        <h5>Выбор категории товаров</h5>
+    <form id="editLaw">
+
         <div class="listCategory active">
-            <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">
-                <option value="" th:selected="${categoryId.empty()}">Все категории</option>
-                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"
-                th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"
-                ></option>
-                <!--th:selected="(${cat.id} == ${categoryId})"-->
+            <select name="categories" th:if="${not #lists.isEmpty(categories)}">
+                <option disabled>Категория</option>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
             </select>
             <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
         </div>
-    </form>
-    <form id="editLaw">
 
         <h5>Выбор законов для категории</h5>
         <input type="button" onclick="existingLaw();" value="Выбрать из базы данных">
         <input type="button" onclick="addNewLaw();" value="Добавить новый закон">
         <input type="submit" value="Отправить форму" th:if="${not #lists.isEmpty(categories)}">
         <p th:unless="${not #lists.isEmpty(categories)}">Невозможно отправить форму так как категории товаров в базе данных отсутствуют.</p>
+    </form>
+
+    <h5>Выбор доступных законов из базы по категориям</h5>
+    <form id="categoryChoice">
+        <h5>Выбор категории товаров</h5>
+        <div class="listCategory active">
+            <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">
+                <option value="" th:selected="${categoryId.empty()}">Все категории</option>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"
+                        th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"
+                ></option>
+                <br>
+            </select>
+            <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
+        </div>
     </form>
 
     <h5>Список законов в базе данных</h5>
