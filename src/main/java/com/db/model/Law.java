@@ -13,6 +13,15 @@ public class Law {
 
     private String law;
 
+    public Law() {
+    }
+
+    public Law(String lawNumber, String law, List<Category> categories) {
+        this.lawNumber = lawNumber;
+        this.law = law;
+        this.categories = categories;
+    }
+
     @ManyToMany
     private List<Category> categories;
 

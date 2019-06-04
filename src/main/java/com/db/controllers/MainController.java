@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -52,6 +54,29 @@ public class MainController {
         return "editlaw";
     }
 
+    @PostMapping("/editlawform")
+    public String editlawform(@RequestParam String[] headOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam String[] categories,  Map<String,Object> model) {
+
+        List<Category> lawCategories = new ArrayList<>();
+
+        for (String categoryTitle : categories) {
+            Category cat = new Category();
+            cat.setCategory(categoryTitle);
+            categoryRepo.save(cat);
+            lawCategories.add(cat);
+        }
+
+        for (int i = 0; i < headOfLaw.length; i++) {
+            String head = headOfLaw[i];
+            String article = articleOfTheLaw[i];
+            Law laws = new Law (head, article, lawCategories);
+            lawRepo.save(laws);
+        }
+
+        return "editlaw";
+    }
+
+
     @GetMapping("/productediting")
     public String productediting(Map<String,Object> model) {
 
@@ -78,6 +103,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index() {
+
         return "index";
     }
 
