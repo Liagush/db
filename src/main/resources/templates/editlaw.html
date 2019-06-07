@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Getting Started: Serving Web Content</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/static/sass/main.css">
 
@@ -10,11 +10,10 @@
 
 
 <div>
-    <form id="editLaw">
+    <form id="editLaw" action="editlawform" method="post">
 
         <div class="listCategory active">
             <select name="categories" th:if="${not #lists.isEmpty(categories)}">
-                <option disabled>Категория</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
             </select>

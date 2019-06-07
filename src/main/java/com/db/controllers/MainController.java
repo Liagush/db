@@ -73,7 +73,7 @@ public class MainController {
             lawRepo.save(laws);
         }
 
-        return "editlaw";
+        return "redirect:/editlaw";
     }
 
 
@@ -98,7 +98,7 @@ public class MainController {
             Product products = new Product (VendorCode, ProductName, cat);
             productRepo.save(products);
         }
-        return "productediting";
+        return "redirect:/productediting";
     }
 
     @GetMapping("/")
