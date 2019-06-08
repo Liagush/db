@@ -26,7 +26,7 @@ function addNewLaw() {
     var inputTextOfTheLaw = document.createElement("input");
 
     elementForm.setAttribute("name", "newLawForm");
-    inputHeadOfLaw.setAttribute("name", "headOfLaw");
+    inputHeadOfLaw.setAttribute("name", "chapterOfLaw");
     inputHeadOfLaw.setAttribute("placeholder", "Глава закона");
     inputArticleOfTheLaw.setAttribute("name", "articleOfTheLaw");
     inputArticleOfTheLaw.setAttribute("placeholder", "Статья закона");
@@ -68,5 +68,14 @@ function deleteButton(div) {
 function deleteOneProduct(event) {
 
     $(this).parent().remove();
+
+}
+
+// Модуль выбора законов из базы
+function choiceChapterOfLaw() {
+
+}
+
+function choiceArticleOfLaw() {
 
 }

@@ -24,6 +24,7 @@ insert into hibernate_sequence values ( 1 );
 
 create table law (
     id integer not null,
+    law_chapter varchar (255),
     law_number varchar(255),
     law varchar(255),
     primary key (id)

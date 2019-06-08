@@ -14,6 +14,7 @@
 
         <div class="listCategory active">
             <select name="categories" th:if="${not #lists.isEmpty(categories)}">
+                <option selected value> -- выберите категорию -- </option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
             </select>
@@ -44,6 +45,7 @@
 
     <h5>Список законов в базе данных</h5>
     <div name="listOfLaws" class="listOfLaws" th:if="${not #lists.isEmpty(laws)}">
+        <p th:class="lawChapter" th:each="law : ${laws}" th:text="${law.lawChapter}"></p>
         <p th:class="lawNumber" th:each="law : ${laws}" th:text="${law.lawNumber}"></p>
         <p th:class="law" th:each="law : ${laws}" th:text="${law.law}"></p>
         <p th:unless="${not #lists.isEmpty(laws)}">Законы в базе данных отсутствуют.</p>

@@ -55,7 +55,7 @@ public class MainController {
     }
 
     @PostMapping("/editlawform")
-    public String editlawform(@RequestParam String[] headOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam Integer[] categories,  Map<String,Object> model) {
+    public String editlawform(@RequestParam String[] chapterOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam String[] textOfTheLaw, @RequestParam Integer[] categories,  Map<String,Object> model) {
 
         List<Category> lawCategories = new ArrayList<>();
 
@@ -73,10 +73,11 @@ public class MainController {
             lawCategories.add(cat);
         }*/
 
-        for (int i = 0; i < headOfLaw.length; i++) {
-            String head = headOfLaw[i];
+        for (int i = 0; i < chapterOfLaw.length; i++) {
+            String chapter = chapterOfLaw[i];
             String article = articleOfTheLaw[i];
-            Law laws = new Law (head, article, lawCategories);
+            String text = textOfTheLaw[i];
+            Law laws = new Law (chapter, article, text, lawCategories);
             lawRepo.save(laws);
         }
 

@@ -9,6 +9,8 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String lawChapter;
+
     private String lawNumber;
 
     private String law;
@@ -16,7 +18,8 @@ public class Law {
     public Law() {
     }
 
-    public Law(String lawNumber, String law, List<Category> categories) {
+    public Law(String lawChapter, String lawNumber, String law, List<Category> categories) {
+        this.lawChapter = lawChapter;
         this.lawNumber = lawNumber;
         this.law = law;
         this.categories = categories;
@@ -51,6 +54,14 @@ public class Law {
 
     public void setLaw(String law) {
         this.law = law;
+    }
+
+    public String getLawChapter() {
+        return lawChapter;
+    }
+
+    public void setLawChapter(String lawChapter) {
+        this.lawChapter = lawChapter;
     }
 }
 
