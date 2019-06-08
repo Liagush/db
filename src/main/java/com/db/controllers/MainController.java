@@ -55,16 +55,23 @@ public class MainController {
     }
 
     @PostMapping("/editlawform")
-    public String editlawform(@RequestParam String[] headOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam String[] categories,  Map<String,Object> model) {
+    public String editlawform(@RequestParam String[] headOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam Integer[] categories,  Map<String,Object> model) {
 
         List<Category> lawCategories = new ArrayList<>();
 
-        for (String categoryTitle : categories) {
+        for (Integer category : categories) {
+            Optional<Category> categoryId = categoryRepo.findById(category);
+            if (categoryId.isPresent()){
+                lawCategories.add(categoryId.get());
+            }
+        }
+
+        /*for (String categoryTitle : categories) {
             Category cat = new Category();
             cat.setCategory(categoryTitle);
             categoryRepo.save(cat);
             lawCategories.add(cat);
-        }
+        }*/
 
         for (int i = 0; i < headOfLaw.length; i++) {
             String head = headOfLaw[i];
@@ -87,11 +94,19 @@ public class MainController {
         return "productediting";
     }
 
-    @PostMapping("productEditing")
-    public String productEditing(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam String category,  Map<String,Object> model) {
+    /*@PostMapping("producteditingform")
+    public String producteditingform(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam (required = false) Optional<String> categoryName, @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {
         Category cat = new Category();
-        cat.setCategory(category);
-        categoryRepo.save(cat);
+        if(categoryName.isPresent()) {
+            cat.setCategory(categoryName.get());
+            categoryRepo.save(cat);
+        } else {
+            if (categoryId.isPresent()) {
+                Optional<Category> catOfBd = categoryRepo.findById(categoryId.get());
+                cat = catOfBd.get();
+            }
+        }
+
         for (int i = 0; i < vendorCode.length; i++) {
             String VendorCode = vendorCode[i];
             String ProductName = productName[i];
@@ -99,6 +114,35 @@ public class MainController {
             productRepo.save(products);
         }
         return "redirect:/productediting";
+    }*/
+
+    @PostMapping("producteditingform")
+    public String producteditingform(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam (required = false) Optional<String> categoryName, @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {
+        Category cat = getOrCreateCategory(categoryName, categoryId);
+
+        for (int i = 0; i < vendorCode.length; i++) {
+            String VendorCode = vendorCode[i];
+            String ProductName = productName[i];
+            Product products = new Product (VendorCode, ProductName, cat);
+            productRepo.save(products);
+        }
+        return "redirect:/productediting";
+    }
+
+    private Category getOrCreateCategory(@RequestParam(required = false) Optional<String> categoryName, @RequestParam(required = false) Optional<Integer> categoryId) {
+        if (categoryId.isPresent()) {
+            Optional<Category> existCategory = categoryRepo.findById(categoryId.get());
+            if (existCategory.isPresent()) {
+                return existCategory.get();
+            }
+        }
+        if(categoryName.isPresent()) {
+            Category cat = new Category();
+            cat.setCategory(categoryName.get());
+            categoryRepo.save(cat);
+            return cat;
+        }
+        throw new RuntimeException("categoryId either categoryName should be set");
     }
 
     @GetMapping("/")

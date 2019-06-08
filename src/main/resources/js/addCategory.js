@@ -10,7 +10,7 @@ function switchOnAddNewCategoryProduct() {
     // добавляем класс active и имя category к выбранным элементам формы
     addNewCategory[0].classList.add("active");
     var addName = addNewCategory[0].getElementsByTagName("input");
-    addName[0].setAttribute("name","category");
+    addName[0].setAttribute("name","categoryName");
 }
 
 // модуль выбора категории из списка
@@ -23,6 +23,6 @@ function switchOnListCategoryProduct() {
     // добавляем класс active и имя category к выбранным элементам формы
     listCategory[0].classList.add("active");
     var addName = listCategory[0].getElementsByTagName("select");
-    addName[0].setAttribute("name","category");
+    addName[0].setAttribute("name","categoryId");
 }
 

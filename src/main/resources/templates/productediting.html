@@ -9,7 +9,7 @@
 <body>
 
 <div>
-    <form id="productEditing" action="productEditing" method="post">
+    <form id="producteditingform" action="producteditingform" method="post">
 
         <div class="addOneProduct">
             <h5>Загрузка списка товаров</h5>
@@ -25,7 +25,7 @@
 
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
-            <select name="category" th:if="${not #lists.isEmpty(categories)}">
+            <select name="categoryId" th:if="${not #lists.isEmpty(categories)}">
                 <option disabled>Категория</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
@@ -34,8 +34,8 @@
             <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">
         </div>
         <div class="addNewCategory">
-            <lable for="categoryID">Название новой категории товаров</lable>
-            <input id="categoryID">
+            <lable for="categoryName">Название новой категории товаров</lable>
+            <input id="categoryName">
             <br>
             <input type="button" value="Выбрать категорию из базы данных" onclick="switchOnListCategoryProduct();">
         </div>
