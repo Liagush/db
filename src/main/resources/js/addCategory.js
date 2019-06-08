@@ -3,6 +3,7 @@
 // модуль добавления новых категорий
 function switchOnAddNewCategoryProduct() {
 
+    $("option:selected").prop("selected", false);
     // удаляем класс active и имя category у выбранных элементов формы
     $(".active").removeClass("active");
     $("#productEditing.listCategory").removeAttr("name");

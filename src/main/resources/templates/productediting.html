@@ -26,7 +26,7 @@
         <h5>Выбор категории товаров</h5>
         <div class="listCategory active">
             <select name="categoryId" th:if="${not #lists.isEmpty(categories)}">
-                <option disabled>Категория</option>
+                <option selected value> -- выберите категорию -- </option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>
                 <br>
             </select>
