@@ -1,18 +1,14 @@
 package com.db.controllers;
 
-import com.db.model.Category;
-import com.db.model.Law;
-import com.db.model.Product;
+import com.db.model.*;
 import com.db.repos.CategoryRepo;
+import com.db.repos.LawChapterRepo;
 import com.db.repos.LawRepo;
 import com.db.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +25,9 @@ public class MainController {
 
     @Autowired
     private CategoryRepo categoryRepo;
+
+    @Autowired
+    private LawChapterRepo lawChapterRepo;
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -51,11 +50,19 @@ public class MainController {
         Iterable<Category> categories = categoryRepo.findAll();
         model.put("categories",categories);
         model.put("categoryId", category);
+
+        Iterable<Law> choiceOfLaw = lawRepo.findAll();
+        model.put("choiceOfLaw", choiceOfLaw);
+
         return "editlaw";
     }
 
     @PostMapping("/editlawform")
-    public String editlawform(@RequestParam String[] chapterOfLaw, @RequestParam String[] articleOfTheLaw, @RequestParam String[] textOfTheLaw, @RequestParam Integer[] categories,  Map<String,Object> model) {
+    public String editlawform(@RequestParam String[] chapterOfLaw,
+                              @RequestParam String[] articleOfTheLaw,
+                              @RequestParam String[] textOfTheLaw,
+                              @RequestParam Integer[] categories,
+                              Map<String,Object> model) {
 
         List<Category> lawCategories = new ArrayList<>();
 
@@ -65,13 +72,6 @@ public class MainController {
                 lawCategories.add(categoryId.get());
             }
         }
-
-        /*for (String categoryTitle : categories) {
-            Category cat = new Category();
-            cat.setCategory(categoryTitle);
-            categoryRepo.save(cat);
-            lawCategories.add(cat);
-        }*/
 
         for (int i = 0; i < chapterOfLaw.length; i++) {
             String chapter = chapterOfLaw[i];
@@ -84,6 +84,24 @@ public class MainController {
         return "redirect:/editlaw";
     }
 
+
+
+    @RequestMapping("/getlistarticlelaw")
+    public @ResponseBody List<LawArticle> getSelectArticle(Integer chapterLaw) {
+
+        Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLaw);
+        List<LawArticle> lawArticle = chapter.get().getArticles();
+
+        List<LawArticle> lawArticle = new ArrayList<>();
+
+        Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLaw);
+        if (chapter.isPresent()) {
+
+            List<Law> laws = lawRepo.findByLawChapterContains(chapter.get());
+        }
+
+        return selectlawdb;
+    }
 
     @GetMapping("/productediting")
     public String productediting(Map<String,Object> model) {

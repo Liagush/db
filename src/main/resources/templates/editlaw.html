@@ -22,7 +22,7 @@
         </div>
 
         <h5>Выбор законов для категории</h5>
-        <input type="button" onclick="existingLaw();" value="Выбрать из базы данных">
+        <input type="button" onclick="existingLaw();" value="Выбрать из базы данных" >
         <input type="button" onclick="addNewLaw();" value="Добавить новый закон">
         <input type="submit" value="Отправить форму" th:if="${not #lists.isEmpty(categories)}">
         <p th:unless="${not #lists.isEmpty(categories)}">Невозможно отправить форму так как категории товаров в базе данных отсутствуют.</p>
