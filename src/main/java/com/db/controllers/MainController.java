@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -74,33 +71,40 @@ public class MainController {
         }
 
         for (int i = 0; i < chapterOfLaw.length; i++) {
-            String chapter = chapterOfLaw[i];
-            String article = articleOfTheLaw[i];
+            LawChapter lawChapter = new LawChapter();
+            LawArticle lawArticle = new LawArticle();
+            lawChapter.setChapter(chapterOfLaw[i]);
+            lawArticle.setArticle(articleOfTheLaw[i]);
             String text = textOfTheLaw[i];
-            Law laws = new Law (chapter, article, text, lawCategories);
+            Law laws = new Law (lawChapter, lawArticle, text, lawCategories);
             lawRepo.save(laws);
         }
 
         return "redirect:/editlaw";
     }
 
+    @RequestMapping("/getlistchapterlaw")
+    public @ResponseBody List<LawChapter> getSelectChapter() {
+
+        Iterable<LawChapter> chapter = lawChapterRepo.findAll();
+        List<LawChapter> lawChapter = new ArrayList<>((Collection<? extends LawChapter>) chapter);
+
+        return lawChapter;
+    }
 
 
     @RequestMapping("/getlistarticlelaw")
     public @ResponseBody List<LawArticle> getSelectArticle(Integer chapterLaw) {
 
         Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLaw);
-        List<LawArticle> lawArticle = chapter.get().getArticles();
-
         List<LawArticle> lawArticle = new ArrayList<>();
 
-        Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLaw);
         if (chapter.isPresent()) {
 
-            List<Law> laws = lawRepo.findByLawChapterContains(chapter.get());
+            lawArticle = chapter.get().getLawArticleList();
         }
 
-        return selectlawdb;
+        return lawArticle;
     }
 
     @GetMapping("/productediting")
@@ -112,28 +116,6 @@ public class MainController {
         model.put("products", products);
         return "productediting";
     }
-
-    /*@PostMapping("producteditingform")
-    public String producteditingform(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam (required = false) Optional<String> categoryName, @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {
-        Category cat = new Category();
-        if(categoryName.isPresent()) {
-            cat.setCategory(categoryName.get());
-            categoryRepo.save(cat);
-        } else {
-            if (categoryId.isPresent()) {
-                Optional<Category> catOfBd = categoryRepo.findById(categoryId.get());
-                cat = catOfBd.get();
-            }
-        }
-
-        for (int i = 0; i < vendorCode.length; i++) {
-            String VendorCode = vendorCode[i];
-            String ProductName = productName[i];
-            Product products = new Product (VendorCode, ProductName, cat);
-            productRepo.save(products);
-        }
-        return "redirect:/productediting";
-    }*/
 
     @PostMapping("producteditingform")
     public String producteditingform(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam (required = false) Optional<String> categoryName, @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {

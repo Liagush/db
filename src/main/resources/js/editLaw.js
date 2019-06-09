@@ -1,7 +1,67 @@
 var wrapped = document.getElementById("editLaw");
 
 // Модуль добавления существующих законов
-function existingLaw() {
+// выбор главы закона из выпадающего списка
+function chapterOfLawSelection() {
+
+    var elementSelect = document.createElement("select");
+    var elementOption = document.createElement("option");
+    var div = document.createElement("div");
+
+    elementSelect.setAttribute("name", "chapterLawSelect");
+    elementSelect.onchange = articleOfLawSelection;
+    div.setAttribute("name", "lawsFormContainer");
+    elementOption.setAttribute("name","chapterLawOption");
+    elementSelect.appendChild(elementOption);
+    div.appendChild(elementSelect);
+    deleteButton(div);
+    wrapped.appendChild(div);
+
+    $.get( "/getlistchapterlaw", function( data ) {
+        $(".chapterLawOption")
+            .attr( value, data.id )
+            .text(data.value);
+    }, "json" );
+}
+
+// Выбор статьи закона из выпадающего списка
+function articleOfLawSelection() {
+
+    var elementSelect = document.createElement("select");
+    var elementOption = document.createElement("option");
+    var div = document.getElementsByName("lawsFormContainer");
+
+    elementSelect.setAttribute("name", "articleLawSelect");
+    elementSelect.onchange = textOfTheLawOutput;
+    elementOption.setAttribute("name","articleLawOption");
+    elementSelect.appendChild(elementOption);
+    div[0].appendChild(elementSelect);
+
+    var articleLaw = $('.articleLawSelect').val();
+
+    $.get( "/getlistarticlelaw", {articleLaw}, function( data ) {
+        $(".articleLawOption")
+            .attr( value, data.id )
+            .text(data.value);
+    }, "json" );
+}
+
+// Вывод текста закона после выбора статьи закона из выпадающего списка
+function textOfTheLawOutput() {
+
+    var br = document.createElement("br");
+    var elementParagraph = document.createElement("p");
+    var div = document.getElementsByName("lawsFormContainer");
+
+    elementParagraph.setAttribute("name", "textOfTheLaw");
+    div[0].appendChild(elementParagraph);
+
+
+}
+
+// старый рабочий код
+// Модуль добавления существующих законов
+/*function existingLaw() {
     var br = document.createElement("br");
     var elementSelect = document.createElement("select");
     var elementOption = document.createElement("option");
@@ -13,12 +73,12 @@ function existingLaw() {
     elementOption.setAttribute("th:text", "law : ${law.lawChapter}");
     elementSelect.onchange = selectChoiceChapterOfLaw;
     div.setAttribute("name", "lawsFormContainer");
-    elementSelect.setAttribute("name","choiceOfLaw");
+    elementSelect.setAttribute("name", "choiceOfLaw");
     elementSelect.appendChild(elementOption);
     div.appendChild(elementSelect);
     deleteButton(div);
     wrapped.appendChild(div);
-}
+}*/
 
 // Модуль отображения законов по выбранной категории
 function selectChoiceChapterOfLaw() {
@@ -55,14 +115,6 @@ function addNewLaw() {
     elementForm.appendChild(div);
     wrapped.appendChild(elementForm);
 }
-
-// Модуль отображения законов по выбранной категории
-function selectChange() {
-    var chapterLaw = $('.chapterLaw').val();
-    $.get( "/editlawform.php", chapterLaw);
-}
-
-
 
 // Модуль добавления кнопки построчного удаления
 function deleteButton(div) {

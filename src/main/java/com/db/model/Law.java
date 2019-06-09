@@ -3,7 +3,39 @@ package com.db.model;
 import javax.persistence.*;
 import java.util.List;
 
+// Новый код
 @Entity
+public class Law {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @OneToOne
+    private LawChapter lawChapter;
+
+    @OneToOne
+    private LawArticle lawArticle;
+
+    private String law;
+
+    public Law() {
+    }
+
+    public Law(LawChapter lawChapter, LawArticle lawArticle, String law, List<Category> categories) {
+        this.lawChapter = lawChapter;
+        this.lawArticle = lawArticle;
+        this.law = law;
+        this.categories = categories;
+    }
+
+    @ManyToMany
+    private List<Category> categories;
+
+}
+
+
+// рабочий старый код
+/*@Entity
 public class Law {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,5 +95,5 @@ public class Law {
     public void setLawChapter(String lawChapter) {
         this.lawChapter = lawChapter;
     }
-}
+}*/
 
