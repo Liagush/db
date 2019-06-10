@@ -55,30 +55,8 @@ function textOfTheLawOutput() {
 
     elementParagraph.setAttribute("name", "textOfTheLaw");
     div[0].appendChild(elementParagraph);
-
-
 }
 
-// старый рабочий код
-// Модуль добавления существующих законов
-/*function existingLaw() {
-    var br = document.createElement("br");
-    var elementSelect = document.createElement("select");
-    var elementOption = document.createElement("option");
-    var div = document.createElement("div");
-
-    elementSelect.setAttribute("name", "chapterLaw");
-    elementOption.setAttribute("th:each", "law : ${choiceOfLaw}");
-    elementOption.setAttribute("th:value", "${law.id}");
-    elementOption.setAttribute("th:text", "law : ${law.lawChapter}");
-    elementSelect.onchange = selectChoiceChapterOfLaw;
-    div.setAttribute("name", "lawsFormContainer");
-    elementSelect.setAttribute("name", "choiceOfLaw");
-    elementSelect.appendChild(elementOption);
-    div.appendChild(elementSelect);
-    deleteButton(div);
-    wrapped.appendChild(div);
-}*/
 
 // Модуль отображения законов по выбранной категории
 function selectChoiceChapterOfLaw() {
@@ -141,4 +119,14 @@ function choiceChapterOfLaw() {
 
 function choiceArticleOfLaw() {
 
+}
+
+// Модуль отображения законов по выбранной категории
+function selectChange() {
+    $('input[type=text]').each(function(){
+        $(this).val('');
+    });
+    document.getElementById("categoryChoice").submit();
+    /*var chapterLaw = $('.chapterLaw').val();
+    $.get( "/editlawform.php", chapterLaw);*/
 }

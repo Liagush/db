@@ -2,8 +2,8 @@ package com.db.controllers;
 
 import com.db.model.*;
 import com.db.repos.CategoryRepo;
+import com.db.repos.LawArticleRepo;
 import com.db.repos.LawChapterRepo;
-import com.db.repos.LawRepo;
 import com.db.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class MainController {
@@ -18,13 +20,13 @@ public class MainController {
     private ProductRepo productRepo;
 
     @Autowired
-    private LawRepo lawRepo;
-
-    @Autowired
     private CategoryRepo categoryRepo;
 
     @Autowired
     private LawChapterRepo lawChapterRepo;
+
+    @Autowired
+    private LawArticleRepo lawArticleRepo;
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -36,19 +38,19 @@ public class MainController {
     public String editlaw(@RequestParam (required = false) Optional<Integer> category, Map<String,Object> model) {
 
         if(!category.isPresent()) {
-            Iterable<Law> laws = lawRepo.findAll();
-            model.put("laws", laws);
+            Iterable<LawArticle> lawArticles = lawArticleRepo.findAll();
+            model.put("lawArticles", lawArticles);
         } else {
             Optional<Category> cat = categoryRepo.findById(category.get());
-            Iterable<Law> lawsCategory = lawRepo.findByCategoriesContains(cat.get());
-            model.put("laws", lawsCategory);
+            Iterable<LawArticle> lawsCategory = lawArticleRepo.findByCategoriesContains(cat.get());
+            model.put("lawArticles", lawsCategory);
         }
 
         Iterable<Category> categories = categoryRepo.findAll();
         model.put("categories",categories);
         model.put("categoryId", category);
 
-        Iterable<Law> choiceOfLaw = lawRepo.findAll();
+        Iterable<LawArticle> choiceOfLaw = lawArticleRepo.findAll();
         model.put("choiceOfLaw", choiceOfLaw);
 
         return "editlaw";
@@ -72,12 +74,12 @@ public class MainController {
 
         for (int i = 0; i < chapterOfLaw.length; i++) {
             LawChapter lawChapter = new LawChapter();
-            LawArticle lawArticle = new LawArticle();
             lawChapter.setChapter(chapterOfLaw[i]);
-            lawArticle.setArticle(articleOfTheLaw[i]);
-            String text = textOfTheLaw[i];
-            Law laws = new Law (lawChapter, lawArticle, text, lawCategories);
-            lawRepo.save(laws);
+            lawChapterRepo.save(lawChapter);
+            String lawArticle = articleOfTheLaw[i];
+            String lawText = textOfTheLaw[i];
+            LawArticle lawArticles = new LawArticle (lawChapter, lawArticle, lawText, lawCategories);
+            lawArticleRepo.save(lawArticles);
         }
 
         return "redirect:/editlaw";
@@ -87,7 +89,7 @@ public class MainController {
     public @ResponseBody List<LawChapter> getSelectChapter() {
 
         Iterable<LawChapter> chapter = lawChapterRepo.findAll();
-        List<LawChapter> lawChapter = new ArrayList<>((Collection<? extends LawChapter>) chapter);
+        List<LawChapter> lawChapter = StreamSupport.stream(chapter.spliterator(), false).collect(Collectors.toList());
 
         return lawChapter;
     }

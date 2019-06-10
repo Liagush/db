@@ -15,22 +15,10 @@ public class Category {
     private List<Product> Products;
 
     @ManyToMany
-    private List<Law> laws;
-
-    public List<Law> getLaws() {
-        return laws;
-    }
-
-    public List<Product> getProducts() {
-        return Products;
-    }
+    private List<LawArticle> lawArticles;
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCategory() {
@@ -39,5 +27,21 @@ public class Category {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<Product> getProducts() {
+        return Products;
+    }
+
+    public void setProducts(List<Product> products) {
+        Products = products;
+    }
+
+    public List<LawArticle> getLawArticles() {
+        return lawArticles;
+    }
+
+    public void setLawArticles(List<LawArticle> lawArticles) {
+        this.lawArticles = lawArticles;
     }
 }

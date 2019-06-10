@@ -11,29 +11,19 @@ public class LawChapter {
 
     private String chapter;
 
-    @OneToOne
-    private Law law;
+    @OneToMany
+    private List<LawArticle> lawArticleList;
 
     public LawChapter() {
     }
 
-    public LawChapter(String chapter) {
+    public LawChapter(String chapter, List<LawArticle> lawArticleList) {
         this.chapter = chapter;
+        this.lawArticleList = lawArticleList;
     }
-
-    @OneToMany
-    private List<LawArticle> lawArticleList ;
 
     public int getId() {
         return id;
-    }
-
-    public List<LawArticle> getLawArticleList() {
-        return lawArticleList;
-    }
-
-    public void setLawArticleList(List<LawArticle> lawArticleList) {
-        this.lawArticleList = lawArticleList;
     }
 
     public String getChapter() {
@@ -42,5 +32,13 @@ public class LawChapter {
 
     public void setChapter(String chapter) {
         this.chapter = chapter;
+    }
+
+    public List<LawArticle> getLawArticleList() {
+        return lawArticleList;
+    }
+
+    public void setLawArticleList(List<LawArticle> lawArticleList) {
+        this.lawArticleList = lawArticleList;
     }
 }
