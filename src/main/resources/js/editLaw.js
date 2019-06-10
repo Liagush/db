@@ -18,9 +18,11 @@ function chapterOfLawSelection() {
     wrapped.appendChild(div);
 
     $.get( "/getlistchapterlaw", function( data ) {
-        $(".chapterLawOption")
-            .attr( value, data.id )
-            .text(data.value);
+        for(var i = 0; i < data.length; i++ ) {
+            $(".chapterLawOption")
+                .attr("value", data[i].id )
+                .text(data[i].chapter);
+        }
     }, "json" );
 }
 
