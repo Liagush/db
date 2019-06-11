@@ -11,7 +11,7 @@ public class LawChapter {
 
     private String chapter;
 
-    @OneToMany
+    @OneToMany(mappedBy = "lawChapter")
     private List<LawArticle> lawArticleList;
 
     public LawChapter() {

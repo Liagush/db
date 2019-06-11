@@ -12,6 +12,7 @@ function chapterOfLawSelection() {
     elementSelect.onchange = articleOfLawSelection;
     div.setAttribute("name", "lawsFormContainer");
     elementOption.setAttribute("name","chapterLawOption");
+    elementOption.setAttribute("class","chapterLawOption");
     elementSelect.appendChild(elementOption);
     div.appendChild(elementSelect);
     deleteButton(div);
