@@ -5,48 +5,64 @@ var wrapped = document.getElementById("editLaw");
 function chapterOfLawSelection() {
 
     var elementSelect = document.createElement("select");
-    var elementOption = document.createElement("option");
+    // var elementOption = document.createElement("option");
     var div = document.createElement("div");
 
     elementSelect.setAttribute("name", "chapterLawSelect");
     elementSelect.onchange = articleOfLawSelection;
     div.setAttribute("name", "lawsFormContainer");
-    elementOption.setAttribute("name","chapterLawOption");
-    elementOption.setAttribute("class","chapterLawOption");
-    elementSelect.appendChild(elementOption);
+    // elementOption.setAttribute("name","chapterLawOption");
+    // elementSelect.appendChild(elementOption);
     div.appendChild(elementSelect);
     deleteButton(div);
-    wrapped.appendChild(div);
 
-    $.get( "/getlistchapterlaw", function( data ) {
+    /*$.get( "/getlistchapterlaw", function(data) {
         for(var i = 0; i < data.length; i++ ) {
-            $(".chapterLawOption")
+            $('option[name=chapterLawOption]')
                 .attr("value", data[i].id )
                 .text(data[i].chapter);
         }
+    }, "json" );*/
+
+    $.get( "/getlistchapterlaw", function(data) {
+        for(var i = 0; i < data.length; i++ ) {
+            // $("select[name=chapterLawSelect]").append('<option value="' + data[i].id + '">' + data[i].chapter + '</option>')
+            $("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
+        }
     }, "json" );
+
+    wrapped.appendChild(div);
 }
 
 // Выбор статьи закона из выпадающего списка
 function articleOfLawSelection() {
 
+    if(!$('select[name=articleLawSelect]')) {
+
+    }
     var elementSelect = document.createElement("select");
-    var elementOption = document.createElement("option");
+    // var elementOption = document.createElement("option");
     var div = document.getElementsByName("lawsFormContainer");
 
     elementSelect.setAttribute("name", "articleLawSelect");
     elementSelect.onchange = textOfTheLawOutput;
-    elementOption.setAttribute("name","articleLawOption");
-    elementSelect.appendChild(elementOption);
+    // elementOption.setAttribute("name","articleLawOption");
+    // elementSelect.appendChild(elementOption);
     div[0].appendChild(elementSelect);
 
     var articleLaw = $('.articleLawSelect').val();
 
-    $.get( "/getlistarticlelaw", {articleLaw}, function( data ) {
+    $.get( "/getlistchapterlaw", {articleLaw}, function(data) {
+        for(var i = 0; i < data.length; i++ ) {
+            $("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
+        }
+    }, "json" );
+
+    /*$.get( "/getlistarticlelaw", {articleLaw}, function( data ) {
         $(".articleLawOption")
             .attr( value, data.id )
             .text(data.value);
-    }, "json" );
+    }, "json" );*/
 }
 
 // Вывод текста закона после выбора статьи закона из выпадающего списка

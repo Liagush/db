@@ -1,14 +1,20 @@
 package com.db.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Indexed
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Field(termVector = TermVector.YES)
     private String category;
 
     @OneToMany

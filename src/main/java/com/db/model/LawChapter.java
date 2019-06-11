@@ -1,14 +1,23 @@
 package com.db.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Indexed
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class LawChapter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Field(termVector = TermVector.YES)
     private String chapter;
 
     @OneToMany(mappedBy = "lawChapter")

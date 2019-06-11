@@ -1,15 +1,22 @@
 package com.db.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 import javax.persistence.*;
 
 @Entity
+@Indexed
 public class Product {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     private long id;
 
+    @Field(termVector = TermVector.YES)
     private String vendorCode;
 
+    @Field(termVector = TermVector.YES)
     private String productName;
 
     public Product() {
