@@ -5,16 +5,17 @@ var g = 1;
 // выбор главы закона из выпадающего списка
 function chapterOfLawSelection() {
 
-    var elementSelect = document.createElement("select");
     var div = document.createElement("div");
-    var divSelect = document.createElement("div");
-
     if($('select[name=chapterLawSelect]').length > 0){
         div.setAttribute("name", "lawsFormContainer" + g);
         g = g + 1;
     } else {
         div.setAttribute("name", "lawsFormContainer");
     }
+
+    // var lastLawsFormContainer = $(this).children().last();
+    var elementSelect = document.createElement("select");
+    var divSelect = document.createElement("div");
 
     elementSelect.setAttribute("name", "chapterLawSelect");
     elementSelect.onchange = articleOfLawSelection;
@@ -26,7 +27,7 @@ function chapterOfLawSelection() {
     $.get( "/getlistchapterlaw", function(data) {
         for(var i = 0; i < data.length; i++ ) {
             // $("select[name=chapterLawSelect]").append('<option value="' + data[i].id + '">' + data[i].chapter + '</option>')
-            $("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
+            $(div).find("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
         }
     }, "json" );
 
@@ -37,13 +38,13 @@ function chapterOfLawSelection() {
 function articleOfLawSelection(event) {
     var parentSelect = $(this).parent();
 
-    if($(parentSelect).find('select[name=articleLawSelect]') == false) {
+    if($(parentSelect).find('select[name=articleLawSelect]').length == false) {
         var elementSelect = document.createElement("select");
         elementSelect.setAttribute("name", "articleLawSelect");
         elementSelect.onchange = textOfTheLawOutput;
-        parentSelect.appendChild(elementSelect);
+        $(parentSelect).append(elementSelect);
     } else {
-        $(this).find('select[name=articleLawSelect]').empty();
+        $(parentSelect).find('select[name=articleLawSelect]').empty();
     }
 
 
@@ -51,13 +52,14 @@ function articleOfLawSelection(event) {
 
     $.get( "/getlistarticlelaw", {chapterLawSelect: chapterLaw}, function(data) {
         for(var i = 0; i < data.length; i++ ) {
-            $(parentSelect).find(("select[name=articleLawSelect]").append($("<option/>").val(data[i].id).text(data[i].article));
+            $(parentSelect).find("select[name=articleLawSelect]").append($("<option/>").val(data[i].id).text(data[i].article));
         }
     }, "json" );
 }
 
 // Вывод текста закона после выбора статьи закона из выпадающего списка
-function textOfTheLawOutput() {
+function textOfTheLawOutput(event) {
+    var parentParagraph = $(this).parent();
 
     var br = document.createElement("br");
     var elementParagraph = document.createElement("p");
