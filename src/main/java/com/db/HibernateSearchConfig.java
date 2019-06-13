@@ -12,6 +12,7 @@ public class HibernateSearchConfig {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-    fullTextEntityManager.createIndexer().startAndWait();
+    // fullTextEntityManager.createIndexer().startAndWait();
 }

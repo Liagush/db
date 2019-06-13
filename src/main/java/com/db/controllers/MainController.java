@@ -96,9 +96,9 @@ public class MainController {
 
 
     @RequestMapping("/getlistarticlelaw")
-    public @ResponseBody List<LawArticle> getSelectArticle(Integer chapterLaw) {
+    public @ResponseBody List<LawArticle> getSelectArticle(Integer chapterLawSelect) {
 
-        Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLaw);
+        Optional<LawChapter> chapter = lawChapterRepo.findById(chapterLawSelect);
         List<LawArticle> lawArticle = new ArrayList<>();
 
         if (chapter.isPresent()) {
