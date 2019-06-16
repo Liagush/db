@@ -92,6 +92,10 @@ public class MainController {
                 Optional<LawArticle> lawArticleId = lawArticleRepo.findById(articleLaw);
                 if (lawArticleId.isPresent()){
                     LawArticle lawArticle = lawArticleId.get();
+                    List<Category> getAllArticles = lawArticle.getCategories();
+
+                    for (Category category : getAllArticles)
+                    lawCategories.add(category);
                     lawArticle.setCategories(lawCategories);
                     lawArticleRepo.save(lawArticle);
                 }
