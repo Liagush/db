@@ -60,7 +60,7 @@ public class MainController {
     public String editlawform(@RequestParam(required = false) String[] chapterOfLaw,
                               @RequestParam(required = false) String[] articleOfTheLaw,
                               @RequestParam(required = false) String[] textOfTheLaw,
-                              @RequestParam(required = false) Integer[] articleLawsSelect,
+                              @RequestParam(required = false) Integer[] articleLawSelect,
                               @RequestParam Integer[] categories,
                               Map<String,Object> model) {
 
@@ -74,24 +74,29 @@ public class MainController {
             }
         }
 
-        for (int i = 0; i < chapterOfLaw.length; i++) {
-            LawChapter lawChapter = new LawChapter();
-            lawChapter.setChapter(chapterOfLaw[i]);
-            lawChapterRepo.save(lawChapter);
-            String lawArticle = articleOfTheLaw[i];
-            String lawText = textOfTheLaw[i];
-            LawArticle lawArticles = new LawArticle (lawChapter, lawArticle, lawText, lawCategories);
-            lawArticleRepo.save(lawArticles);
-        }
-
-        for (Integer articleLawSelect : articleLawsSelect) {
-
-            Optional<LawArticle> LawArticleId = lawArticleRepo.findById(articleLawSelect);
-            if (LawArticleId.isPresent()){
-                LawArticleId.get().setCategories(lawCategories);
+        if(chapterOfLaw != null) {
+            for (int i = 0; i < chapterOfLaw.length; i++) {
+                LawChapter lawChapter = new LawChapter();
+                lawChapter.setChapter(chapterOfLaw[i]);
+                lawChapterRepo.save(lawChapter);
+                String lawArticle = articleOfTheLaw[i];
+                String lawText = textOfTheLaw[i];
+                LawArticle lawArticles = new LawArticle (lawChapter, lawArticle, lawText, lawCategories);
+                lawArticleRepo.save(lawArticles);
             }
-
         }
+
+        if (articleLawSelect != null) {
+            for (Integer articleLaw : articleLawSelect) {
+
+                Optional<LawArticle> LawArticleId = lawArticleRepo.findById(articleLaw);
+                if (LawArticleId.isPresent()){
+                    LawArticleId.get().setCategories(lawCategories);
+                }
+
+            }
+        }
+
 
         return "redirect:/editlaw";
     }
