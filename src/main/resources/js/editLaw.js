@@ -24,6 +24,9 @@ function chapterOfLawSelection() {
     div.appendChild(divSelect);
     deleteButton(div);
 
+    $(div).find("select[name=chapterLawSelect]").append($('<option selected></option>').val('').text(' -- выберите главу -- '));
+
+
     $.get( "/getlistchapterlaw", function(data) {
         for(var i = 0; i < data.length; i++ ) {
             // $("select[name=chapterLawSelect]").append('<option value="' + data[i].id + '">' + data[i].chapter + '</option>')
@@ -47,6 +50,9 @@ function articleOfLawSelection(event) {
         $(parentSelect).find('select[name=articleLawSelect]').empty();
     }
 
+    $(parentSelect).find("select[name=articleLawSelect]").append($('<option selected></option>').val('').text(' -- выберите статью -- '));
+
+
 
     var chapterLaw = $(parentSelect).find('select[name=chapterLawSelect] option:selected').val();
 
@@ -63,10 +69,17 @@ function textOfTheLawOutput(event) {
 
     var br = document.createElement("br");
     var elementParagraph = document.createElement("p");
-    var div = document.getElementsByName("lawsFormContainer");
-
     elementParagraph.setAttribute("name", "textOfTheLaw");
-    div[0].appendChild(elementParagraph);
+
+    var articleLaw = $(parentParagraph).find('select[name=articleLawSelect] option:selected').val();
+    $(parentParagraph).append(elementParagraph);
+
+    $.get( "/getParagraphlaw", {articleLawSelect: articleLaw}, function(data) {
+        for(var i = 0; i < data.length; i++ ) {
+            $(parentParagraph).find("p[name=textOfTheLaw]").text(data[i].lawText);
+        }
+    }, "json" );
+
 }
 
 

@@ -109,6 +109,18 @@ public class MainController {
         return lawArticle;
     }
 
+    @RequestMapping("/getParagraphlaw")
+    public @ResponseBody LawArticle getParagraphLaw (Integer articleLawSelect) {
+
+        Optional<LawArticle> article = lawArticleRepo.findById(articleLawSelect);
+        LawArticle paragraphLaw = null;
+        if (article.isPresent()) {
+            paragraphLaw = article.get();
+        }
+
+        return paragraphLaw;
+    }
+
     @GetMapping("/productediting")
     public String productediting(Map<String,Object> model) {
 
