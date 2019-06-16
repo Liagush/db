@@ -89,14 +89,14 @@ public class MainController {
         if (articleLawSelect != null) {
             for (Integer articleLaw : articleLawSelect) {
 
-                Optional<LawArticle> LawArticleId = lawArticleRepo.findById(articleLaw);
-                if (LawArticleId.isPresent()){
-                    LawArticleId.get().setCategories(lawCategories);
+                Optional<LawArticle> lawArticleId = lawArticleRepo.findById(articleLaw);
+                if (lawArticleId.isPresent()){
+                    LawArticle lawArticle = lawArticleId.get();
+                    lawArticle.setCategories(lawCategories);
+                    lawArticleRepo.save(lawArticle);
                 }
-
             }
         }
-
 
         return "redirect:/editlaw";
     }
