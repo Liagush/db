@@ -75,13 +75,10 @@ function textOfTheLawOutput(event) {
     $(parentParagraph).append(elementParagraph);
 
     $.get( "/getParagraphlaw", {articleLawSelect: articleLaw}, function(data) {
-        for(var i = 0; i < data.length; i++ ) {
-            $(parentParagraph).find("p[name=textOfTheLaw]").text(data[i].lawText);
-        }
+            $(parentParagraph).find("p[name=textOfTheLaw]").text(data.lawText);
     }, "json" );
 
 }
-
 
 // Модуль отображения законов по выбранной категории
 function selectChoiceChapterOfLaw() {
