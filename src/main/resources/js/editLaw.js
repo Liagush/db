@@ -29,7 +29,6 @@ function chapterOfLawSelection() {
 
     $.get( "/getlistchapterlaw", function(data) {
         for(var i = 0; i < data.length; i++ ) {
-            // $("select[name=chapterLawSelect]").append('<option value="' + data[i].id + '">' + data[i].chapter + '</option>')
             $(div).find("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
         }
     }, "json" );
@@ -69,13 +68,13 @@ function textOfTheLawOutput(event) {
 
     var br = document.createElement("br");
     var elementParagraph = document.createElement("p");
-    elementParagraph.setAttribute("name", "textOfTheLaw");
+    elementParagraph.setAttribute("name", "textOfTheLawSelect");
 
     var articleLaw = $(parentParagraph).find('select[name=articleLawSelect] option:selected').val();
     $(parentParagraph).append(elementParagraph);
 
     $.get( "/getParagraphlaw", {articleLawSelect: articleLaw}, function(data) {
-            $(parentParagraph).find("p[name=textOfTheLaw]").text(data.lawText);
+            $(parentParagraph).find("p[name=textOfTheLawSelect]").text(data.lawText);
     }, "json" );
 
 }

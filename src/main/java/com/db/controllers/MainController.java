@@ -57,13 +57,15 @@ public class MainController {
     }
 
     @PostMapping("/editlawform")
-    public String editlawform(@RequestParam String[] chapterOfLaw,
-                              @RequestParam String[] articleOfTheLaw,
-                              @RequestParam String[] textOfTheLaw,
+    public String editlawform(@RequestParam(required = false) String[] chapterOfLaw,
+                              @RequestParam(required = false) String[] articleOfTheLaw,
+                              @RequestParam(required = false) String[] textOfTheLaw,
+                              @RequestParam(required = false) Integer[] articleLawsSelect,
                               @RequestParam Integer[] categories,
                               Map<String,Object> model) {
 
         List<Category> lawCategories = new ArrayList<>();
+
 
         for (Integer category : categories) {
             Optional<Category> categoryId = categoryRepo.findById(category);
@@ -80,6 +82,15 @@ public class MainController {
             String lawText = textOfTheLaw[i];
             LawArticle lawArticles = new LawArticle (lawChapter, lawArticle, lawText, lawCategories);
             lawArticleRepo.save(lawArticles);
+        }
+
+        for (Integer articleLawSelect : articleLawsSelect) {
+
+            Optional<LawArticle> LawArticleId = lawArticleRepo.findById(articleLawSelect);
+            if (LawArticleId.isPresent()){
+                LawArticleId.get().setCategories(lawCategories);
+            }
+
         }
 
         return "redirect:/editlaw";
