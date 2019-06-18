@@ -25,6 +25,8 @@ public class SearchController {
 
         }
         model.put("searchResults", searchResults);
-        return "redirect:/searchexample";
+
+        // return "redirect:/searchexample";
+        return "searchexample";
     }
 }
