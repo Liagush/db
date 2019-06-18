@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class LawChapter {
     @Field(termVector = TermVector.YES)
     private String chapter;
 
+    @IndexedEmbedded
     @OneToMany(mappedBy = "lawChapter")
     private List<LawArticle> lawArticleList;
 

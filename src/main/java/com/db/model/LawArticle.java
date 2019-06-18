@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class LawArticle {
     @Field(termVector = TermVector.YES)
     private String lawText;
 
+    @IndexedEmbedded
     @ManyToMany
     private List<Category> categories;
 

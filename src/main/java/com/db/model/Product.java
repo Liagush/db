@@ -2,6 +2,7 @@ package com.db.model;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Product {
         this.category = category;
     }
 
+    @IndexedEmbedded
     @ManyToOne
     private Category category;
 

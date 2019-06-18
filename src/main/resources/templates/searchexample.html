@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,6 +11,13 @@
         <input type="submit" value="Поиск">
 
     </form>
+
+    <ol>
+        <li th:each="product : ${searchResults}>
+            <span th:text="${product.vendorCode}"></span>
+            <span th:text="${product.productName}"></span>
+        </li>
+    </ol>
 
 </body>
 </html>

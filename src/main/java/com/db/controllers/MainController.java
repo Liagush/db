@@ -1,5 +1,4 @@
 package com.db.controllers;
-
 import com.db.model.*;
 import com.db.repos.CategoryRepo;
 import com.db.repos.LawArticleRepo;
