@@ -3,7 +3,6 @@ package com.db.model;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
-import javax.persistence.Index;
 import java.util.List;
 
 @Entity

@@ -7,13 +7,13 @@
 <body>
 
     <form action="search">
-        <input type="text" value="Введите текст">
+        <input type="text" name="q" value="Введите текст">
         <input type="submit" value="Поиск">
 
     </form>
 
     <ol>
-        <li th:each="product : ${searchResults}>
+        <li th:each="product : ${searchResults}">
             <span th:text="${product.vendorCode}"></span>
             <span th:text="${product.productName}"></span>
         </li>
