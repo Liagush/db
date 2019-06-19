@@ -58,7 +58,7 @@ public class HibernateSearchService {
                         .createQuery();
 
         Query luceneQueryLawArticle =
-                productQB
+                lawArticleQB
                         .keyword()
                         .onFields("article", "lawText")
                         .matching(text)
