@@ -15,6 +15,7 @@ public class Category {
     @Field(termVector = TermVector.YES)
     private String category;
 
+
     @OneToMany
     private List<Product> Products;
 

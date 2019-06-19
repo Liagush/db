@@ -1,6 +1,8 @@
-package com.db;
+package com.db.search.classes;
 
+import com.db.model.LawArticle;
 import com.db.model.Product;
+import com.db.search.interfaces.RenderableEntity;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
@@ -38,27 +40,42 @@ public class HibernateSearchService {
     }
 
 
-    public List<Product> search(String text) {
+    public List<RenderableEntity> search(String text) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 
         QueryBuilder productQB = fullTextEntityManager.getSearchFactory()
                 .buildQueryBuilder().forEntity(Product.class).get();
 
-        Query luceneQuery =
+        QueryBuilder lawArticleQB = fullTextEntityManager.getSearchFactory()
+                .buildQueryBuilder().forEntity(LawArticle.class).get();
+
+        Query luceneQueryProduct =
                 productQB
                         .keyword()
                         .onFields("vendorCode", "productName")
                         .matching(text)
                         .createQuery();
 
-        FullTextQuery jpaQuery =
-                fullTextEntityManager.createFullTextQuery(luceneQuery, Product.class);
+        Query luceneQueryLawArticle =
+                productQB
+                        .keyword()
+                        .onFields("article", "lawText")
+                        .matching(text)
+                        .createQuery();
+
+
+        FullTextQuery jpaQueryLawArticle =
+                fullTextEntityManager.createFullTextQuery(luceneQueryLawArticle, LawArticle.class);
+
+        FullTextQuery jpaQueryProduct =
+                fullTextEntityManager.createFullTextQuery(luceneQueryProduct, Product.class);
 
         @SuppressWarnings("unchecked")
-        List<Product> results = jpaQuery.getResultList();
+        List<RenderableEntity> results = jpaQueryLawArticle.getResultList();
+
+        results.addAll(jpaQueryProduct.getResultList());
 
         return results;
     }
-
 }

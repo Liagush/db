@@ -1,5 +1,6 @@
 package com.db.model;
 
+import com.db.search.interfaces.RenderableEntity;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -9,7 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @Indexed
-public class Product {
+public class Product implements RenderableEntity {
+
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     private long id;
@@ -59,5 +61,15 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    @Override
+    public String getTitle() {
+        return this.vendorCode;
+    }
+
+    @Override
+    public String getSnippet() {
+        return this.productName;
     }
 }

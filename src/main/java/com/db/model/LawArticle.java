@@ -1,7 +1,7 @@
 package com.db.model;
 
+import com.db.search.interfaces.RenderableEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Indexed
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class LawArticle {
+public class LawArticle implements RenderableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -50,7 +50,7 @@ public class LawArticle {
         this.lawText = lawText;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -77,5 +77,16 @@ public class LawArticle {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+    @Override
+    public String getTitle() {
+        return this.article;
+    }
+
+    @Override
+    public String getSnippet() {
+        return this.lawText;
+    }
+
 
 }
