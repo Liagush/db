@@ -54,7 +54,7 @@ public class HibernateSearchService {
         Query luceneQueryProduct =
                 productQB
                         .keyword()
-                        .onFields( "vendorCode", "productName", "category")
+                        .onFields( "vendorCode", "productName", "category.category")
                         .matching(text)
                         .createQuery();
 
