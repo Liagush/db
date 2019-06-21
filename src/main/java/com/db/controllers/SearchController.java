@@ -17,16 +17,14 @@ public class SearchController {
 
     @RequestMapping("/searchexample")
     public String search(String q, Map<String,Object> model) {
-        List searchResults = null;
-        try {
-            searchResults = hibernateSearchService.search(q);
-        }
-        catch (Exception ex) {
+
+        if(q != null){
+            List searchResults = hibernateSearchService.search(q);
+
+            model.put("searchResults", searchResults);
 
         }
-        model.put("searchResults", searchResults);
 
-        // return "redirect:/searchexample";
         return "searchexample";
     }
 }

@@ -22,13 +22,13 @@ public class LawArticle implements RenderableEntity {
     @Field(termVector = TermVector.YES)
     private String article;
 
+    @IndexedEmbedded
     @ManyToOne
     private LawChapter lawChapter;
 
     @Field(termVector = TermVector.YES)
     private String lawText;
 
-    @IndexedEmbedded
     @ManyToMany
     private List<Category> categories;
 
@@ -79,6 +79,11 @@ public class LawArticle implements RenderableEntity {
     }
 
     @Override
+    public String getNum() {
+        return this.lawChapter.getChapter();
+    }
+
+    @Override
     public String getTitle() {
         return this.article;
     }
@@ -88,5 +93,7 @@ public class LawArticle implements RenderableEntity {
         return this.lawText;
     }
 
-
+    public String getType() {
+        return "lawArticle";
+    }
 }

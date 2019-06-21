@@ -2,6 +2,7 @@ package com.db.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.TermVector;
@@ -20,6 +21,7 @@ public class LawChapter {
     @Field(termVector = TermVector.YES)
     private String chapter;
 
+    @ContainedIn
     @OneToMany(mappedBy = "lawChapter")
     private List<LawArticle> lawArticleList;
 
@@ -49,5 +51,9 @@ public class LawChapter {
 
     public void setLawArticleList(List<LawArticle> lawArticleList) {
         this.lawArticleList = lawArticleList;
+    }
+
+    public String getType() {
+        return "lawChapter";
     }
 }

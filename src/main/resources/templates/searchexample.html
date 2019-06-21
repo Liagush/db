@@ -12,17 +12,12 @@
 
     </form>
 
-    <!--<ol>-->
-        <!--<li th:each="product : ${searchResults}">-->
-            <!--<span th:text="${product.vendorCode}"></span>-->
-            <!--<span th:text="${product.productName}"></span>-->
-        <!--</li>-->
-    <!--</ol>-->
-
     <div class="serp-element" th:each="item : ${searchResults}">
-        <a th:href="/product/${item.id}"  th:text="${item.title}"></a></h3>
-        <p class="serp-snippet" th:text="${item.snippet}"></span>
+        <a th:href="${item.id}"  th:text="${item.num}"></a>
+        <p class="serp-snippet" th:text="${item.title}">
+        <p class="serp-snippet" th:text="${item.snippet}">
             </div>
+
 
 </body>
 </html>

@@ -15,8 +15,8 @@ public class Category {
     @Field(termVector = TermVector.YES)
     private String category;
 
-
-    @OneToMany
+    @ContainedIn
+    @OneToMany(mappedBy="category")
     private List<Product> Products;
 
     @ManyToMany
@@ -48,5 +48,10 @@ public class Category {
 
     public void setLawArticles(List<LawArticle> lawArticles) {
         this.lawArticles = lawArticles;
+    }
+
+
+    public String getType() {
+        return "category";
     }
 }

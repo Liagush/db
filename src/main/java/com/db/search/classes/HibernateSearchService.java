@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,26 +54,27 @@ public class HibernateSearchService {
         Query luceneQueryProduct =
                 productQB
                         .keyword()
-                        .onFields("vendorCode", "productName")
+                        .onFields( "vendorCode", "productName", "category")
                         .matching(text)
                         .createQuery();
 
         Query luceneQueryLawArticle =
                 lawArticleQB
                         .keyword()
-                        .onFields("article", "lawText")
+                        .onFields( "lawChapter.chapter", "article", "lawText")
                         .matching(text)
                         .createQuery();
-
-
-        FullTextQuery jpaQueryLawArticle =
-                fullTextEntityManager.createFullTextQuery(luceneQueryLawArticle, LawArticle.class);
 
         FullTextQuery jpaQueryProduct =
                 fullTextEntityManager.createFullTextQuery(luceneQueryProduct, Product.class);
 
+        FullTextQuery jpaQueryLawArticle =
+                fullTextEntityManager.createFullTextQuery(luceneQueryLawArticle, LawArticle.class);
+
         @SuppressWarnings("unchecked")
-        List<RenderableEntity> results = jpaQueryLawArticle.getResultList();
+        List<RenderableEntity> results = new ArrayList<>();
+
+        results.addAll(jpaQueryLawArticle.getResultList());
 
         results.addAll(jpaQueryProduct.getResultList());
 

@@ -64,12 +64,21 @@ public class Product implements RenderableEntity {
     }
 
     @Override
-    public String getTitle() {
+    public String getNum() {
         return this.vendorCode;
     }
 
     @Override
-    public String getSnippet() {
+    public String getTitle() {
         return this.productName;
+    }
+
+    @Override
+    public String getSnippet() {
+        return this.category.getCategory();
+    }
+
+    public String getType() {
+        return "product";
     }
 }
