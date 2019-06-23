@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+		<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+		<head>
+
+			<meta charset="utf-8">
+
+			<title>Title</title>
+			<meta name="description" content="">
+
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+			<link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+
+			<link rel="stylesheet" href="/static/sass/main.css">
+		</head>
+
+		<body>
+
+		<div class="grid">
+
+
+			<div class="logo-container">
+				<div class="logo">
+					<h1>
+						<a href="#">HELPER</a>
+					</h1>
+				</div>
+			</div>
+
+
+			<div class="search-container">
+				<div class="search">
+					<div class="search-icon">
+						<img src="../static/img/iconfinder_menu-alt_134216.png">
+					</div>
+					<div class="search-input">
+
+						<span>
+							<form action="searchexample">
+								<input name="q" type="text" class="form-control" placeholder="Поиск закона в соответствии с его названием или по наименованию товара ">
+								<input type="submit" hidden value="Поиск">
+							</form>
+						</span>
+
+					</div>
+				</div>
+				<div class="user">
+					<div class="user-mail">
+						<a href="#">macmail@gmail.com</a>
+					</div>
+					<div class="user-photo">
+						<a href="#">
+							<img src="../static/img/hqdefault.jpg" class="round">
+						</a>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="side-menu">
+				<ul class="list-of-laws" th:if="${not #lists.isEmpty(listOfLaws)}">
+					<li class="law-item" th:each="law : ${listOfLaws}"><a href="#" th:text="${law.article}"></a></li>
+				</ul>
+			</div>
+
+
+			<div class="content-container">
+
+				<div class="content">
+
+					<div class="search-and-bookmarks">
+						<div class="search-info">
+							Поиск по словам: <span></span>
+						</div>
+						<div class="bookmarks">
+							<a href="#">закладки</a>
+						</div>
+					</div>
+
+					<div class="content-item" th:each="item : ${searchResults}">
+
+						<div class="content-item-text" th:text="${item.snippet}">
+							<div class="content-item-text" th:text="${item.num}">
+							</div>
+							<div class="content-item-text" th:text="${item.title}">
+							</div>
+						</div>
+						<div class="content-item-buttons">
+							<a href="#" class="content-item-button">сохранить в закладках</a>
+							<a href="#" class="content-item-button">развернуть</a>
+							<a href="#" class="content-item-button">открыть в новой вкладке</a>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="templates">
+					<div class="template-column-name">
+						шаблоны
+					</div>
+
+
+					<a href="#">
+						<div class="template">
+							<div>
+								<div class="template-icon">
+									<img src="../static/img/document.png">
+								</div>
+								<div class="template-name">
+									Заявление на возврат товара надлежащего качества
+								</div>
+							</div>
+						</div>
+					</a>
+
+					<a href="#">
+						<div class="template">
+							<div>
+								<div class="template-icon">
+									<img src="../static/img/document.png">
+								</div>
+								<div class="template-name">
+									Заявление на возврат товара надлежащего качества
+								</div>
+							</div>
+						</div>
+					</a>
+
+
+					<a href="#">
+						<div class="template">
+							<div>
+								<div class="template-icon">
+									<img src="../static/img/document.png">
+								</div>
+								<div class="template-name">
+									Заявление на возврат товара надлежащего качества
+								</div>
+							</div>
+						</div>
+					</a>
+
+					<a href="#">
+						<div class="template">
+							<div>
+								<div class="template-icon">
+									<img src="../static/img/document.png">
+								</div>
+								<div class="template-name">
+									Заявление на возврат товара надлежащего качества
+								</div>
+							</div>
+						</div>
+					</a>
+
+					<a href="#">
+						<div class="template">
+							<div>
+								<div class="template-icon">
+									<img src="../static/img/document.png">
+								</div>
+								<div class="template-name">
+									Заявление на возврат товара надлежащего качества
+								</div>
+							</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+
+
+
+			<div>5</div>
+		</div>
+
+
+
+		</body>
+		</html>
+

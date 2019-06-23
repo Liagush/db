@@ -15,7 +15,7 @@ public class SearchController {
     private HibernateSearchService hibernateSearchService;
 
 
-    @RequestMapping("/searchexample")
+    @RequestMapping("searchexample")
     public String search(String q, Map<String,Object> model) {
 
         if(q != null){
@@ -25,6 +25,6 @@ public class SearchController {
 
         }
 
-        return "searchexample";
+        return "main";
     }
 }
