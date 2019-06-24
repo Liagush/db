@@ -36,7 +36,7 @@
 					<div class="search-input">
 
 						<span>
-							<form action="searchexample">
+							<form action="/main">
 								<input name="q" type="text" class="form-control" placeholder="Поиск закона в соответствии с его названием или по наименованию товара ">
 								<input type="submit" hidden value="Поиск">
 							</form>
@@ -81,11 +81,15 @@
 
 					<div class="content-item" th:each="item : ${searchResults}">
 
-						<div class="content-item-text" th:text="${item.snippet}">
-							<div class="content-item-text" th:text="${item.num}">
+						<div class="content-item-text">
+
+							<div class="content-item-text-num" th:text="${item.num}">
 							</div>
-							<div class="content-item-text" th:text="${item.title}">
+							<div class="content-item-text-title" th:text="${item.title}">
 							</div>
+							<div class="content-item-text-snippet" th:text="${item.snippet}">
+							</div>
+
 						</div>
 						<div class="content-item-buttons">
 							<a href="#" class="content-item-button">сохранить в закладках</a>
