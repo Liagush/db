@@ -1,4 +1,4 @@
-create table category (
+create table claim_templates  (
     id integer not null,
     filename text,
     primary key (id)
