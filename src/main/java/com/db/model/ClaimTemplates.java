@@ -1,9 +1,8 @@
 package com.db.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 @Entity
 public class ClaimTemplates {
@@ -12,7 +11,18 @@ public class ClaimTemplates {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Type(type="text")
+    private String filepath;
+
     private String filename;
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
 
     public String getFilename() {
         return filename;

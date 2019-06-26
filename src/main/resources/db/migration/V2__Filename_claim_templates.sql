@@ -1,6 +1,7 @@
 create table claim_templates  (
     id integer not null,
-    filename text,
+    filepath text,
+    filename varchar(255),
     primary key (id)
 ) engine=innoDB;
 

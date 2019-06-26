@@ -3,6 +3,7 @@ package com.db.model;
 import com.db.search.interfaces.RenderableEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -26,6 +27,7 @@ public class LawArticle implements RenderableEntity {
     @ManyToOne
     private LawChapter lawChapter;
 
+    @Type(type="text")
     @Field(termVector = TermVector.YES)
     private String lawText;
 

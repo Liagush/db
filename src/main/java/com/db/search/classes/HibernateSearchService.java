@@ -3,6 +3,7 @@ package com.db.search.classes;
 import com.db.model.LawArticle;
 import com.db.model.Product;
 import com.db.search.interfaces.RenderableEntity;
+import org.apache.lucene.search.Explanation;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
@@ -15,6 +16,8 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -41,6 +44,7 @@ public class HibernateSearchService {
     }
 
 
+
     public List<RenderableEntity> search(String text) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
@@ -58,6 +62,7 @@ public class HibernateSearchService {
                         .matching(text)
                         .createQuery();
 
+
         Query luceneQueryLawArticle =
                 lawArticleQB
                         .keyword()
@@ -71,12 +76,57 @@ public class HibernateSearchService {
         FullTextQuery jpaQueryLawArticle =
                 fullTextEntityManager.createFullTextQuery(luceneQueryLawArticle, LawArticle.class);
 
+        jpaQueryProduct.setProjection(
+                FullTextQuery.SCORE,
+                FullTextQuery.THIS
+                //,FullTextQuery.EXPLANATION
+        );
+
+        jpaQueryLawArticle.setProjection(
+                FullTextQuery.SCORE,
+                FullTextQuery.THIS
+                //,FullTextQuery.EXPLANATION
+        );
+
+        List<Object[]> listObject = new ArrayList<>();
+
+        listObject.addAll(jpaQueryLawArticle.getResultList());
+
+        listObject.addAll(jpaQueryProduct.getResultList());
+
+        final Comparator<Object[]> COMPARE_BY_SCORE = new Comparator<Object[]>() {
+
+            @Override
+            public int compare(Object[] lhs, Object[] rhs) {
+                if ((Float)lhs[0]>(Float)rhs[0])
+                {
+                    return 1;
+                }
+                else if ((Float)lhs[0]<(Float)rhs[0])
+                {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        };
+
+        Collections.sort(listObject, COMPARE_BY_SCORE);
+
+        // Вывод отчета о результатах поиска в консоль
+//        for (Object[] result : listObject) {
+//            Explanation e = (Explanation) result[2];
+//            System.out.println(e.toString());
+//        }
+
         @SuppressWarnings("unchecked")
         List<RenderableEntity> results = new ArrayList<>();
 
-        results.addAll(jpaQueryLawArticle.getResultList());
-
-        results.addAll(jpaQueryProduct.getResultList());
+        for (int i = listObject.size() - 1; i >= 0; i--) {
+            Object[] obj = listObject.get(i);
+            results.add((RenderableEntity) obj[1]);
+        }
 
         return results;
     }
