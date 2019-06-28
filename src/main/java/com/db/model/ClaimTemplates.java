@@ -16,6 +16,10 @@ public class ClaimTemplates {
 
     private String filename;
 
+    public int getId() {
+        return id;
+    }
+
     public String getFilepath() {
         return filepath;
     }
@@ -31,4 +35,5 @@ public class ClaimTemplates {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
 }

@@ -2,7 +2,9 @@ package com.db.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.db.model.ClaimTemplates;
@@ -28,8 +30,25 @@ public class EditFileTemplatesController {
     @GetMapping("/editfiletemplates")
     public String editFileTemplates (Map<String,Object> model) {
 
+        Iterable<ClaimTemplates> claimTemplatesList = claimTemplatesRepo.findAll();
+        model.put("claimTemplatesList", claimTemplatesList);
+
         return "editfiletemplates";
     }
+
+    @PostMapping("deletefiletemplate")
+    public String deleteFileTemplate(@RequestParam List<Integer> claimTemplate) {
+
+
+        for (Integer item : claimTemplate) {
+            if(claimTemplatesRepo.existsById(item)){
+                claimTemplatesRepo.deleteById(item);
+            }
+        }
+
+        return "redirect:/editfiletemplates";
+    }
+
 
 
     @PostMapping("handlefileupload")
@@ -45,8 +64,6 @@ public class EditFileTemplatesController {
 
             String uuidFile = UUID.randomUUID().toString();
 
-
-            // uploadPath + File.separator +
             String resultFilepath = uploadPath + File.separator + uuidFile + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 
             file.transferTo(new File(resultFilepath));
@@ -55,7 +72,6 @@ public class EditFileTemplatesController {
             claimTemplates.setFilename(filename);
             claimTemplatesRepo.save(claimTemplates);
         }
-
 
         return "redirect:/editfiletemplates";
     }

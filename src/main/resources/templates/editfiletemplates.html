@@ -14,13 +14,25 @@
     </form>
 </div>
 
-<!--<div>-->
-    <!--<ul>-->
-        <!--<li th:each="file : ${files}">-->
-            <!--<a th:href="${file}" th:text="${file}" />-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
+<h5>Список доступных </h5>
+<form method="post" class="claimTemplatesList" name="claimTemplatesList" th:if="${not #lists.isEmpty(claimTemplatesList)}" >
+    <div th:each="item : ${claimTemplatesList}">
+        <input type="checkbox" name="claimTemplate" id="${item.getId()}" value="${item.getId()}">
+        <label for="${item.getId()}" th:text="${item.filename}"></label>
+    </div>
+    <input type="submit" value="Удалить" formaction="deletefiletemplate">
+</form>
+<div th:unless="${not #lists.isEmpty(categories)}">Шаблоны в базе данных отсутствуют.</div>
+
+
+<!--<h5>Список доступных </h5>-->
+<!--<form class="" name="claimTemplatesList" action="" th:if="${not #lists.isEmpty(claimTemplatesList)}" th:each="list : ${claimTemplatesList}">-->
+    <!--<input type="text" id="list.id"></input>-->
+    <!--<lable for="${list.id}" th:text="${list.filename}"></lable>-->
+    <!--<input type="submit" value="удалить файл">-->
+<!--</form>-->
+<!--<div th:unless="${not #lists.isEmpty(categories)}">Шаблоны в базе данных отсутствуют.</div>-->
+
 
 </body>
 </html>
