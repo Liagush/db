@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
   <meta charset="UTF-8">
   <title>Material Compact Login Animation</title>
@@ -17,19 +18,20 @@
          <label class="tab active" title="Вкладка авторизации">Авторизация</label>
          <label class="tab" title="Вкладка регистрация">Регистрация</label>
 
-         <form class="tab-form">
+         <form class="tab-form" id="autorizeForm" action="@{/login}" method="post">
             <input class="input" type="email" placeholder="e-mail">
             <input class="input" type="password" placeholder="пароль">
-            <a href="#" class="login-button">Вход</a>
+            <a href="/pleaseonjs" class="login-button" onclick="autorize(); return false">Вход</a>
+             <!--<input type="submit" class="login-button" value="Вход" formaction="autorization">-->
             <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
 
-         <form class="tab-form active">
+         <form class="tab-form active" id="registrationForm" action="registration" method="post">
                <input class="input" type="email" placeholder="e-mail">
                <input class="input" type="text" placeholder="имя">
                <input class="input" type="password" placeholder="пароль">
                <a href="#" class="login-button">Регистрация</a>
-               
+                <!--<input type="submit" class="login-button" value="Регистрация" formaction="registration">-->
                <div class="recover">
                   <input type="checkbox" id="ckbox">
                   <label for="ckbox">Ознакомлен(-а) и принимаю <a href="#">условия регистрации</a></label>

@@ -182,11 +182,11 @@ public class EditingController {
         throw new RuntimeException("categoryId either categoryName should be set");
     }
 
-    @GetMapping("/")
-    public String index() {
-
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String index() {
+//
+//        return "index";
+//    }
 
     @GetMapping("/product/{vendorCode}/category")
     public String main(@PathVariable String vendorCode, Model model) {

@@ -13,3 +13,12 @@ $(document).ready(function () {
         $(".tab-form").eq($(this).index()).addClass("active");
     });
 });
+
+function autorize() {
+    document.getElementById("autorizeForm").submit();
+}
+
+function registration() {
+    document.getElementById("registrationForm").submit();
+}
+
