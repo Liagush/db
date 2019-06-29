@@ -17,7 +17,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
+                    .antMatchers("/",
+                            "/static/js/autorize.js",
+                            "http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
+                            "http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext",
+                            "http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+                            "/static/sass/main.css").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
