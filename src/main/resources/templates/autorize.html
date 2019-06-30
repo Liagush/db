@@ -18,20 +18,18 @@
          <label class="tab active" title="Вкладка авторизации">Авторизация</label>
          <label class="tab" title="Вкладка регистрация">Регистрация</label>
 
-         <form class="tab-form" id="autorizeForm" action="@{/login}" method="post">
-            <input class="input" type="email" placeholder="e-mail">
-            <input class="input" type="password" placeholder="пароль">
+         <form class="tab-form active" id="autorizeForm" th:action="@{/login}" method="post">
+            <input class="input" name="email" type="email" placeholder="e-mail">
+            <input class="input" name="password" type="password" placeholder="пароль">
             <a href="/pleaseonjs" class="login-button" onclick="autorize(); return false">Вход</a>
-             <!--<input type="submit" class="login-button" value="Вход" formaction="autorization">-->
             <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
 
-         <form class="tab-form active" id="registrationForm" action="registration" method="post">
-               <input class="input" type="email" placeholder="e-mail">
-               <input class="input" type="text" placeholder="имя">
-               <input class="input" type="password" placeholder="пароль">
+         <form class="tab-form" id="registrationForm" action="registration" method="post">
+               <input class="input" name="email" type="email" placeholder="e-mail">
+               <input class="input" name="username" type="text" placeholder="имя">
+               <input class="in put" name="password" type="password" placeholder="пароль">
                <a href="#" class="login-button">Регистрация</a>
-                <!--<input type="submit" class="login-button" value="Регистрация" formaction="registration">-->
                <div class="recover">
                   <input type="checkbox" id="ckbox">
                   <label for="ckbox">Ознакомлен(-а) и принимаю <a href="#">условия регистрации</a></label>
