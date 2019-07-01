@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 });
 
-function autorize() {
+function login() {
     document.getElementById("autorizeForm").submit();
 }
 

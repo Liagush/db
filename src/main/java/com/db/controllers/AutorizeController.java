@@ -14,32 +14,32 @@ public class AutorizeController {
     @Autowired
     private UserRepo userRepo;
 
-    @GetMapping("/")
-    public String glitch() {
+//    @GetMapping("/")
+//    public String glitch() {
+//
+//        return "glitch";
+//    }
 
-        return "glitch";
-    }
+//    @GetMapping("/login")
+//    public String autorize() {
+//
+//        return "autorize";
+//    }
 
-    @GetMapping("/login")
-    public String autorize() {
-
-        return "autorize";
-    }
-
-    @PostMapping("registration")
-    public String addUser (User user, Map<String, Object> model) {
-
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-
-        if(userFromDb != null) {
-            model.put("message", "Такой пользователь уже существует.");
-            return "autorize";
-        } else {
-
-        }
-
-        return "redirect:/login";
-    }
+//    @PostMapping("registration")
+//    public String addUser (User user, Map<String, Object> model) {
+//
+//        User userFromDb = userRepo.findByUsername(user.getUsername());
+//
+//        if(userFromDb != null) {
+//            model.put("message", "Такой пользователь уже существует.");
+//            return "autorize";
+//        } else {
+//
+//        }
+//
+//        return "redirect:/login";
+//    }
 
 
 }

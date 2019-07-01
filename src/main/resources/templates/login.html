@@ -18,18 +18,19 @@
          <label class="tab active" title="Вкладка авторизации">Авторизация</label>
          <label class="tab" title="Вкладка регистрация">Регистрация</label>
 
-         <form class="tab-form active" id="autorizeForm" th:action="@{/login}" method="post">
+         <form class="tab-form active" id="loginForm" name="login" th:action="@{/login}" method="post">
             <input class="input" name="email" type="email" placeholder="e-mail">
             <input class="input" name="password" type="password" placeholder="пароль">
-            <a href="/pleaseonjs" class="login-button" onclick="autorize(); return false">Вход</a>
+            <a href="/pleaseonjs" class="login-button" onclick="login(); return false">Вход</a>
             <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
 
-         <form class="tab-form" id="registrationForm" action="registration" method="post">
+         <form class="tab-form" id="registrationForm" modelAttribute="regForm" name="registration" action="registration" method="post">
                <input class="input" name="email" type="email" placeholder="e-mail">
                <input class="input" name="username" type="text" placeholder="имя">
-               <input class="in put" name="password" type="password" placeholder="пароль">
-               <a href="#" class="login-button">Регистрация</a>
+               <input class="input" name="password" type="password" placeholder="пароль">
+                <input class="input" name="passwordConfirm" type="password" placeholder="пароль">
+             <a href="/pleaseonjs" class="login-button" onclick="registration(); return false">Регистрация</a>
                <div class="recover">
                   <input type="checkbox" id="ckbox">
                   <label for="ckbox">Ознакомлен(-а) и принимаю <a href="#">условия регистрации</a></label>

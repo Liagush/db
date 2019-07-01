@@ -1,5 +1,6 @@
 package com.db.auth.web;
 
+import com.db.auth.repos.UserRepo;
 import com.db.auth.service.UserService;
 import com.db.auth.model.User;
 import com.db.auth.service.SecurityService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -21,41 +24,32 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+    @PostMapping("registration")
+    public String registration(@ModelAttribute("regForm") User regForm, Map<String, Object> model, BindingResult bindingResult) {
+        userValidator.validate(regForm, bindingResult);
 
-        return "registration";
+        userService.save(regForm);
+
+        securityService.autoLogin(regForm.getUsername(), regForm.getPasswordConfirm());
+
+        return "main";
     }
 
-    @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
+    @PostMapping("login")
+    public String autorize(User user, Map<String, Object> model) {
 
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        userService.save(userForm);
-
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-        return "redirect:/welcome";
+        return "main";
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+    public String autorize() {
 
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
+    @GetMapping("/")
+    public String glitch() {
+
+        return "glitch";
     }
 }
