@@ -14,11 +14,4 @@ $(document).ready(function () {
     });
 });
 
-function login() {
-    document.getElementById("autorizeForm").submit();
-}
-
-function registration() {
-    document.getElementById("registrationForm").submit();
-}
 
