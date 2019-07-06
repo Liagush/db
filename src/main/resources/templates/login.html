@@ -28,19 +28,20 @@
          <form class="tab-form" id="registrationForm" modelAttribute="regForm" name="registration" th:action="@{registration}" method="post">
              <div>
                 <input class="input" name="email" type="email" placeholder="e-mail">
-                 <!--<div th:text="${email}"></div>-->
+                 <div></div>
              </div>
              <div>
                 <input class="input" name="username" type="text" placeholder="имя">
-                 <div th:text="${username}"></div>
+                 <div th:field="*{username}"></div>
+                 <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
              </div>
              <div>
-               <input class="input" name="password" type="password" th:value="${username}" placeholder="пароль">
-                 <div th:text="${password}"></div>
+               <input class="input" name="password" type="password" placeholder="пароль">
+                 <div></div>
              </div>
              <div>
                 <input class="input" name="passwordConfirm" type="password" placeholder="пароль">
-                 <div th:text="${passwordConfirm}"></div>
+                 <div></div>
              </div>
                 <input type="submit" class="loginFormButton" value="Регистрация" formaction="registration">
                <div class="recover">

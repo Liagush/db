@@ -35,12 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/normalize-css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .formLogin().loginPage("/login").permitAll()
+                .and().logout().permitAll();
     }
 
     @Bean

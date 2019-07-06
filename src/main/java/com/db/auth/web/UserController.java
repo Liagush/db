@@ -24,7 +24,12 @@ public class UserController {
 
     @PostMapping("registration")
     public String registration(@ModelAttribute("regForm") User regForm, Map<String, Object> model, BindingResult bindingResult) {
+
         userValidator.validate(regForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
 
         userService.save(regForm);
 
