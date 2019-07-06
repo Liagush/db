@@ -5,8 +5,10 @@ import com.db.auth.model.User;
 import com.db.auth.service.SecurityService;
 import com.db.auth.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -22,37 +24,32 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @PostMapping("registration")
-    public String registration(@ModelAttribute("regForm") User regForm, Map<String, Object> model, BindingResult bindingResult) {
+    @PostMapping("/registration")
+    public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
 
-        userValidator.validate(regForm, bindingResult);
+        userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "registration";
         }
 
-        userService.save(regForm);
+        userService.save(user);
 
-        securityService.autoLogin(regForm.getUsername(), regForm.getPasswordConfirm());
+        securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 
-        return "main";
+        return "redirect:/main";
     }
 
-    @PostMapping("login")
-    public String autorize(User user, Map<String, Object> model) {
-
-        return "main";
+    @GetMapping("/registration")
+    public String displayRegistration(Map<String, Object> model) {
+        model.put("user", new User());
+        return "registration";
     }
 
-//    @GetMapping("/login")
-//    public String autorize() {
-//
-//        return "login";
-//    }
 
     @GetMapping("/login")
-    public String autorize(Map<String, Object> model) {
-        model.put("regForm", new User());
+    public String authenticate(Map<String, Object> model) {
+        model.put("loginForm", new LoginForm());
         return "login";
     }
 
@@ -60,5 +57,18 @@ public class UserController {
     public String glitch() {
 
         return "glitch";
+    }
+
+    private class LoginForm {
+        String username;
+        String password;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
     }
 }
