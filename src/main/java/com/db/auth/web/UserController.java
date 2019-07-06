@@ -44,9 +44,16 @@ public class UserController {
         return "main";
     }
 
-    @GetMapping("/login")
-    public String autorize() {
+//    @GetMapping("/login")
+//    public String autorize() {
+//
+//        return "login";
+//    }
 
+    @GetMapping("/login")
+    public String autorize(Map<String, Object> model) {
+        model.put("regForm", new User());
+        model.put("user", new User());
         return "login";
     }
 
