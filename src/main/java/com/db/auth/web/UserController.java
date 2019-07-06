@@ -53,7 +53,6 @@ public class UserController {
     @GetMapping("/login")
     public String autorize(Map<String, Object> model) {
         model.put("regForm", new User());
-        model.put("user", new User());
         return "login";
     }
 

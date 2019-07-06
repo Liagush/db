@@ -18,14 +18,14 @@
          <label class="tab active" title="Вкладка авторизации">Авторизация</label>
          <label class="tab" title="Вкладка регистрация">Регистрация</label>
 
-         <form class="tab-form active" th:object="${regForm}" id="loginForm" name="login" th:action="@{/login}" method="post">
+         <form class="tab-form active" id="loginForm" name="login" th:action="@{/login}" method="post">
             <input class="input" name="email" type="email" placeholder="e-mail">
             <input class="input" name="password" type="password" placeholder="пароль">
              <input type="submit" class="loginFormButton" value="Войти">
             <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
 
-         <form class="tab-form" th:object="${user}" id="registrationForm" modelAttribute="regForm" name="registration" th:action="@{registration}" method="post">
+         <form class="tab-form" th:object="${regForm}" id="registrationForm" modelAttribute="regForm" name="registration" th:action="@{registration}" method="post">
              <div>
                 <input class="input" name="email" type="email" placeholder="e-mail">
                  <div></div>
