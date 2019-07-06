@@ -15,50 +15,19 @@
 <div class="background-autorize">
    <div class="dws-wrapper">
       <div class="dws-form">
-         <label class="tab active" title="Вкладка авторизации">Авторизация</label>
-         <label class="tab" title="Вкладка регистрация">Регистрация</label>
+         <label class="tab active">Вход</label>
+         <a th:href="@{/registration}" class="tab">Регистрация</a>
 
-         <form class="tab-form active" id="loginForm" name="login" th:action="@{/login}" method="post">
-            <input class="input" name="email" type="email" placeholder="e-mail">
-            <input class="input" name="password" type="password" placeholder="пароль">
+         <form class="tab-form active" th:object="${loginForm}" id="loginForm" th:action="@{/perform_login}" method="post">
+             <input class="input" name="username" placeholder="username">
+             <input class="input" name="password" type="password" placeholder="пароль">
              <input type="submit" class="loginFormButton" value="Войти">
-            <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
+             <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
-
-         <form class="tab-form" th:object="${regForm}" id="registrationForm" modelAttribute="regForm" name="registration" th:action="@{registration}" method="post">
-             <div>
-                <input class="input" name="email" type="email" placeholder="e-mail">
-                 <div></div>
-             </div>
-             <div>
-                <input class="input" name="username" type="text" placeholder="имя">
-                 <div th:field="*{username}"></div>
-                 <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-             </div>
-             <div>
-               <input class="input" name="password" type="password" placeholder="пароль">
-                 <div th:field="*{password}"></div>
-                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-             </div>
-             <div>
-                <input class="input" name="passwordConfirm" type="password" placeholder="пароль">
-                 <div th:field="*{passwordConfirm}"></div>
-                 <div th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></div>
-             </div>
-                <input type="submit" class="loginFormButton" value="Регистрация" formaction="registration">
-               <div class="recover">
-                  <input type="checkbox" id="ckbox">
-                  <label for="ckbox">Ознакомлен(-а) и принимаю <a href="#">условия регистрации</a></label>
-
-               </div>
-
-            </form>
-         
       </div>
    </div>
 </div>
    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-   <script src="/static/js/login.js"></script>
 
 </body>
 </html>

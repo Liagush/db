@@ -396,7 +396,7 @@ a:visited /* Цвет посещенных ссылок */
      display: block
      
 
-label.tab
+a.tab, label.tab
     font-weight: 400
     text-transform: uppercase
     padding: 8px
@@ -409,24 +409,24 @@ label.tab
     font-size: 0.8rem
     transition: .5s
 
-label.tab:nth-child(1)
+a.tab:nth-child(1), label.tab:nth-child(1)
     border-right: 1px solid $bg_dark_light
     top: 0px
     left: 0px
     border-radius: 10px 0 0 0
 
-label.tab:nth-child(2)
+a.tab:nth-child(2), label.tab:nth-child(2)
     border-left: 1px solid $bg_dark_light
     top: 0px
     left: 140px
     border-radius: 0 10px 0 0
     
 
-label.tab.active
+a.tab.active, label.tab.active
     color: $accent
     
 
-label.tab:hover
+a.tab:hover, label.tab:hover
     background-color: $accent
     color: $text_color_milk
 
