@@ -13,6 +13,7 @@ create table role (
 create table user (
     id bigint not null,
     email varchar(50),
+    activation_code varchar(255),
     password varchar(100),
     resolution bit not null,
     username varchar(50),

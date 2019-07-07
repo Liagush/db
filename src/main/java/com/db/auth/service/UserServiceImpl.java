@@ -29,4 +29,18 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepo.findByUsername(username);
     }
+
+    public boolean activateUser(String code) {
+        User user = userRepo.findByActivationCode(code);
+
+        if(user == null){
+            return false;
+        }
+
+        user.setActivationCode(null);
+
+        userRepo.save(user);
+
+        return true;
+    }
 }

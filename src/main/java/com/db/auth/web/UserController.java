@@ -1,9 +1,11 @@
 package com.db.auth.web;
 
+import com.db.auth.service.MailSender;
 import com.db.auth.service.UserService;
 import com.db.auth.model.User;
 import com.db.auth.service.SecurityService;
 import com.db.auth.validator.UserValidator;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
@@ -11,10 +13,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class UserController {
+    @Autowired
+    private MailSender mailSender;
+
     @Autowired
     private UserService userService;
 
@@ -33,11 +40,22 @@ public class UserController {
             return "registration";
         }
 
+        user.setActivationCode(UUID.randomUUID().toString());
+
         userService.save(user);
 
-        securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
+        if(StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Здравствуйте, %s \n" +
+                            "Чтобы завершить регистрацию, пожалйста перейдите по ссылке http://localhost:8080/activate/%s",
+                    user.getUsername(),
+                    user.getActivationCode()
+            );
 
-        return "redirect:/main";
+            mailSender.send(user.getEmail(), "Код активаций для HELPER", message);
+        }
+
+        return "redirect:/login";
     }
 
     @GetMapping("/registration")
@@ -46,6 +64,21 @@ public class UserController {
         return "registration";
     }
 
+    @GetMapping("/activate/{code}")
+    public String activate (Map<String, Object> model, @PathVariable String code) {
+
+        boolean isActivated = userService.activateUser(code);
+
+        if(isActivated) {
+            model.put("message", "Пользователь успешно зарегестрирован");
+        } else {
+            model.put("message", "Код активации не найден");
+        }
+
+        // securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
+
+        return "login";
+    }
 
     @GetMapping("/login")
     public String authenticate(Map<String, Object> model) {
