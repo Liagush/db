@@ -20,6 +20,9 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
+    @ManyToMany
+    private Set<Status> statuses;
+
     public Long getId() {
         return id;
     }
@@ -78,5 +81,13 @@ public class User {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public Set<Status> getStatuses() {
+        return statuses;
+    }
+
+    public void setStatuses(Set<Status> statuses) {
+        this.statuses = statuses;
     }
 }
