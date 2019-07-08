@@ -12,7 +12,9 @@ create table user (
     activation_code varchar(255),
     password varchar(100),
     resolution bit not null,
+    online bit not null,
     username varchar(50),
+    date_of_registration date,
     primary key (id)
 ) engine=innoDB;
 

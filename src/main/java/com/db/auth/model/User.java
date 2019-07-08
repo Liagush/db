@@ -1,6 +1,7 @@
 package com.db.auth.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,11 @@ public class User {
     private String username;
     private String password;
     private boolean resolution;
+    private boolean online;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date dateOfRegistration;
 
     @Transient
     private String passwordConfirm;
@@ -89,5 +95,21 @@ public class User {
 
     public void setStatuses(Set<Status> statuses) {
         this.statuses = statuses;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public Date getDateOfRegistration() {
+        return dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(Date dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 }
