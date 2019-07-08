@@ -39,7 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/fonts/**",
                         "/static/sass/**",
                         "/static/normalize-css/**",
-                        "/activate/*").permitAll()
+                        "/activate/*",
+                        "/activationmessagepage").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()

@@ -32,7 +32,7 @@ public class UserController {
     private UserValidator userValidator;
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("user") User user, BindingResult bindingResult, Map<String, Object> model) {
 
         userValidator.validate(user, bindingResult);
 
@@ -44,7 +44,7 @@ public class UserController {
 
         userService.save(user);
 
-        if(StringUtils.isEmpty(user.getEmail())) {
+        if(!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Здравствуйте, %s \n" +
                             "Чтобы завершить регистрацию, пожалйста перейдите по ссылке http://localhost:8080/activate/%s",
@@ -55,13 +55,20 @@ public class UserController {
             mailSender.send(user.getEmail(), "Код активаций для HELPER", message);
         }
 
-        return "redirect:/login";
+        return "redirect:/activationmessagepage";
     }
 
     @GetMapping("/registration")
     public String displayRegistration(Map<String, Object> model) {
         model.put("user", new User());
         return "registration";
+    }
+
+    @GetMapping("/activationmessagepage")
+    public String activationMessagePage(Map<String, Object> model){
+
+        model.put("message", "На вашу почту отправлено письмо с кодом активации.");
+        return "activationmessagepage";
     }
 
     @GetMapping("/activate/{code}")

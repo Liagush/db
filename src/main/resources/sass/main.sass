@@ -605,6 +605,51 @@ a.forgot-button
 
 /*  СТРАНИЦА РЕДАКТИРОВАНИЯ ЗАКОНОВ И ТОВАРОВ: КОНЕЦ */
 
+/*  СТРАНИЦА СООБЩЕНИЯ ОБ АКТИВАЦИИ: НАЧАЛО */
+
+.background-activation-message-page
+    background-color: $bg_dark_light
+    position: absolute
+    height: 100%
+    width: 100%
+
+.wrapper-activation-message-page
+    color: $text_color_gray
+    width: 100%
+    max-width: 600px
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    position: relative
+
+.activation-message-container
+    position: relative
+    padding: 30px 50px 30px 50px
+    width: 100%
+    background-color: #343740
+    border-radius: 10px
+    text-align: center
+    font-weight: 600
+
+a.login-page-button
+    display: inline-block
+    width: 260px
+    padding: 7px 0 5px 0
+    text-align: center
+    font-weight: 400
+    text-transform: uppercase
+    font-size: 1rem
+    background-color: $bg_dark + 14%
+    border-radius: 10px
+    color: $accent - 20%
+    transition: .5s
+
+a.login-page-button:hover
+    background-color: $accent
+    color: $text_color_milk
+
+/*  СТРАНИЦА СООБЩЕНИЯ ОБ АКТИВАЦИИ: КОНЕЦ */
+
 
 @import "media"
 // Всегда в конце

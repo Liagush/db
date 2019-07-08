@@ -24,6 +24,7 @@
              <input type="submit" class="loginFormButton" value="Войти">
              <a href="#" class="forgot-button">Забыли e-mail или пароль?</a>
          </form>
+          <p th:if="${message != null}" name="${message}" th:text="${message}"></p>
       </div>
    </div>
 </div>
