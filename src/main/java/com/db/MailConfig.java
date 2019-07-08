@@ -29,8 +29,6 @@ public class MailConfig {
     private boolean startlls_required;
     @Value("${mail.smtp.debug}")
     private String debug;
-    @Value("${mail.smtp.socketFactory.fallback}")
-    private boolean fallback;
 //    @Value("${mail.from}")
 //    private String from;
     @Value("${mail.username}")
@@ -43,13 +41,13 @@ public class MailConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         Properties mailProperties = new Properties();
+        mailProperties.put("mail.smtp.host", host);
+        mailProperties.put("mail.smtp.port", port);
         mailProperties.put("mail.smtp.auth", auth);
         mailProperties.put("mail.smtp.starttls.enable", starttls);
         mailProperties.put("mail.smtp.starttls.required", startlls_required);
         mailProperties.put("mail.smtp.socketFactory.port", socketPort);
         mailProperties.put("mail.smtp.debug", debug);
-        mailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        mailProperties.put("mail.smtp.socketFactory.fallback", fallback);
 
         mailSender.setJavaMailProperties(mailProperties);
         mailSender.setHost(host);
