@@ -12,6 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,8 +42,6 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
-        user.setActivationCode(UUID.randomUUID().toString());
 
         userService.save(user);
 
@@ -90,6 +93,12 @@ public class UserController {
         model.put("loginForm", new LoginForm());
         return "login";
     }
+
+//    @PostMapping("/perform_login")
+//    public boolean performLogin () {
+//
+//        return true;
+//    }
 
     @GetMapping("/")
     public String glitch() {
