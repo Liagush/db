@@ -40,13 +40,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/sass/**",
                         "/static/normalize-css/**",
                         "/activate/*",
-                        "/activationmessagepage").permitAll()
+                        "/login_error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/perform_login")
                     .defaultSuccessUrl("/main", true)
+                    .failureHandler(new CustomAuthenticationFailureHandler())
                     .permitAll()
                 .and().logout().permitAll()
                 .and()

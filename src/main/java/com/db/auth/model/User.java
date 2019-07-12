@@ -1,7 +1,6 @@
 package com.db.auth.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -13,12 +12,9 @@ public class User {
     private String activationCode;
     private String username;
     private String password;
-    private boolean resolution;
+    private boolean loginAllowed;
     private boolean online;
-
-    @Column
-    @Temporal(TemporalType.DATE)
-    private Date dateOfRegistration;
+    private Long dateOfRegistration;
 
     @Transient
     private String passwordConfirm;
@@ -57,12 +53,12 @@ public class User {
         this.roles = roles;
     }
 
-    public boolean isResolution() {
-        return resolution;
+    public boolean isLoginAllowed() {
+        return loginAllowed;
     }
 
-    public void setResolution(boolean resolution) {
-        this.resolution = resolution;
+    public void setLoginAllowed(boolean loginAllowed) {
+        this.loginAllowed = loginAllowed;
     }
 
     public String getEmail() {
@@ -105,11 +101,13 @@ public class User {
         this.online = online;
     }
 
-    public Date getDateOfRegistration() {
+    public Long getDateOfRegistration() {
         return dateOfRegistration;
     }
 
-    public void setDateOfRegistration(Date dateOfRegistration) {
+    public void setDateOfRegistration(Long dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
+
+
 }

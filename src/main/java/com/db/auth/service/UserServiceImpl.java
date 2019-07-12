@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,12 +33,15 @@ public class UserServiceImpl implements UserService {
         user.setActivationCode(UUID.randomUUID().toString());
 
         // Дата регистрации
-        LocalDate date = LocalDate.now ();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-        String text = date.format (formatter);
-        LocalDate parsedDate = LocalDate.parse(text, formatter);
+//        LocalDate date = LocalDate.now ();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+//        String text = date.format (formatter);
+//        LocalDate parsedDate = LocalDate.parse(text, formatter);
+        //user.setDateOfRegistration(java.sql.Date.valueOf(parsedDate));
 
-        user.setDateOfRegistration(java.sql.Date.valueOf(parsedDate));
+        user.setDateOfRegistration(LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC).getEpochSecond());
+
+        user.setLoginAllowed(true);
 
         userRepo.save(user);
     }

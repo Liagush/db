@@ -10,15 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
+
 
 @Controller
 public class UserController {
@@ -56,7 +49,7 @@ public class UserController {
             mailSender.send(user.getEmail(), "Код активаций для HELPER", message);
         }
 
-        return "redirect:/activationmessagepage";
+        return "redirect:/login_error";
     }
 
     @GetMapping("/registration")
@@ -65,11 +58,26 @@ public class UserController {
         return "registration";
     }
 
-    @GetMapping("/activationmessagepage")
-    public String activationMessagePage(Map<String, Object> model){
+    @GetMapping("/login_error")
+    public String login_error(Map<String, Object> model, @RequestParam(required = false) String error){
 
-        model.put("message", "На вашу почту отправлено письмо с кодом активации.");
-        return "activationmessagepage";
+        if(error != null) {
+            if(error.equals("disabled")) {
+
+                model.put("message", "На вашу почту уже отправлено письмо с кодом активации. Пожалуйста активируйте аккаунт.");
+
+            } else if(error.equals("blocked")) {
+
+                model.put("message", "Ваш аккаунт заблокирован.");
+            }
+
+        } else {
+
+            model.put("message", "На вашу почту отправлено письмо с кодом активации.");
+
+        }
+
+        return "login_error";
     }
 
     @GetMapping("/activate/{code}")
@@ -94,11 +102,6 @@ public class UserController {
         return "login";
     }
 
-//    @PostMapping("/perform_login")
-//    public boolean performLogin () {
-//
-//        return true;
-//    }
 
     @GetMapping("/")
     public String glitch() {

@@ -11,10 +11,10 @@ create table user (
     email varchar(50),
     activation_code varchar(255),
     password varchar(100),
-    resolution bit not null,
+    login_allowed bit not null,
     online bit not null,
     username varchar(50),
-    date_of_registration date,
+    date_of_registration bigint,
     primary key (id)
 ) engine=innoDB;
 
