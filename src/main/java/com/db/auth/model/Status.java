@@ -1,7 +1,7 @@
 package com.db.auth.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "status")
@@ -12,8 +12,8 @@ public class Status {
 
     private String statusName;
 
-    @ManyToMany(mappedBy = "statuses")
-    private Set<User> users;
+    @OneToMany
+    private List<User> users;
 
     public Long getId() {
         return id;
@@ -27,11 +27,11 @@ public class Status {
         this.statusName = statusName;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

@@ -1,61 +1,63 @@
-insert into hibernate_sequence values ( 1 );
-
 create table role (
-    id bigint not null auto_increment,
-    name varchar(50),
-    primary key (id)
+  id bigint not null auto_increment,
+  name varchar(255), primary key (id)
+) engine=innoDB;
+
+create table status (
+  id bigint not null auto_increment,
+  status_name varchar(255),
+  primary key (id)
+) engine=innoDB;
+
+create table status_users (
+  status_id bigint not null,
+  users_id bigint not null
 ) engine=innoDB;
 
 create table user (
-    id bigint not null,
-    email varchar(50),
-    activation_code varchar(255),
-    password varchar(100),
-    login_allowed bit not null,
-    online bit not null,
-    username varchar(50),
-    date_of_registration bigint,
-    primary key (id)
+  id bigint not null auto_increment,
+  activation_code varchar(255),
+  date_of_registration bigint,
+  email varchar(255),
+  login_allowed bit not null,
+  online bit not null,
+  password varchar(255),
+  username varchar(255),
+  status_id bigint,
+  primary key (id)
 ) engine=innoDB;
 
 create table user_roles (
-    users_id bigint not null,
-    roles_id bigint not null,
-    primary key (users_id, roles_id)
+  users_id bigint not null,
+  roles_id bigint not null,
+  primary key (users_id, roles_id)
 ) engine=innoDB;
 
-alter table user_roles
-    add constraint user_roles_roles_fk
-    foreign key (roles_id)
-    references role (id);
+alter table status_users
+  add constraint UK_ldi9jdp68ig4sstdp82imya3j
+    unique (users_id);
 
-alter table user_roles
-    add constraint user_roles_users_fk
-    foreign key (users_id)
-    references user (id);
-
-insert into hibernate_sequence values ( 1 );
-
-create table status (
-    id bigint not null auto_increment,
-    status_name varchar(50),
-    primary key (id)
-) engine=innoDB;
-
-create table user_statuses (
-    users_id bigint not null,
-    statuses_id bigint not null,
-    primary key (users_id, statuses_id)
-) engine=innoDB;
-
-alter table user_statuses
-  add constraint user_statuses_statuses_fk
-    foreign key (statuses_id)
-      references status (id);
-
-alter table user_statuses
-  add constraint user_statuses_users_fk
+alter table status_users
+  add constraint FKp7ao0tidtju3rxde6nimvgrkc
     foreign key (users_id)
       references user (id);
 
+alter table status_users
+  add constraint FKj9obyp05mm9s49xa7btb02pk9
+    foreign key (status_id)
+      references status (id);
 
+alter table user
+  add constraint FKr62indkt0r2anb0m8hy5ldfpd
+    foreign key (status_id)
+      references status (id);
+
+alter table user_roles
+  add constraint FKj9553ass9uctjrmh0gkqsmv0d
+    foreign key (roles_id)
+      references role (id);
+
+alter table user_roles
+  add constraint FK7ecyobaa59vxkxckg6t355l86
+    foreign key (users_id)
+      references user (id);

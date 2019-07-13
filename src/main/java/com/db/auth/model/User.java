@@ -6,7 +6,7 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String activationCode;
@@ -22,8 +22,8 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
-    @ManyToMany
-    private Set<Status> statuses;
+    @ManyToOne
+    private Status status;
 
     public Long getId() {
         return id;
@@ -85,12 +85,12 @@ public class User {
         this.activationCode = activationCode;
     }
 
-    public Set<Status> getStatuses() {
-        return statuses;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStatuses(Set<Status> statuses) {
-        this.statuses = statuses;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public boolean isOnline() {

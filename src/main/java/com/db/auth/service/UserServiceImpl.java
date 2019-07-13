@@ -1,8 +1,10 @@
 package com.db.auth.service;
 
 import com.db.auth.model.Role;
+import com.db.auth.model.Status;
 import com.db.auth.model.User;
 import com.db.auth.repos.RoleRepo;
+import com.db.auth.repos.StatusRepo;
 import com.db.auth.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,11 +14,14 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private StatusRepo statusRepo;
     @Autowired
     private UserRepo userRepo;
     @Autowired
@@ -33,15 +38,12 @@ public class UserServiceImpl implements UserService {
         user.setActivationCode(UUID.randomUUID().toString());
 
         // Дата регистрации
-//        LocalDate date = LocalDate.now ();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-//        String text = date.format (formatter);
-//        LocalDate parsedDate = LocalDate.parse(text, formatter);
-        //user.setDateOfRegistration(java.sql.Date.valueOf(parsedDate));
-
         user.setDateOfRegistration(LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC).getEpochSecond());
 
+        // Параметр блокировки аккаунта
         user.setLoginAllowed(true);
+
+        user.setStatus(statusRepo.findById(1).get());
 
         userRepo.save(user);
     }
