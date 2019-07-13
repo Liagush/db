@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         // Параметр блокировки аккаунта
         user.setLoginAllowed(true);
 
-        user.setStatus(statusRepo.findById(1).get());
+        user.setStatus(statusRepo.findById(1L).get());
 
         userRepo.save(user);
     }
