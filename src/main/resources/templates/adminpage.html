@@ -13,21 +13,19 @@
     <div class="user-list-container">
         <h5>Список пользователей</h5>
         <form name="userlist" class="user-list" th:each="user : ${userlist}" th:if="${not #lists.isEmpty(userlist)}">
-            <input type="text" disabled name="username" th:class="user-list-username" th:text="${user.username}"></input>
-            <input type="text" disabled name="email" th:class="user-list-email" th:text="${user.email}"></input>
-            <input type="text" disabled name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:text="${user.dateOfRegistration}"></input>
-            <input type="checkbox" disabled name="activationCode " disabled th:class="user-list-activationCode" th:value="${user.activationCode}"></input>
-            <select th:class="user-list-roles" name="roles">
-                <option th:each="role : ${user.roles}" th:value="${role.id}" th:text="${role.name}"></option>
-            </select>
-            <select th:class="user-list-roles" name="roles">
-                <option th:each="status : ${statuslist}" th:if="${status.statusName.equals()}" th:value="${status}" th:text="${status}"></option>
-            </select>
-            <input th:class="user-list-status" th:text="${user.status}"></input>
-            <input th:class="user-list-loginAllowed" th:text="${user.loginAllowed}"></input>
-            <input th:class="user-list-online" th:text="${user.online}"></input>
+            <input type="text" disabled name="username" th:class="user-list-username" th:value="${user.username}"></input>
+            <input type="text" disabled name="email" th:class="user-list-email" th:value="${user.email}"></input>
+            <input type="text" disabled name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:value="${user.dateOfRegistration}"></input>
+            <input type="checkbox" disabled name="activationCode" th:class="user-list-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}"></input>
+            <div th:class="user-list-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
+                <input disabled type="checkbox" th:class="user-list-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
+                <span th:text="${role.name}"></span>
+            </div>
+            <input type="text" disabled th:class="user-list-status" th:value="${user.status.getStatusName()}"></input>
+            <input type="checkbox" disabled th:class="user-list-loginAllowed" th:value="${user.loginAllowed}"></input>
+            <input type="checkbox" disabled th:class="user-list-online" th:value="${user.online}"></input>
         </form>
-        <div th:unless="${not #lists.isEmpty(userlist)}">Законы в базе данных отсутствуют.</div>
+        <div th:unless="${not #lists.isEmpty(userlist)}"></div>
     </div>
 
 </div>

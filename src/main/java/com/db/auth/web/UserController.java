@@ -21,6 +21,9 @@ import java.util.Map;
 @Controller
 public class UserController {
     @Autowired
+    private RoleRepo roleRepo;
+
+    @Autowired
     private StatusRepo statusRepo;
 
     @Autowired
@@ -138,6 +141,7 @@ public class UserController {
 
         model.put("statuslist", statusRepo.findAll());
         model.put("userlist", userRepo.findAll());
+        model.put("allRoles", roleRepo.findAll());
 
         return "adminpage";
     }
