@@ -1,5 +1,10 @@
 package com.db.auth.web;
 
+import com.db.auth.model.Role;
+import com.db.auth.model.Status;
+import com.db.auth.repos.RoleRepo;
+import com.db.auth.repos.StatusRepo;
+import com.db.auth.repos.UserRepo;
 import com.db.auth.service.MailSender;
 import com.db.auth.service.UserService;
 import com.db.auth.model.User;
@@ -15,6 +20,12 @@ import java.util.Map;
 
 @Controller
 public class UserController {
+    @Autowired
+    private StatusRepo statusRepo;
+
+    @Autowired
+    private UserRepo userRepo;
+
     @Autowired
     private MailSender mailSender;
 
@@ -120,5 +131,14 @@ public class UserController {
         public String getPassword() {
             return password;
         }
+    }
+
+    @GetMapping("/adminpage")
+    public String adminPage(Map<String,Object> model){
+
+        model.put("statuslist", statusRepo.findAll());
+        model.put("userlist", userRepo.findAll());
+
+        return "adminpage";
     }
 }
