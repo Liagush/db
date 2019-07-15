@@ -22,8 +22,8 @@
                 <span th:text="${role.name}"></span>
             </div>
             <input type="text" disabled th:class="user-list-status" th:value="${user.status.getStatusName()}"></input>
-            <input type="checkbox" disabled th:class="user-list-loginAllowed" th:value="${user.loginAllowed}"></input>
-            <input type="checkbox" disabled th:class="user-list-online" th:value="${user.online}"></input>
+            <input type="checkbox" disabled th:class="user-list-loginAllowed" th:checked="${user.loginAllowed}"></input>
+            <input type="checkbox" disabled th:class="user-list-online" th:checked="${user.online}"></input>
         </form>
         <div th:unless="${not #lists.isEmpty(userlist)}"></div>
     </div>
