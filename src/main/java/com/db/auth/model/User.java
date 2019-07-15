@@ -1,6 +1,10 @@
 package com.db.auth.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Entity
@@ -109,5 +113,12 @@ public class User {
         this.dateOfRegistration = dateOfRegistration;
     }
 
+    public String getLocalDateOfRegistration() {
 
+        LocalDateTime date = LocalDateTime.ofEpochSecond(dateOfRegistration,  0, ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String text = date.format (formatter);
+
+        return text;
+    }
 }

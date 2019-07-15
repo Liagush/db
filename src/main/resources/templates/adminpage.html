@@ -15,7 +15,7 @@
         <form name="userlist" class="user-list" th:each="user : ${userlist}" th:if="${not #lists.isEmpty(userlist)}">
             <input type="text" disabled name="username" th:class="user-list-username" th:value="${user.username}"></input>
             <input type="text" disabled name="email" th:class="user-list-email" th:value="${user.email}"></input>
-            <input type="text" disabled name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:value="${user.dateOfRegistration}"></input>
+            <input type="text" disabled name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:value="${user.getLocalDateOfRegistration()}"></input>
             <input type="checkbox" disabled name="activationCode" th:class="user-list-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}"></input>
             <div th:class="user-list-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
                 <input disabled type="checkbox" th:class="user-list-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
