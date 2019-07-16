@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/static/sass/main.css">
+
+</head>
+<body>
+
+
+<div class="user-edit-main-container">
+    <div class="user-container">
+        <h5>Страница редактирования пользователей</h5>
+        <form name="userEditForm" class="user-edit-form" th:if="${not #lists.isEmpty(user)}">
+            <div name="username" th:class="user-edit-form-username" th:text="${user.username}"></div>
+            <div name="email" th:class="user-edit-form-email" th:text="${user.email}"></div>
+            <div name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getLocalDateOfRegistration()}"></div>
+            <input type="checkbox" disabled name="activationCode" th:class="user-edit-form-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}">
+            <div th:class="user-edit-form-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
+                <input type="checkbox" th:class="user-edit-form-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
+                <span th:text="${role.name}"></span>
+            </div>
+            <input type="text" th:class="user-edit-form-status" th:value="${user.status.getStatusName()}">
+            <input type="checkbox" th:class="user-edit-form-loginAllowed" th:checked="${user.loginAllowed}">
+            <input type="checkbox" th:class="user-edit-form-online" th:checked="${user.online}">
+            <input type="submit" th:class="user-list-save-button" value="Сохранить изменения">
+            <input type="submit" th:class="user-list-del-button" value="Удалить пользователя">
+        </form>
+        <div th:unless="${not #lists.isEmpty(user)}"></div>
+    </div>
+</div>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src="/static/js/editLaw.js"></script>
+<script src="/static/js/addCategory.js"></script>
+</body>
+</html>

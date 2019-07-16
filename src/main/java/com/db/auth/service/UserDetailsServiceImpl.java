@@ -36,9 +36,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        boolean loginAllowed = user.isLoginAllowed();
 
+        boolean loginAllowed = user.isLoginAllowed();
         boolean enabled = user.getActivationCode() == null;
+
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),

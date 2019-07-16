@@ -113,12 +113,12 @@ public class User {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public String getLocalDateOfRegistration() {
+    public String getStringRegistrationDate() {
 
-        LocalDateTime date = LocalDateTime.ofEpochSecond(dateOfRegistration,  0, ZoneOffset.UTC);
+        LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(dateOfRegistration,  0, ZoneOffset.UTC);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        String text = date.format (formatter);
+        String date = localDateTime.format (formatter);
 
-        return text;
+        return date;
     }
 }

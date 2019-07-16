@@ -15,7 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -144,5 +149,34 @@ public class UserController {
         model.put("allRoles", roleRepo.findAll());
 
         return "adminpage";
+    }
+
+    @GetMapping("/useredit/{user}")
+    public String userEditForm (@PathVariable User user, Map<String,Object> model) {
+
+        model.put("user", user);
+        model.put("allRoles", roleRepo.findAll());
+
+        return "useredit";
+    }
+
+    @PostMapping
+    public String userSave (@RequestParam("userId") User user,
+                            @RequestParam Map<String, String> form) {
+
+
+        Set<String> roles = Arrays.stream(roleRepo.findAll().get().getName())
+                .map(Role::getName)
+                .collect(Collectors.toSet());
+
+        user.getRoles().clear();
+
+        for(String key : form.keySet()) {
+            if(roles.contains(key)) {
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+
+        return "redirect:/useredit/{user}";
     }
 }
