@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collector;
@@ -161,21 +162,22 @@ public class UserController {
     }
 
     @PostMapping
-    public String userSave (@RequestParam("userId") User user,
-                            @RequestParam Map<String, String> form) {
+    public String userSave (@RequestParam("userId") Long userId,
+                            @RequestParam("role") List<Long> roles)
+    {
 
+        List<Role> allRoles = roleRepo.findAll();
+        User user =  userRepo.findById(userId).get();
 
-        Set<String> roles = Arrays.stream(roleRepo.findAll().get().getName())
-                .map(Role::getName)
-                .collect(Collectors.toSet());
-
-        user.getRoles().clear();
-
-        for(String key : form.keySet()) {
-            if(roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
+        for (Role role : allRoles) {
+            if (roles.contains(role.getId())) {
+                user.getRoles().add(role);
+            } else {
+                user.getRoles().remove(role);
             }
         }
+
+        userRepo.save(user);
 
         return "redirect:/useredit/{user}";
     }

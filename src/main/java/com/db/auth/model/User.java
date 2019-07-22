@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Entity
+@Table(name = "usr")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
