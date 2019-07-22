@@ -139,3 +139,16 @@ alter table usr_roles
     add constraint FKchnh142fcr245xa6c2t8t0fen
         foreign key (users_id)
             references usr;
+
+
+insert into role (id, name)
+    values
+        (1, 'USER'),
+        (2, 'MODERATOR'),
+        (3, 'ADMIN');
+
+insert into status (id, status_name)
+    values
+        (1, 'АКТИВНЫЙ'),
+        (2, 'BLACK LIST'),
+        (3, 'УВОЛЕН');
