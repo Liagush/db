@@ -161,24 +161,24 @@ public class UserController {
         return "useredit";
     }
 
-    @PostMapping
-    public String userSave (@RequestParam("userId") Long userId,
-                            @RequestParam("role") List<Long> roles)
-    {
-
-        List<Role> allRoles = roleRepo.findAll();
-        User user =  userRepo.findById(userId).get();
-
-        for (Role role : allRoles) {
-            if (roles.contains(role.getId())) {
-                user.getRoles().add(role);
-            } else {
-                user.getRoles().remove(role);
-            }
-        }
-
-        userRepo.save(user);
-
-        return "redirect:/useredit/{user}";
-    }
+//    @PostMapping
+//    public String userSave (@RequestParam("userId") Long userId,
+//                            @RequestParam("role") List<Long> roles)
+//    {
+//
+//        List<Role> allRoles = roleRepo.findAll();
+//        User user =  userRepo.findById(userId).get();
+//
+//        for (Role role : allRoles) {
+//            if (roles.contains(role.getId())) {
+//                user.getRoles().add(role);
+//            } else {
+//                user.getRoles().remove(role);
+//            }
+//        }
+//
+//        userRepo.save(user);
+//
+//        return "redirect:/useredit/{user}";
+//    }
 }
