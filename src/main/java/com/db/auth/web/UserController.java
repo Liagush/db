@@ -161,7 +161,7 @@ public class UserController {
         return "useredit";
     }
 
-    @PostMapping("save_user")
+    @PostMapping("/useredit/save_user")
     public String userSave (@RequestParam("userId") Long userId,
                             @RequestParam("role") List<Long> roles)
     {
@@ -179,6 +179,6 @@ public class UserController {
 
         userRepo.save(user);
 
-        return "redirect:/useredit/{user}";
+        return "redirect:/useredit/" + user.getId();
     }
 }

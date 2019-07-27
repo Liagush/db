@@ -12,7 +12,8 @@
 <div class="user-edit-main-container">
     <div class="user-container">
         <h5>Страница редактирования пользователей</h5>
-        <form name="userEditForm" action="save_user" class="user-edit-form" th:if="${not #lists.isEmpty(user)}">
+        <form name="userEditForm" class="user-edit-form" th:if="${not #lists.isEmpty(user)}" th:method="post">
+            <input type="text" hidden th:name="userId" th:value="${user.id}">
             <div name="username" th:class="user-edit-form-username" th:text="${user.username}"></div>
             <div name="email" th:class="user-edit-form-email" th:text="${user.email}"></div>
             <div name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getStringRegistrationDate()}"></div>
@@ -24,8 +25,8 @@
             <input type="text" th:class="user-edit-form-status" th:value="${user.status.getStatusName()}">
             <input type="checkbox" th:class="user-edit-form-loginAllowed" th:checked="${user.loginAllowed}">
             <input type="checkbox" th:class="user-edit-form-online" th:checked="${user.online}">
-            <input type="submit" th:class="user-list-save-button" value="Сохранить изменения">
-            <input type="submit" th:class="user-list-del-button" value="Удалить пользователя">
+            <input type="submit" th:formaction="@{/useredit/save_user}" th:class="user-list-save-button" value="Сохранить изменения">
+            <input type="submit" th:formaction="del_user" th:class="user-list-del-button" value="Удалить пользователя">
         </form>
         <div th:unless="${not #lists.isEmpty(user)}"></div>
     </div>

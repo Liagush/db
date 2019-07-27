@@ -24,7 +24,7 @@
             <div th:class="user-list-status" th:text="${user.status.getStatusName()}"></div>
             <input type="checkbox" disabled th:class="user-list-loginAllowed" th:checked="${user.loginAllowed}">
             <input type="checkbox" disabled th:class="user-list-online" th:checked="${user.online}">
-            <a th:href="@{/useredit/${user.id}}">Редактировать</a>
+            <a th:href="@{/useredit/{userid}(userid=${user.id})}">Редактировать</a>
         </form>
         <div th:unless="${not #lists.isEmpty(userlist)}"></div>
     </div>
