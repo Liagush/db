@@ -12,10 +12,10 @@
 <div class="user-edit-main-container">
     <div class="user-container">
         <h5>Страница редактирования пользователей</h5>
-        <form name="userEditForm" class="user-edit-form" th:if="${not #lists.isEmpty(user)}">
+        <form name="userEditForm" action="save_user" class="user-edit-form" th:if="${not #lists.isEmpty(user)}">
             <div name="username" th:class="user-edit-form-username" th:text="${user.username}"></div>
             <div name="email" th:class="user-edit-form-email" th:text="${user.email}"></div>
-            <div name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getLocalDateOfRegistration()}"></div>
+            <div name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getStringRegistrationDate()}"></div>
             <input type="checkbox" disabled name="activationCode" th:class="user-edit-form-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}">
             <div th:class="user-edit-form-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
                 <input type="checkbox" th:class="user-edit-form-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">

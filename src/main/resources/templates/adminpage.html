@@ -13,15 +13,15 @@
     <div class="user-list-container">
         <h5>Список пользователей</h5>
         <form name="userlist" class="user-list" th:each="user : ${userlist}" th:if="${not #lists.isEmpty(userlist)}">
-            <div name="username" th:class="user-list-username" th:value="${user.username}"></div>
-            <div name="email" th:class="user-list-email" th:value="${user.email}"></div>
-            <div name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:value="${user.getStringRegistrationDate()}"></div>
+            <div name="username" th:class="user-list-username" th:text="${user.username}"></div>
+            <div name="email" th:class="user-list-email" th:text="${user.email}"></div>
+            <div name="dateOfRegistration" th:class="user-list-dateOfRegistration" th:text="${user.getStringRegistrationDate()}"></div>
             <input type="checkbox" disabled name="activationCode" th:class="user-list-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}">
             <div th:class="user-list-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
                 <input disabled type="checkbox" th:class="user-list-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
                 <span th:text="${role.name}"></span>
             </div>
-            <div th:class="user-list-status" th:value="${user.status.getStatusName()}"></div>
+            <div th:class="user-list-status" th:text="${user.status.getStatusName()}"></div>
             <input type="checkbox" disabled th:class="user-list-loginAllowed" th:checked="${user.loginAllowed}">
             <input type="checkbox" disabled th:class="user-list-online" th:checked="${user.online}">
             <a th:href="@{/useredit/${user.id}}">Редактировать</a>
