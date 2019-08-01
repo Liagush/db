@@ -60,11 +60,14 @@
             <version>2.9.8</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-search-orm</artifactId>
-            <version>5.8.2.Final</version>
+            <version>5.11.2.Final</version>
         </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>

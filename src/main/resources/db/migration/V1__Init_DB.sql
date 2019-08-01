@@ -144,7 +144,7 @@ alter table usr_roles
 insert into role (id, name)
     values
         (1, 'USER'),
-        (2, 'MODERATOR'),
+        (2, 'MODER'),
         (3, 'ADMIN');
 
 insert into status (id, status_name)
