@@ -645,6 +645,10 @@ a.login-page-button:hover
     overflow: scroll
     width: fit-content
 
+.admin-page-table tr th
+    position: sticky
+    top: 0
+
 
 .admin-page-table-role
     display: inline
@@ -667,6 +671,7 @@ a.login-page-button:hover
 .admin-page-table tr td
     background-color: $bg_form_gray
     padding: 2px 30px
+    white-space: nowrap
 
 
 .admin-page-table tr th:first-child,
@@ -733,6 +738,7 @@ a.login-page-button:hover
 .admin-page-table tr td:last-child
     position: relative
     overflow: hidden
+    box-shadow: inset -8px 0px 0px rgba(40, 183, 141, 1)
 
 .edit-button
     display: inline-block

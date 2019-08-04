@@ -54,7 +54,7 @@
             <label th:class="checkbox-circle-lable">
                 <input disabled type="checkbox" th:class="checkbox-circle-input" th:checked="${user.online}">
                 <div th:class="checkbox-circle-div"></div>
-                <a th:href="@{/useredit/{userid}(userid=${user.id})}">
+                <a th:href="@{/useredit/{userid}(userid=${user.id})}" target="_blank">
                     <div class="edit-button"></div>
                 </a>
             </label>
