@@ -454,31 +454,6 @@ a.tab:hover, label.tab:hover
     border-bottom: 1px solid $accent
 
 
-//a.login-button
-//    display: block
-//    width: 280px
-//    padding: 5px
-//    text-align: center
-//    margin: 65px 20px 50px
-//    font-weight: 400
-//    text-transform: uppercase
-//    font-size: 1.4rem
-//    position: absolute
-//    bottom: -50px
-//    left: -20px
-//    background-color: $bg_dark + 15%
-//    border-radius: 0 0 10px 10px
-//    border-top: 2px solid $bg_dark_light
-//    color: $accent - 20%
-//
-//
-//
-//
-//a.login-button:hover
-//    background-color: $accent
-//    color: $text_color_milk
-
-
 input.loginFormButton
     display: block
     width: 280px
@@ -666,6 +641,10 @@ a.login-page-button:hover
     border-collapse: separate
     color: $text_color_light_gray
     font-weight: 600
+    display: block
+    overflow: scroll
+    width: fit-content
+
 
 .admin-page-table-role
     display: inline
@@ -700,23 +679,34 @@ a.login-page-button:hover
 
 .checkbox-circle-lable span,
 .checkbox-circle-input,
-.checkbox-circle-div
+.checkbox-circle-div,
+.checkbox-slider-lable span,
+.checkbox-slider-input,
+.checkbox-slider-div
     display: inline-block
 
-.checkbox-circle-input
+.checkbox-circle-input,
+.checkbox-slider-input
     display: none
 
-.checkbox-circle-div
+.checkbox-circle-div,
+.checkbox-slider-div
     position: relative
     height: 18px
-    width: 18px
     top: -2px
     border-radius: 18px
     background-color: $bg_dark
     vertical-align: middle
+    transition: 0.5s
 
+.checkbox-circle-div
+    width: 18px
 
-.checkbox-circle-div::before
+.checkbox-slider-div
+    width: 36px
+
+.checkbox-circle-div::before,
+.checkbox-slider-div::before
     content: ''
     position: absolute
     top: 3px
@@ -725,32 +715,58 @@ a.login-page-button:hover
     height: 12px
     width: 12px
     border-radius: 50%
+    transition: 0.5s
+
+.checkbox-slider-div::before
+    background-color: #28b78d
 
 .checkbox-circle-input:checked + .checkbox-circle-div::before
     background-color: #28b78d
 
-.td-roles
-    min-width: 340px
+.checkbox-slider-input:checked + .checkbox-slider-div::before
+    background-color: #3b3f44
+    left: 20px
+
+.checkbox-slider-input:checked + .checkbox-slider-div
+    background-color: #28b78d
+
+.admin-page-table tr td:last-child
+    position: relative
+    overflow: hidden
+
+.edit-button
+    display: inline-block
+    position: absolute
+    width: 0px
+    height: 100%
+    top: 0
+    right: 0
+    transition: 0.3s
+    background-color: #28b78d
 
 
-//
-//.checkbox-circle
-//    display: none
 
-//&:checked
-//
-//&~.custom-checkbox
-//
-//&:after
-//    background-color: seagreen
-//
-//&:after
-//    content: ''
-//    position: absolute
-//    top: 2px
-//    right: 2px
-//    left: 2px
-//    bottom: 2px
+.admin-page-table tr td:last-child:hover .edit-button
+    width: 100%
+
+
+.edit-button::before
+    content: 'изменить'
+    opacity: 0
+    color: #3b3f44
+    vertical-align: middle
+
+.admin-page-table tr td:last-child:hover .edit-button::before
+    transition-duration: 0.8s
+    transition-delay: 0.3s
+    opacity: 1
+
+.table-container
+    padding-top: 40px
+    background-color: #24262D
+    height: 100vh
+
+
 
 
 /* СОВЙСТВА adminpage: КОНЕЦ */

@@ -9,8 +9,8 @@
 <body>
 
 
-
-<table class="admin-page-table" th:if="${not #lists.isEmpty(userlist)}">
+<div class="table-container">
+<table align="center" class="admin-page-table" th:if="${not #lists.isEmpty(userlist)}">
     <tr>
         <th>№</th>
         <th>Имя</th>
@@ -29,12 +29,15 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.getStringRegistrationDate()}"></td>
         <td>
-            <input type="checkbox" disabled name="activationCode" th:class="user-list-content" th:checked="${#strings.isEmpty(user.activationCode)}">
+            <label th:class="checkbox-circle-lable">
+                <input th:name="activationCode" disabled type="checkbox" th:class="checkbox-circle-input" th:checked="${#strings.isEmpty(user.activationCode)}">
+                <div th:class="checkbox-circle-div"></div>
+            </label>
         </td>
-        <td th:class="td-roles">
+        <td>
             <div th:class="admin-page-table-role" th:name="rolesBox" th:each="role : ${allRoles}">
                 <label th:class="checkbox-circle-lable">
-                    <input type="checkbox" th:class="checkbox-circle-input" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
+                    <input disabled type="checkbox" th:class="checkbox-circle-input" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
                     <div th:class="checkbox-circle-div"></div>
                     <span th:text="${role.name}"></span>
                 </label>
@@ -42,15 +45,26 @@
         </td>
         <td th:text="${user.status.getStatusName()}"></td>
         <td>
-            <input type="checkbox" disabled th:class="user-list-content" th:checked="${user.loginAllowed}">
+            <label th:class="checkbox-slider-lable">
+                <input disabled type="checkbox" th:class="checkbox-slider-input" th:checked="${user.loginAllowed}">
+                <div th:class="checkbox-slider-div"></div>
+            </label>
         </td>
         <td>
-            <input type="checkbox" disabled th:class="user-list-content" th:checked="${user.online}">
+            <label th:class="checkbox-circle-lable">
+                <input disabled type="checkbox" th:class="checkbox-circle-input" th:checked="${user.online}">
+                <div th:class="checkbox-circle-div"></div>
+                <a th:href="@{/useredit/{userid}(userid=${user.id})}">
+                    <div class="edit-button"></div>
+                </a>
+            </label>
         </td>
     </tr>
 </table>
 
 <div th:unless="${not #lists.isEmpty(userlist)}"></div>
+
+</div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="/static/js/editLaw.js"></script>
