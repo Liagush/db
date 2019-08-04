@@ -10,7 +10,10 @@ body
     margin: 0px
 
 h1
-    font-size: 1.5rem       
+    font-size: 1.5rem
+
+input:focus
+    outline: none
 
 /* ОБЩИЕ СВОЙСТВА: КОНЕЦ */
 
@@ -777,6 +780,115 @@ a.login-page-button:hover
 
 /* СОВЙСТВА adminpage: КОНЕЦ */
 
+
+/* СОВЙСТВА useredit: НАЧАЛО */
+
+.user-edit-main-container
+    background-color: $bg_dark
+    height: 100vh
+    color: $text_color_light_gray
+    font-weight: 600
+    position: relative
+
+.user-edit-form h5
+    margin: 0
+    display: block
+    background-color: $bg_form_gray - 12%
+    margin-bottom: 3px
+    padding: 4px 15px
+    border-radius: 15px 15px 0 0
+    color: $text_color_light_gray
+    font-size: 1em
+    text-align: center
+
+.user-container
+    background-color: $bg_dark
+    display: flex
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+.user-edit-form-input-text
+    display: block
+    border: none
+    padding: 5px 15px
+    margin-bottom: 3px
+    width: 100%
+    background-color: $bg_form_gray
+    font-weight: 600
+    color: $text_color_light_gray
+    font-size: 0.9em
+
+
+.user-edit-form-roles-box
+    display: inline-block
+
+.checkbox-slider-lable,
+.checkbox-circle-lable
+    display: block
+    font-weight: 600
+    color: $text_color_light_gray
+    font-size: 0.9em
+    background-color: $bg_form_gray
+    padding: 5px 15px
+    margin-bottom: 3px
+    position: relative
+
+.checkbox-slider-lable div,
+.checkbox-circle-lable div
+    position: absolute
+    right: 15px
+    top: 20%
+
+.role-span
+    margin-left: 55%
+
+.user-edit-form-all-roles div:first-child
+    font-size: 0.9em
+    background-color: $bg_form_gray - 12%
+    padding: 5px 15px
+    margin-bottom: 3px
+
+.user-status
+    display: block
+    position: relative
+    background-color: $bg_form_gray
+    width: 100%
+    padding: 5px 15px
+    margin-bottom: 3px
+    font-size: 0.9em
+
+.user-status .user-edit-form-input-text
+    display: inline-block
+    position: absolute
+    width: min-content
+    padding: 2px
+    margin: 0
+    text-align: center
+    border-radius: 20px
+    font-size: 0.8em
+    right: 15px
+    top: 25%
+    background-color: #28b78d
+    color: $bg_dark
+
+
+.user-list-save-button,
+.user-list-del-button
+    display: inline-block
+    font-weight: 600
+    color: $text_color_light_gray
+    font-size: 0.9em
+    background-color: $bg_form_gray
+    padding: 5px 15px
+    border: none
+    width: 50%
+
+.user-list-save-button
+    border-radius: 5px 0 0 0
+
+/* СОВЙСТВА useredit: КОНЕЦ */
 
 
 

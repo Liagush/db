@@ -11,12 +11,12 @@
 
 <div class="user-edit-main-container">
     <div class="user-container">
-        <h5>Страница редактирования пользователей</h5>
         <form name="userEditForm" class="user-edit-form" th:if="${not #lists.isEmpty(user)}" th:method="post">
+            <h5>Страница редактирования пользователей</h5>
             <input type="text" hidden th:name="userId" th:value="${user.id}">
-            <div name="username" th:class="user-edit-form-username" th:text="${user.username}"></div>
-            <div name="email" th:class="user-edit-form-email" th:text="${user.email}"></div>
-            <div name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getStringRegistrationDate()}"></div>
+            <input type="text" name="username" th:class="user-edit-form-username" th:text="${user.username}">
+            <input type="text" name="email" th:class="user-edit-form-email" th:text="${user.email}">
+            <input type="text" name="dateOfRegistration" th:class="user-edit-form-dateOfRegistration" th:text="${user.getStringRegistrationDate()}">
             <input type="checkbox" disabled name="activationCode" th:class="user-edit-form-activationCode" th:checked="${#strings.isEmpty(user.activationCode)}">
             <div th:class="user-edit-form-roles-box" th:name="rolesBox" th:each="role : ${allRoles}">
                 <input type="checkbox" th:class="user-edit-form-role" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
@@ -31,6 +31,68 @@
         <div th:unless="${not #lists.isEmpty(user)}"></div>
     </div>
 </div>
+
+
+
+
+
+<!--<div class="user-edit-main-container">-->
+<!--    <div class="user-container">-->
+
+<!--        <form name="userEditForm" class="user-edit-form" method="post">-->
+<!--            <h5>Страница редактирования пользователей</h5>-->
+<!--            <input type="text" hidden="" name="userId" value="1">-->
+<!--            <input type="text" name="username" class="user-edit-form-input-text" value="dmitry">-->
+<!--            <input type="text" name="usersurname" class="user-edit-form-input-text" value="trushkov">-->
+<!--            <input type="text" name="email" class="user-edit-form-input-text" value="iablophone@mail.ru">-->
+<!--            <input type="text" name="dateOfRegistration" class="user-edit-form-input-text" value="02 авг. 2019">-->
+<!--            <label class="checkbox-slider-lable">-->
+<!--                <span>Пользователь активирован:</span>-->
+<!--                <input type="checkbox" th:name="activationCode" class="checkbox-slider-input" th:checked="${#strings.isEmpty(user.activationCode)}">-->
+<!--                <div class="checkbox-slider-div"></div>-->
+<!--            </label>-->
+<!--            <div class="user-edit-form-all-roles">-->
+<!--                <div>Права пользователя:</div>-->
+<!--                <label class="checkbox-slider-lable" name="rolesBox">-->
+<!--                    <span class="role-span">USER</span>-->
+<!--                    <input type="checkbox" class="checkbox-slider-input" name="role" value="1" checked="checked">-->
+<!--                    <div class="checkbox-slider-div"></div>-->
+<!--                </label>-->
+<!--                <label class="checkbox-slider-lable">-->
+<!--                    <input type="checkbox" class="checkbox-slider-input" name="role" value="2">-->
+<!--                    <span class="role-span">MODER</span>-->
+<!--                    <div class="checkbox-circle-div"></div>-->
+<!--                    <div class="checkbox-slider-div"></div>-->
+<!--                </label>-->
+<!--                <label class="checkbox-slider-lable" name="rolesBox">-->
+<!--                    <span class="role-span">ADMIN</span>-->
+<!--                    <input type="checkbox" class="checkbox-slider-input" name="role" value="3">-->
+<!--                    <div class="checkbox-slider-div"></div>-->
+<!--                </label>-->
+<!--            </div>-->
+<!--            <label class="user-status">-->
+<!--                <span>Статус пользователя</span>-->
+<!--                <input type="text" class="user-edit-form-input-text" value="АКТИВНЫЙ">-->
+<!--            </label>-->
+<!--            <label class="checkbox-slider-lable">-->
+<!--                <span>Разрешение</span>-->
+<!--                <input type="checkbox" class="checkbox-slider-input" th:checked="${user.loginAllowed}">-->
+<!--                <div class="checkbox-slider-div"></div>-->
+<!--            </label>-->
+<!--            <label class="checkbox-circle-lable">-->
+<!--                <span>Online</span>-->
+<!--                <input type="checkbox" class="checkbox-circle-input" th:checked="${user.online}">-->
+<!--                <div class="checkbox-circle-div"></div>-->
+<!--            </label>-->
+<!--            <input type="submit" formaction="/useredit/save_user" class="user-list-save-button" value="Сохранить изменения">-->
+<!--            <input type="submit" formaction="del_user" class="user-list-del-button" value="Удалить пользователя">-->
+<!--        </form>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="/static/js/editLaw.js"></script>
