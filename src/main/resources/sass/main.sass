@@ -874,19 +874,35 @@ a.login-page-button:hover
     color: $bg_dark
 
 
+.user-edit-form-button-box
+  display: table
+  white-space: nowrap
+
 .user-list-save-button,
 .user-list-del-button
-    display: inline-block
+    display: table-cell
     font-weight: 600
     color: $text_color_light_gray
     font-size: 0.9em
     background-color: $bg_form_gray
-    padding: 5px 15px
+    padding: 10px 30px
     border: none
-    width: 50%
+    transition: 0.7s
+
+.user-list-save-button:hover,
+.user-list-del-button:hover
+    background-color: #28b78d
+    color: $bg_dark
 
 .user-list-save-button
-    border-radius: 5px 0 0 0
+    margin-right: 1.5px
+    border-radius: 0 0 0 15px
+
+
+.user-list-del-button
+    margin-left: 1.5px
+    border-radius: 0 0 15px 0
+
 
 /* СОВЙСТВА useredit: КОНЕЦ */
 
