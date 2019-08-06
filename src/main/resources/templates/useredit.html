@@ -18,14 +18,14 @@
             <input type="text" name="usersurname" th:class="user-edit-form-input-text" placeholder="Фамилия">
             <input type="text" name="email" th:class="user-edit-form-input-text" th:value="${user.email}" placeholder="Почта">
             <input th:disabled="disabled" type="text" name="dateOfRegistration" th:class="user-edit-form-input-text" th:value="${user.getStringRegistrationDate()}" placeholder="Дата регистрации">
-            <label th:class="checkbox-slider-lable">
+            <label th:class="checkbox-slider-lable-for-useredit">
                 <span>Пользователь активирован:</span>
                 <input type="checkbox" disabled th:name="activationCode" th:class="checkbox-slider-input" th:checked="${#strings.isEmpty(user.activationCode)}">
                 <div th:class="checkbox-slider-div"></div>
             </label>
             <div th:class="user-edit-form-all-roles">
                 <div>Права пользователя:</div>
-                <label th:class="checkbox-slider-lable" th:name="rolesBox" th:each="role : ${allRoles}">
+                <label th:class="checkbox-slider-lable-for-useredit" th:name="rolesBox" th:each="role : ${allRoles}">
                     <span th:text="${role.name}" th:class="role-span"></span>
                     <input type="checkbox" th:class="checkbox-slider-input" th:name="role" th:value="${role.id}" th:checked="${user.roles.contains(role)}">
                     <div th:class="checkbox-slider-div"></div>
@@ -35,12 +35,12 @@
                 <span>Статус пользователя</span>
                 <input type="text" th:class="user-edit-form-input-text" th:value="${user.status.getStatusName()}">
             </label>
-            <label th:class="checkbox-slider-lable">
+            <label th:class="checkbox-slider-lable-for-useredit">
                 <span>Разрешение</span>
                 <input type="checkbox" th:class="checkbox-slider-input" th:checked="${user.loginAllowed}">
                 <div th:class="checkbox-slider-div"></div>
             </label>
-            <label class="checkbox-circle-lable">
+            <label class="checkbox-circle-lable-for-useredit">
                 <span>Online</span>
                 <input type="checkbox" th:class="checkbox-circle-input" th:checked="${user.online}">
                 <div th:class="checkbox-circle-div"></div>
