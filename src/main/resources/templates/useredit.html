@@ -31,10 +31,13 @@
                     <div th:class="checkbox-slider-div"></div>
                 </label>
             </div>
-            <label class="user-status">
-                <span>Статус пользователя</span>
-                <input type="text" th:class="user-edit-form-input-text" th:value="${user.status.getStatusName()}">
-            </label>
+            <div class="user-edit-form-all-statuses">
+                <div>Статус пользователя:</div>
+                <label th:each="status : ${allStatuses}" th:class="user-status-radio-label">
+                    <input th:type="radio" th:name="statusRadioBtn" th:class="user-status-radio-input" th:checked="${user.status.id == status.id}">
+                    <div th:class="user-status-radio-div" th:text="${status.statusName}"></div>
+                </label>
+            </div>
             <label th:class="checkbox-slider-lable-for-useredit">
                 <span>Разрешение</span>
                 <input type="checkbox" th:class="checkbox-slider-input" th:checked="${user.loginAllowed}">

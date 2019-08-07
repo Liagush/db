@@ -157,6 +157,8 @@ public class UserController {
 
         model.put("user", user);
         model.put("allRoles", roleRepo.findAll());
+        model.put("allStatuses", statusRepo.findAll());
+
 
         return "useredit";
     }

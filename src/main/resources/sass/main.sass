@@ -844,39 +844,52 @@ a.login-page-button:hover
 .role-span
     margin-left: 55%
 
+.user-edit-form-all-statuses div:first-child,
 .user-edit-form-all-roles div:first-child
     font-size: 0.9em
     background-color: $bg_form_gray - 12%
     padding: 5px 15px
     margin-bottom: 3px
 
-.user-status
+.user-status-radio-label
     display: block
     position: relative
     background-color: $bg_form_gray
     width: 100%
-    padding: 5px 15px
     margin-bottom: 3px
-    font-size: 0.9em
-
-.user-status .user-edit-form-input-text
-    display: inline-block
-    position: absolute
-    width: min-content
-    padding: 2px
-    margin: 0
-    text-align: center
-    border-radius: 20px
+    text-align: right
     font-size: 0.8em
-    right: 15px
-    top: 25%
+    height: 32px
+
+.user-status-radio-label .user-status-radio-div
+    position: absolute
+    display: inline-block
+    width: 150px
+    border-left: solid 3px $bg_dark
+    text-align: center
+    right: 0
+    top: 0
+    line-height: 32px
+    height: 100%
+    margin-left: 3px
+    background-color: $bg_form_gray - 12%
+    color: $text_color_light_gray
+    vertical-align: middle
+    transition: 0.7s
+
+.user-status-radio-label .user-status-radio-input
+    display: none
+
+.user-status-radio-input:hover + .user-status-radio-div
+    color: white
+
+.user-status-radio-input:checked + .user-status-radio-div
     background-color: #28b78d
     color: $bg_dark
 
-
 .user-edit-form-button-box
-  display: table
-  white-space: nowrap
+    display: table
+    white-space: nowrap
 
 .user-list-save-button,
 .user-list-del-button
@@ -902,6 +915,7 @@ a.login-page-button:hover
 .user-list-del-button
     margin-left: 1.5px
     border-radius: 0 0 15px 0
+
 
 
 /* СОВЙСТВА useredit: КОНЕЦ */
