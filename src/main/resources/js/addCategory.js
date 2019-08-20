@@ -3,10 +3,11 @@
 // модуль добавления новых категорий
 function switchOnAddNewCategoryProduct() {
 
-    $("option:selected").prop("selected", false);
+    $('.dropdown').find('input').removeAttr('value');
+    $('.dropdown').find('span').text('выберите категорию');
     // удаляем класс active и имя category у выбранных элементов формы
     $(".active").removeClass("active");
-    $("#productEditing.listCategory").removeAttr("name");
+    $('.dropdown').find('input').removeAttr("name");
 
     // добавляем класс active и имя category к выбранным элементам формы
     addNewCategory[0].classList.add("active");
@@ -19,11 +20,12 @@ function switchOnListCategoryProduct() {
 
     // удаляем класс active и имя category у выбранных элементов формы
     $(".active").removeClass("active");
-    $("#productEditing.addNewCategory").removeAttr("name");
+    $(".addNewCategory #categoryName").removeAttr("name");
 
     // добавляем класс active и имя category к выбранным элементам формы
     listCategory[0].classList.add("active");
-    var addName = listCategory[0].getElementsByTagName("select");
+    var addName = $('.dropdown').find('input');
     addName[0].setAttribute("name","categoryId");
 }
+
 
