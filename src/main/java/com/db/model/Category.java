@@ -1,5 +1,7 @@
 package com.db.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Indexed
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

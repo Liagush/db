@@ -1,6 +1,8 @@
 package com.db.model;
 
 import com.db.search.interfaces.RenderableEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Indexed
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product implements RenderableEntity {
 
     @Id

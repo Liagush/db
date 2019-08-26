@@ -4,7 +4,7 @@
 @import "vars"
 
 html
-    font-size: 16px   
+    font-size: 16px
 
 body
     margin: 0px
@@ -27,9 +27,9 @@ input:focus
     height: 100vh
 
 .grid .logo-container /* Главный контейнер  */
-    background-color: $accent 
+    background-color: $accent
 
-.grid .search-container /* Главный контейнер строки поиска */ 
+.grid .search-container /* Главный контейнер строки поиска */
     background-color: #FFFFFF
 
 .grid div:nth-child(3)
@@ -39,7 +39,7 @@ input:focus
     background-color: $bg_main_gray
     grid-column: 2 / 3
     grid-row: 2 / 4
-    
+
 .grid div:nth-child(5)
     background-color: $bg_dark
 
@@ -55,20 +55,20 @@ input:focus
 
 /* СВОЙСТВА ГРИДОВ СТРАНИЦЫ РЕДАКТИРОВАНИЯ ПРОДУКТОВ: КОНЕЦ */
 
-/* СОВЙСТВА ВСЕХ ССЫЛОК: Начало */    
+/* СОВЙСТВА ВСЕХ ССЫЛОК: Начало */
 
 a /* Цвет ссылок */
-    text-decoration: none 
+    text-decoration: none
     color: $text_color_light_gray
-   
-a:active /* Цвет посещенных ссылок */ 
-    color: $text_color_milk 
 
-a:hover /* Цвет ссылок при наведении на них курсора мыши */ 
-    color: $text_color_milk  
+a:active /* Цвет посещенных ссылок */
+    color: $text_color_milk
 
-a:visited /* Цвет посещенных ссылок */ 
-    color: $text_color_light_gray 
+a:hover /* Цвет ссылок при наведении на них курсора мыши */
+    color: $text_color_milk
+
+a:visited /* Цвет посещенных ссылок */
+    color: $text_color_light_gray
 
 
 ///// Общий контейнер для фото и почты в ячейче поиска справа
@@ -77,7 +77,7 @@ a:visited /* Цвет посещенных ссылок */
     color: $text_color_user_mail
     margin-right: 18px
 
-.user-mail a:hover /* Цвет ссылок при наведении на них курсора мыши */ 
+.user-mail a:hover /* Цвет ссылок при наведении на них курсора мыши */
     color: $text_color_user_mail_HOVER
 
 /////
@@ -87,7 +87,7 @@ a:visited /* Цвет посещенных ссылок */
 
 /* СОВЙСТВА ГРИДА С ЛОГОТИПОМ: НАЧАЛО */
 
-.logo h1 a /* Свойства логотипа в левом верхнем углу */ 
+.logo h1 a /* Свойства логотипа в левом верхнем углу */
     color: White
     font-weight: 400
     letter-spacing: 10px
@@ -109,14 +109,14 @@ a:visited /* Цвет посещенных ссылок */
 .user div /* выравнивание дивов */
     display: inline-block
     vertical-align: middle
-    
+
 .user-photo /* скругляем контейнер для фото и отсекаем края */
     width: 45px
     height: 45px
     margin: 0 auto
     overflow: hidden
     border-radius: 50%
-    
+
 .round /* свойства фото */
     width: auto
     height: 100%
@@ -127,10 +127,10 @@ a:visited /* Цвет посещенных ссылок */
     vertical-align: middle
     display: inline-block
     width: calc(100vw - 670px)
-    
+
 .search-icon img /* свойства логотипа меню */
     height: 30px
-    width: 30px 
+    width: 30px
     position: relative
     top: 16px
     left: 25px
@@ -153,8 +153,8 @@ a:visited /* Цвет посещенных ссылок */
     left: 75px
     outline: none
     width: 100%
-    
-    
+
+
 
 /* СОВЙСТВА ГРИДА ПОИСКА: КОНЕЦ */
 
@@ -166,17 +166,17 @@ a:visited /* Цвет посещенных ссылок */
     grid-template-columns: 1fr 150px
     padding: 40px 45px 40px 45px
     grid-gap: 45px
-    
-    
+
+
 .content-container .content
     margin-top: 55px
     overflow: auto
     border-radius: 4px
-    
+
 
 .content-container .content::-webkit-scrollbar /* скрывает полосу прокрутки и оставляет возможность прокрутки */
-    width: 0px  
-    background: transparent  
+    width: 0px
+    background: transparent
 
 ///// Стили колонки с поисковой выдачей и заметками
 
@@ -188,15 +188,15 @@ a:visited /* Цвет посещенных ссылок */
     border-radius: 4px
     overflow: hidden
     margin-bottom: 20px
-    
+
 .content-item-text
     color: $text_color_light_gray
     background-color: $bg_form_gray
     overflow: hidden
     padding: 12px 20px 20px 20px
     text-align: justify
-    font-weight: 600   
-    
+    font-weight: 600
+
 .content-item-buttons
     padding-top: 5px
     font-size: 0.88rem
@@ -218,7 +218,7 @@ a:visited /* Цвет посещенных ссылок */
 
 .content-item-buttons a:first-child
     padding-right: 22px
-    
+
 .search-and-bookmarks
     display: grid
     grid-template-columns: 1fr auto
@@ -230,13 +230,13 @@ a:visited /* Цвет посещенных ссылок */
     position: absolute
     top: 100px
     width: calc(100vw - 585px)
-    
+
 .search-and-bookmarks .search-info
     line-height: 35px
     vertical-align: middle
     color: white
     width: 100%
-    padding-left: 20px 
+    padding-left: 20px
     font-size: 0.88rem
     font-weight: bold
     color: $accent
@@ -244,30 +244,30 @@ a:visited /* Цвет посещенных ссылок */
 .search-and-bookmarks .search-info span
     color: $text_color_light_gray
     padding-left: 10px
-    
+
 
 .search-and-bookmarks .bookmarks
     float: right
     line-height: 35px
     vertical-align: middle
-    
+
 .search-and-bookmarks .bookmarks a
     color: $text_color_light_gray
     background-color: $color_button_item
     padding: 10px 20px 10px 20px
-    
+
 .search-and-bookmarks .bookmarks a:hover
     background-color: $color_button_item_HOVER
-    
+
 .search-and-bookmarks .bookmarks a:active
     background-color: $accent
-    color: $text_color_milk    
+    color: $text_color_milk
 
 
-///// Стили колонки ШАБЛОНЫ  
+///// Стили колонки ШАБЛОНЫ
 
 .templates
-    background-color: $bg_form_gray  
+    background-color: $bg_form_gray
     display: grid
     grid-template-columns: 1fr
     grid-template-rows: 35px
@@ -278,19 +278,19 @@ a:visited /* Цвет посещенных ссылок */
     overflow-x: hidden
     border-radius: 4px
     height: auto
-    
+
 .templates::-webkit-scrollbar /* скрывает полосу прокрутки и оставляет возможность прокрутки */
-    width: 0px  
-    background: transparent  
+    width: 0px
+    background: transparent
 
 .templates .template-column-name
     position: sticky
     top: 0
 
-.templates .template 
+.templates .template
     padding-top: 10px
     padding-bottom: 5px
-    
+
 .templates .template .template-name
     color: $text_color_light_gray
     font-weight: bold
@@ -310,9 +310,9 @@ a:visited /* Цвет посещенных ссылок */
 
 .templates a:hover .template .template-name
     color: $text_color_milk
-    
+
 .template-column-name
-    color: $accent 
+    color: $accent
     font-size: 1.1rem
     vertical-align: middle
     line-height: 35px
@@ -353,7 +353,7 @@ a:visited /* Цвет посещенных ссылок */
 .side-menu .list-of-laws .law-item a:active
     border-left: 5px solid $accent
     background-color: $bg_dark
-    color: $accent 
+    color: $accent
     font-weight: bold
 
 /* СОВЙСТВА ГРИДА SIDE-MENU: КОНЕЦ */
@@ -377,14 +377,14 @@ a:visited /* Цвет посещенных ссылок */
     transform: translate(-50%, -50%)
     position: relative
 
-    
+
 .dws-form
     position: relative
     padding: 60px 50px 20px 50px
     width: 100%
     background-color: $bg_main_gray
     border-radius: 10px 10px 0 0
-    
+
 .dws-form a
     text-decoration: none
     transition: .5s
@@ -403,7 +403,7 @@ a:visited /* Цвет посещенных ссылок */
 
 .tab-form.active
      display: block
-     
+
 
 a.tab, label.tab
     font-weight: 400
@@ -429,11 +429,11 @@ a.tab:nth-child(2), label.tab:nth-child(2)
     top: 0px
     left: 140px
     border-radius: 0 10px 0 0
-    
+
 
 a.tab.active, label.tab.active
     color: $accent
-    
+
 
 a.tab:hover, label.tab:hover
     background-color: $accent
@@ -444,13 +444,13 @@ a.tab:hover, label.tab:hover
     border: 0px
     border-bottom: 1px solid $bg_dark_light
     padding: 12px 14px
-    box-sizing: border-box 
+    box-sizing: border-box
     margin-bottom: 30px
     margin-top: 10px
     color: $accent
     background-color: $bg_main_gray
     outline: none
-    text-align: center 
+    text-align: center
     transition: .5s
 
 .input:focus
@@ -523,53 +523,53 @@ a.forgot-button
     height: 100%
     background-color: $bg_dark_light
 
-.box 
+.box
    display: flex
    justify-content: center
    align-items: center
    height: 100%
-   .glitch 
+   .glitch
       color: $accent
       font-family: 'Poppins', sans-serif
       font-weight: 600
       font-size: 100px
       position: relative
       padding: 30px
-      &:before, &:after 
+      &:before, &:after
          content: 'HELPER'
          color:  $accent
          position: absolute
          top: 0
          overflow: hidden
          padding: 30px
-      
-      &:before 
+
+      &:before
          left: 3px
          text-shadow: -3px 0 $accent - 50%
          animation: glitch-before 2s linear 0.5s infinite alternate-reverse
-      
-      &:after 
+
+      &:after
          left: -3px
          text-shadow: -3px 0 $accent - 100%
          animation: glitch-after 2s linear 0.5s infinite alternate
-      
 
-@keyframes glitch-before 
+
+@keyframes glitch-before
    $steps: 30
-   @for $i from 0 through $steps 
-      #{percentage($i*(1/$steps))} 
+   @for $i from 0 through $steps
+      #{percentage($i*(1/$steps))}
          clip: rect(random(150)+px, 500px, random(150)+px, 30px)
-      
-   
 
 
-@keyframes glitch-after 
+
+
+@keyframes glitch-after
    $steps: 30
-   @for $i from 0 through $steps 
-      #{percentage($i*(1/$steps))} 
+   @for $i from 0 through $steps
+      #{percentage($i*(1/$steps))}
          clip: rect(random(150)+px, 500px, random(150)+px, 30px)
-      
-   
+
+
 /* ЗАСТАВКА GLITCH: КОНЕЦ */
 
 
@@ -1223,8 +1223,10 @@ ul
 
 
 // сброс стилей кнопок
-input[type = "button"],
-input[type = "submit"]
+.product-editing-main-container input[type = "button"],
+.product-editing-main-container input[type = "submit"],
+.edit-law-main-container input[type = "button"],
+.edit-law-main-container input[type = "submit"]
     margin: 0
     padding: 0
     border: none
@@ -1468,6 +1470,195 @@ input[type = "submit"]
 
 
 /* СОВЙСТВА productediting: КОНЕЦ */
+
+
+
+
+
+
+
+/* СОВЙСТВА editlaw: НАЧАЛО */
+
+
+.edit-law-main-container
+    background-color: $bg_dark
+    font-size: 1em
+    font-weight: 600
+    color: $text_color_light_gray
+
+
+
+.edit-law-main-container h2
+    margin: 0
+
+
+.edit-law-loading-laws h5
+    background-color: $bg_form_gray - 12%
+    margin: 0
+    margin-bottom: 5px
+    padding: 4px 15px
+    text-align: center
+    border-radius: 5px
+    font-size: 1em
+    z-index: 10
+
+.edit-law-loading-laws h5:nth-child(2)
+    margin-top: 5px
+
+.edit-law-main-container
+    display: block
+    padding: 20px
+    height: 100%
+
+.dropdown
+    width: 100%
+    margin-bottom: 0px
+    background-color: #2f323b
+
+
+.dropdown select
+    background-color: $bg_form_gray
+
+
+.dropdown-menu
+    background-color: $bg_dark
+
+
+.addProductButtonBox
+    height: 36px
+    border-radius: 5px
+    overflow: hidden
+
+
+.addProductButtonBox input[type='button']
+    width: auto
+
+
+.addProductButtonBox input[type='submit']
+    width: auto
+    padding-left: 20px
+    padding-right: 20px
+    background-color: #2f323b
+    cursor: pointer
+    transition: 0.7s
+    border-right: 5px solid $bg_dark
+    color: $text_color_light_gray - 12%
+    height: 36px
+    line-height: 36px
+    vertical-align: middle
+
+
+.addProductButtonBox input[type='submit']:hover
+    background-color: #28b78d
+    color: $bg_dark
+
+
+// блок закона добавленного из базы данных
+.lawsFormContainer
+    display: block
+    background-color: #2f323b
+    padding: 12px
+    border-radius: 5px
+    position: relative
+    overflow: visible
+
+
+.lawsFormContainer .divSelect
+
+
+.lawsFormContainer .dropdown
+    background-color: $bg_dark
+    margin-top: 5px
+
+
+.lawsFormContainer .dropdown:first-child
+    margin-top: 0px
+
+
+.lawsFormContainer .textOfTheLawSelect
+    background-color: $bg_dark
+    padding: 10px 20px
+    border-radius: 5px
+    margin-top: 5px
+    margin-bottom: 0
+
+
+.lawsFormContainer .dropdown-menu
+    background-color: #2f323b
+    box-shadow: 0px 2px 0px #28b78d
+
+
+.lawsFormContainer .dropdown-menu li
+    background-color: $bg_dark
+    overflow: hidden
+
+
+.lawsFormContainer .dropdown .dropdown-menu li:last-child
+    margin-bottom: 0px
+
+
+
+
+// кнопка удаления для блока закона
+.lawsFormContainer .deleteButtonLawBox
+    align-items: center
+    justify-content: center
+    display: block
+    position: absolute
+    top: 8px
+    right: 25px
+    width: 44px
+    height: 44px
+    border-radius: 100%
+    text-align: center
+    padding-left: auto
+    padding-right: auto
+    background-color: $bg_dark
+    border: 4px solid #2f323b
+    transition: 0.7s
+
+
+.lawsFormContainer .close
+    position: absolute
+    top: 6px
+    left: -4px
+    width: 44px
+    height: 70%
+    transition: 0.7s
+
+
+.lawsFormContainer .deleteButtonLawBox:hover
+    background-color: #28b78d
+
+.lawsFormContainer .deleteButtonLawBox:hover .close:before,
+.lawsFormContainer .deleteButtonLawBox:hover .close:after
+    border-color: $bg_dark
+
+
+
+// блок добавления нового закона
+.lawsFormContainer input,
+.lawsFormContainer textarea
+    border: none
+    background-color: $bg_dark
+    display: inline-block
+    width: 100%
+    height: 36px
+    margin-bottom: 5px
+    padding-left: 20px
+    border-radius: 5px
+    font-weight: 600
+    font-size: 1em
+    color: $text_color_light_gray
+
+.lawsFormContainer input::placeholder
+    color: $bg_dark + 25%
+
+.lawsFormContainer textarea::placeholder
+    color: $bg_dark + 25%
+    padding-top: 7px
+
+/* СОВЙСТВА editlaw: КОНЕЦ */
 
 
 
