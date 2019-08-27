@@ -14,34 +14,22 @@ function chapterOfLawSelection() {
     var i = document.createElement("i");
     var inputChapterLawSelect = document.createElement("input");
     var ulDropdownMenu = document.createElement("ul");
-    //var liLawOption = document.createElement("li");
+
 
     lawsFormContainer.setAttribute("class", "lawsFormContainer between-space");
     lawsFormContainer.setAttribute("name", "lawsFormContainer");
-
     divCommonInner.setAttribute("name", "divSelect");
-
     divDropdown.setAttribute("class", "dropdown");
-
     divSelect.setAttribute("class", "select");
-
-    //span.textContent("выберите главу");
-    //span.innerText("выберите главу");
     span.innerHTML = 'выберите главу';
-
-
     i.setAttribute("class", "fa fa-chevron-left");
-
     inputChapterLawSelect.setAttribute("name", "chapterLawSelect");
     inputChapterLawSelect.setAttribute("type", "hidden");
-    // inputChapterLawSelect.onchange = articleOfLawSelection;
-
     ulDropdownMenu.setAttribute("class", "dropdown-menu");
 
 
     divSelect.appendChild(span);
     divSelect.appendChild(i);
-    //ulDropdownMenu.appendChild(liLawOption);
     divDropdown.appendChild(divSelect);
     divDropdown.appendChild(inputChapterLawSelect);
     divDropdown.appendChild(ulDropdownMenu);
@@ -57,52 +45,22 @@ function chapterOfLawSelection() {
             liLawOption.setAttribute("id", data[i].id);
             liLawOption.innerHTML = data[i].chapter;
             ulDropdownMenu.appendChild(liLawOption);
-            //$(lawsFormContainer).find(".dropdown-menu").append($("<ul/>").val(data[i].id).text(data[i].chapter));
             liLawOption.onclick = onclickLi;
-            liLawOption.onclick = articleOfLawSelection;
         }
     }, "json" );
 
-    dropdownAddClick();
+    dropdownAddClick(divDropdown);
 
-
-
-    // var div = document.createElement("div");
-    // if($('select[name=chapterLawSelect]').length > 0){
-    //     div.setAttribute("name", "lawsFormContainer" + g);
-    //     g = g + 1;
-    // } else {
-    //     div.setAttribute("name", "lawsFormContainer");
-    // }
-
-    // var elementSelect = document.createElement("select");
-    // var divSelect = document.createElement("div");
-
-    // elementSelect.setAttribute("name", "chapterLawSelect");
-    // elementSelect.onchange = articleOfLawSelection;
-    // divSelect.setAttribute("name", "divSelect");
-    // divSelect.appendChild(elementSelect);
-    // div.appendChild(divSelect);
-    // deleteLawButton(div);
-
-    // $(div).find("select[name=chapterLawSelect]").append($('<option selected></option>').val('').text(' -- выберите главу -- '));
-
-
-    // $.get( "/getlistchapterlaw", function(data) {
-    //     for(var i = 0; i < data.length; i++ ) {
-    //         $(div).find("select[name=chapterLawSelect]").append($("<option/>").val(data[i].id).text(data[i].chapter));
-    //     }
-    // }, "json" );
-
-    // wrapped.appendChild(div);
 }
 
 // Выбор статьи закона из выпадающего списка
-function articleOfLawSelection(event) {
+function articleOfLawSelection(li) {
 
-    var parentSelect = $(this).parent().parent().parent().parent();
+    var parentSelect = li.parent().parent().parent().parent();
 
-    if($(parentSelect).find('div[name=articleLawSelect]').length == false) {
+    //!parentSelect.find('input[name=articleLawSelect]').length
+
+    if(!parentSelect.find('input[name=articleLawSelect]').length) {
 
         var divDropdown = document.createElement("div");
         var divSelect = document.createElement("div");
@@ -128,70 +86,66 @@ function articleOfLawSelection(event) {
 
         divSelect.appendChild(span);
         divSelect.appendChild(i);
+
+
+        dropdownAddClick(divDropdown);
         divDropdown.appendChild(divSelect);
         divDropdown.appendChild(inputArticleLawSelect);
         divDropdown.appendChild(ulDropdownMenu);
-
-        dropdownAddClick();
+        $(parentSelect).append(divDropdown);
 
     } else {
-        // $(parentSelect).find('div[name=articleLawSelect]').empty();
+
+        $(parentSelect).find('input[name=articleLawSelect]').parent().find('ul').empty();
+        $(parentSelect).find('input[name=articleLawSelect]').removeAttr('value');
+        $(parentSelect).find('input[name=articleLawSelect]').parent().find('span').text('выберите статью');
+        $(parentSelect).parent().find('div[name=textOfTheLawSelect]').remove();
+
     }
 
-    var chapterLaw = $(parentSelect).find('input[name=chapterLawSelect]').val();
+
+    var chapterLaw = parentSelect.find('input[name=chapterLawSelect]').val();
 
     $.get( "/getlistarticlelaw", {chapterLawSelect: chapterLaw}, function(data) {
         for(var i = 0; i < data.length; i++ ) {
             var liArticleOption = document.createElement("li");
             liArticleOption.setAttribute("id", data[i].id);
             liArticleOption.innerHTML = data[i].article;
-            ulDropdownMenu.appendChild(liArticleOption);
             liArticleOption.onclick = onclickLi;
-            liArticleOption.onclick = textOfTheLawOutput;
+            //ulDropdownMenu.appendChild(liArticleOption);
+            $(parentSelect).find('input[name=articleLawSelect]').parent().find('ul').append(liArticleOption);
         }
     }, "json" );
-
-
-
-
-    // var parentSelect = $(this).parent();
-    //
-    // if($(parentSelect).find('select[name=articleLawSelect]').length == false) {
-    //     var elementSelect = document.createElement("select");
-    //     elementSelect.setAttribute("name", "articleLawSelect");
-    //     elementSelect.onchange = textOfTheLawOutput;
-    //     $(parentSelect).append(elementSelect);
-    // } else {
-    //     $(parentSelect).find('select[name=articleLawSelect]').empty();
-    // }
-    //
-    // $(parentSelect).find("select[name=articleLawSelect]").append($('<option selected></option>').val('').text(' -- выберите статью -- '));
-    //
-    //
-    //
-    // var chapterLaw = $(parentSelect).find('select[name=chapterLawSelect] option:selected').val();
-    //
-    // $.get( "/getlistarticlelaw", {chapterLawSelect: chapterLaw}, function(data) {
-    //     for(var i = 0; i < data.length; i++ ) {
-    //         $(parentSelect).find("select[name=articleLawSelect]").append($("<option/>").val(data[i].id).text(data[i].article));
-    //     }
-    // }, "json" );
 }
 
 // Вывод текста закона после выбора статьи закона из выпадающего списка
-function textOfTheLawOutput(event) {
-    var parentParagraph = $(this).parent();
+function textOfTheLawOutput(li) {
 
-    var br = document.createElement("br");
-    var elementParagraph = document.createElement("p");
-    elementParagraph.setAttribute("name", "textOfTheLawSelect");
+    var parentSelect = li.parent().parent().parent().parent();
 
-    var articleLaw = $(parentParagraph).find('select[name=articleLawSelect] option:selected').val();
-    $(parentParagraph).append(elementParagraph);
+    if(!parentSelect.find('div[name=textOfTheLawSelect]').length) {
+
+        var divContainer = document.createElement("div");
+        divContainer.setAttribute("name", "textOfTheLawSelect");
+        divContainer.setAttribute("class", "textOfTheLawSelect");
+        $(parentSelect).append(divContainer);
+
+    } else {
+
+        $(parentSelect).find('div[name=textOfTheLawSelect]').empty();
+        // $(parentSelect).find('input[name=articleLawSelect]').removeAttr('value');
+        // $(parentSelect).find('input[name=articleLawSelect]').parent().find('span').text('выберите статью');
+
+    }
+
+
+    var articleLaw = parentSelect.find('input[name=articleLawSelect]').val();
 
     $.get( "/getParagraphlaw", {articleLawSelect: articleLaw}, function(data) {
-        $(parentParagraph).find("p[name=textOfTheLawSelect]").text(data.lawText);
+        parentSelect.find("div[name=textOfTheLawSelect]").text(data.lawText);
     }, "json" );
+
+
 
 }
 
@@ -326,36 +280,30 @@ $('.toggle').click(function(e) {
 
 // стилизация Select
 
-function dropdownAddClick() {
-
+function dropdownAddClick(divDropdown) {
     /*Dropdown Menu*/
-    $('.dropdown').click(function () {
+    $(divDropdown).click(function () {
         $(this).attr('tabindex', 1).focus();
         $(this).toggleClass('active');
         $(this).find('.dropdown-menu').slideToggle(300);
     });
-    $('.dropdown').focusout(function () {
+    $(divDropdown).focusout(function () {
         $(this).removeClass('active');
         $(this).find('.dropdown-menu').slideUp(300);
     });
-    $('.dropdown .dropdown-menu li').click(function () {
-        $(this).parents('.dropdown').find('span').text($(this).text());
-        $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
-    });
-    /*End Dropdown Menu*/
-
-
-    // $('.dropdown-menu li').click(function () {
-    //     var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
-    //         msg = '<span class="msg">Hidden input value: ';
-    //     $('.msg').html(msg + input + '</span>');
-    // });
 }
 
 function onclickLi (event) {
 
+    var li = $(this);
     $(this).parents('.dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+    if (li.parent().parent().find('input').attr('name') == 'chapterLawSelect') {
+        articleOfLawSelection(li);
+    } else if (li.parent().parent().find('input').attr('name') == 'articleLawSelect') {
+        textOfTheLawOutput(li)
+    }
+
 }
 
 
