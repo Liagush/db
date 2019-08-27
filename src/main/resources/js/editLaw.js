@@ -58,8 +58,6 @@ function articleOfLawSelection(li) {
 
     var parentSelect = li.parent().parent().parent().parent();
 
-    //!parentSelect.find('input[name=articleLawSelect]').length
-
     if(!parentSelect.find('input[name=articleLawSelect]').length) {
 
         var divDropdown = document.createElement("div");
@@ -112,7 +110,6 @@ function articleOfLawSelection(li) {
             liArticleOption.setAttribute("id", data[i].id);
             liArticleOption.innerHTML = data[i].article;
             liArticleOption.onclick = onclickLi;
-            //ulDropdownMenu.appendChild(liArticleOption);
             $(parentSelect).find('input[name=articleLawSelect]').parent().find('ul').append(liArticleOption);
         }
     }, "json" );
@@ -133,8 +130,6 @@ function textOfTheLawOutput(li) {
     } else {
 
         $(parentSelect).find('div[name=textOfTheLawSelect]').empty();
-        // $(parentSelect).find('input[name=articleLawSelect]').removeAttr('value');
-        // $(parentSelect).find('input[name=articleLawSelect]').parent().find('span').text('выберите статью');
 
     }
 
@@ -179,12 +174,27 @@ function addNewLaw() {
     textOfTheLaw.setAttribute("name", "textOfTheLaw");
     textOfTheLaw.setAttribute("placeholder", "Текст закона");
 
+    // if($('textarea').length > 1) {
+    //     g = g + 1;
+    //     textOfTheLaw.setAttribute("id", "summernote" + g);
+    // } else if ($('textarea').length == 1 && g == 0){
+    //     textOfTheLaw.setAttribute("id", "summernote");
+    // } else if ($('textarea').length == 1 && g > 0) {
+    //     textOfTheLaw.setAttribute("id", "summernote" + g);
+    // }
+
     div.appendChild(chapterOfLaw);
     div.appendChild(articleOfTheLaw);
     div.appendChild(textOfTheLaw);
     deleteLawButton(div);
     lawsFormContainer.appendChild(div);
     wrapped.appendChild(lawsFormContainer);
+
+    // if(g == 0 && $('#summernote')) {
+    //     $('#summernote').summernote();
+    // } else if (g > 0) {
+    //     $('#summernote' + g).summernote();
+    // }
 
 }
 
