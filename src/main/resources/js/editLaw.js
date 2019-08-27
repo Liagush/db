@@ -301,10 +301,16 @@ function onclickLi (event) {
     if (li.parent().parent().find('input').attr('name') == 'chapterLawSelect') {
         articleOfLawSelection(li);
     } else if (li.parent().parent().find('input').attr('name') == 'articleLawSelect') {
-        textOfTheLawOutput(li)
+        textOfTheLawOutput(li);
     }
-
 }
+
+dropdownAddClick($('#editLaw .dropdown'));
+$('#editLaw .dropdown').find("li").click(function () {
+    $(this).parents('.dropdown').find('span').text($(this).text());
+    $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+})
+
 
 
 
