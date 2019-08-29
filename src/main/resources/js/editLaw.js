@@ -174,14 +174,14 @@ function addNewLaw() {
     textOfTheLaw.setAttribute("name", "textOfTheLaw");
     textOfTheLaw.setAttribute("placeholder", "Текст закона");
 
-    // if($('textarea').length > 1) {
-    //     g = g + 1;
-    //     textOfTheLaw.setAttribute("id", "summernote" + g);
-    // } else if ($('textarea').length == 1 && g == 0){
-    //     textOfTheLaw.setAttribute("id", "summernote");
-    // } else if ($('textarea').length == 1 && g > 0) {
-    //     textOfTheLaw.setAttribute("id", "summernote" + g);
-    // }
+    if($('textarea').length > 1) {
+        g = g + 1;
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    } else if ($('textarea').length == 1 && g == 0){
+        textOfTheLaw.setAttribute("id", "summernote");
+    } else if ($('textarea').length == 1 && g > 0) {
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    }
 
     div.appendChild(chapterOfLaw);
     div.appendChild(articleOfTheLaw);
@@ -190,11 +190,11 @@ function addNewLaw() {
     lawsFormContainer.appendChild(div);
     wrapped.appendChild(lawsFormContainer);
 
-    // if(g == 0 && $('#summernote')) {
-    //     $('#summernote').summernote();
-    // } else if (g > 0) {
-    //     $('#summernote' + g).summernote();
-    // }
+    if(g == 0 && $('#summernote')) {
+        $('#summernote').summernote();
+    } else if (g > 0) {
+        $('#summernote' + g).summernote();
+    }
 
 }
 

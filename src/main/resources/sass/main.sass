@@ -1658,6 +1658,90 @@ ul
     color: $bg_dark + 25%
     padding-top: 7px
 
+
+
+
+// свойства summernote
+
+.note-frame *
+    color: $text_color_light_gray
+
+.note-editor.note-frame
+    background-color: #2f323b
+    border: none
+
+.note-btn-group .note-btn
+    background-color: $bg_dark
+    border: none
+
+.note-toolbar,
+.note-frame
+    border: none
+
+.note-statusbar .note-resizebar,
+.note-editor.note-frame .note-editing-area .note-editable
+    background-color: $bg_dark
+
+.note-editor.note-frame .note-editing-area .note-editable
+    color: $text_color_light_gray
+    padding-left: 20px
+    padding-right: 20px
+
+.note-editor.note-frame .note-statusbar
+    border-top: 5px solid #2f323b
+    background-color: $bg_dark
+
+.note-editor.note-frame .note-statusbar .note-resizebar
+    height: 13px
+    padding-top: 3px
+    border-radius: 0 0 5px 5px
+    position: relative
+
+
+.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar
+    margin-top: 0
+    border-radius: 50%
+    height: 5px
+    width: 5px
+    background-color: #2f323b + 5%
+    border: none
+    display: block
+    position: absolute
+    top: 33%
+    left: 49%
+    transition: 0.5s
+
+.note-editor.note-frame .note-statusbar .note-resizebar:hover .note-icon-bar
+    background-color: #28b78d
+
+.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar:nth-child(2)
+    position: absolute
+    top: 32%
+    left: 50%
+
+.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar:nth-child(3)
+    position: absolute
+    top: 30%
+    left: 51%
+
+.note-editor.note-frame .note-placeholder
+    padding-left: 20px
+    font-size: 1em
+    color: $bg_dark + 25%
+
+
+
+.note-editing-area
+    margin-top: 5px
+    border-radius: 5px 5px 0 0
+
+.note-toolbar
+    border-radius: 5px
+    background-color: $bg_dark
+
+
+
+
 /* СОВЙСТВА editlaw: КОНЕЦ */
 
 
