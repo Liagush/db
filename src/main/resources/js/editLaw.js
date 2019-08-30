@@ -1,5 +1,5 @@
 var wrapped = document.getElementById("editLaw");
-var g = 1;
+var g = 0;
 
 // Модуль добавления существующих законов
 // выбор главы закона из выпадающего списка
@@ -174,14 +174,15 @@ function addNewLaw() {
     textOfTheLaw.setAttribute("name", "textOfTheLaw");
     textOfTheLaw.setAttribute("placeholder", "Текст закона");
 
-    if($('textarea').length > 1) {
-        g = g + 1;
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    } else if ($('textarea').length == 1 && g == 0){
-        textOfTheLaw.setAttribute("id", "summernote");
-    } else if ($('textarea').length == 1 && g > 0) {
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    }
+    // if($('textarea').length > 1) {
+    //     g = g + 1;
+    //     textOfTheLaw.setAttribute("id", "summernote" + g);
+    // } else if ($('textarea').length == 1 && g == 0){
+    //     textOfTheLaw.setAttribute("id", "summernote");
+    // } else if ($('textarea').length == 1 && g > 0) {
+    //     textOfTheLaw.setAttribute("id", "summernote" + g);
+    // }
+
 
     div.appendChild(chapterOfLaw);
     div.appendChild(articleOfTheLaw);
@@ -189,6 +190,18 @@ function addNewLaw() {
     deleteLawButton(div);
     lawsFormContainer.appendChild(div);
     wrapped.appendChild(lawsFormContainer);
+
+    if($('textarea').length > 1) {
+        g = g + 1;
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    } else if ($('textarea').length == 1 && g > 0) {
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    }
+
+
+    if ($('textarea').length == 1 && g == 0) {
+        textOfTheLaw.setAttribute("id", "summernote");
+    }
 
     if(g == 0 && $('#summernote')) {
         $('#summernote').summernote();
@@ -243,6 +256,8 @@ function deleteLawButtonFromDB(div) {
 // Модуль удаления НОВЫХ законов по одной позиции
 function deleteOneLaw(event) {
 
+    var textareaId = $(this).parent().parent().find("textarea").attr('id');
+    $(textareaId).summernote('destroy');
     $(this).parent().parent().remove();
 
 }
@@ -320,6 +335,8 @@ $('#editLaw .dropdown').find("li").click(function () {
     $(this).parents('.dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
 })
+
+
 
 
 

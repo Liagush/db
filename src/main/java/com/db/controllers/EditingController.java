@@ -9,8 +9,10 @@ import com.db.repos.LawArticleRepo;
 import com.db.repos.LawChapterRepo;
 import com.db.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -56,6 +58,15 @@ public class EditingController {
 
         return "editlaw";
     }
+
+
+    // преобразует String в String [] без использования разделителя (null param), с Spring классом org.springframework.beans.propertyeditors.StringArrayPropertyEditor.
+    // вместо null можно использовать реальный символ
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String[].class, new StringArrayPropertyEditor(null));
+    }
+
 
     @PostMapping("/editlawform")
     public String editlawform(@RequestParam(required = false) String[] chapterOfLaw,

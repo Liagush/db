@@ -152,3 +152,4 @@ insert into status (id, status_name)
         (1, 'АКТИВНЫЙ'),
         (2, 'BLACK LIST'),
         (3, 'УВОЛЕН');
+
