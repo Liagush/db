@@ -86,13 +86,25 @@
 							</div>
 							<div class="content-item-text-title" th:text="${item.title}">
 							</div>
-							<div class="content-item-text-snippet" th:text="${item.snippet}">
+							<div class="content-item-text-snippet" th:classappend="${item.type} + ${item.id}">
 							</div>
+
+
+
+							<script th:inline="javascript">
+
+								var itemText = [[${item.snippet}]];
+								var itemType = [[${item.type}]];
+								var itemId = [[${item.id}]];
+								var elemItemText = document.getElementsByClassName('content-item-text-snippet ' + itemType + itemId);
+								elemItemText[0].innerHTML = itemText;
+
+							</script>
 
 						</div>
 						<div class="content-item-buttons">
 							<a href="#" class="content-item-button">сохранить в закладках</a>
-							<a href="#" class="content-item-button">развернуть</a>
+							<a href="javascript:void(0);" class="content-item-button expand-button">развернуть</a>
 							<a href="#" class="content-item-button">открыть в новой вкладке</a>
 						</div>
 					</div>
@@ -184,7 +196,8 @@
 			</div>
 		</div>
 
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="/static/js/main.js"></script>
 
 		</body>
 		</html>

@@ -198,7 +198,6 @@ function addNewLaw() {
         textOfTheLaw.setAttribute("id", "summernote" + g);
     }
 
-
     if ($('textarea').length == 1 && g == 0) {
         textOfTheLaw.setAttribute("id", "summernote");
     }
