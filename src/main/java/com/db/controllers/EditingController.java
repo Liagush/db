@@ -38,7 +38,8 @@ public class EditingController {
     private LawArticleRepo lawArticleRepo;
 
     @GetMapping("/editlaw")
-    public String editlaw(@RequestParam(required = false) Optional<Integer> category, Map<String,Object> model) {
+    public String editlaw(@RequestParam(required = false) Optional<Integer> category,
+                          Map<String,Object> model) {
 
         if(!category.isPresent()) {
             Iterable<LawArticle> lawArticles = lawArticleRepo.findAll();
@@ -165,7 +166,10 @@ public class EditingController {
     }
 
     @PostMapping("producteditingform")
-    public String producteditingform(@RequestParam String[] vendorCode, @RequestParam String[] productName, @RequestParam (required = false) Optional<String> categoryName, @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {
+    public String producteditingform(@RequestParam String[] vendorCode,
+                                     @RequestParam String[] productName,
+                                     @RequestParam (required = false) Optional<String> categoryName,
+                                     @RequestParam (required = false) Optional<Integer> categoryId,  Map<String,Object> model) {
         Category cat = getOrCreateCategory(categoryName, categoryId);
 
         for (int i = 0; i < vendorCode.length; i++) {
@@ -177,7 +181,8 @@ public class EditingController {
         return "redirect:/productediting";
     }
 
-    private Category getOrCreateCategory(@RequestParam(required = false) Optional<String> categoryName, @RequestParam(required = false) Optional<Integer> categoryId) {
+    private Category getOrCreateCategory(@RequestParam(required = false) Optional<String> categoryName,
+                                         @RequestParam(required = false) Optional<Integer> categoryId) {
         if (categoryId.isPresent()) {
             Optional<Category> existCategory = categoryRepo.findById(categoryId.get());
             if (existCategory.isPresent()) {
