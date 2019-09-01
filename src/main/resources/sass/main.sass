@@ -33,16 +33,28 @@ input:focus
 .grid .search-container /* Главный контейнер строки поиска */
     background-color: #FFFFFF
 
-.grid div:nth-child(3)
+
+.grid .side-menu
     background-color: $bg_dark
 
-.grid div:nth-child(4)
+.grid .content-container
     background-color: $bg_dark
     grid-column: 2 / 3
     grid-row: 2 / 4
 
-.grid div:nth-child(5)
+.grid .logout
     background-color: $bg_dark
+
+//.grid div:nth-child(3)
+//    background-color: $bg_dark
+//
+//.grid div:nth-child(4)
+//    background-color: $bg_dark
+//    grid-column: 2 / 3
+//    grid-row: 2 / 4
+//
+//.grid div:nth-child(5)
+//    background-color: $bg_dark
 
 /* СВОЙСТВА ГРИДОВ ГЛАВНОЙ СТРАНИЦЫ: КОНЕЦ */
 
@@ -179,11 +191,12 @@ a:visited /* Цвет посещенных ссылок */
     width: 0px
     background: transparent
 
-///// Стили колонки с поисковой выдачей и заметками
 
-///// Стили колонки с поисковой выдачей и заметками
 
-.content-item
+///// Стили колонки с поисковой выдачей и закладками
+//// Стили блока выдачи для законов
+
+.content-item.lawArticle
   font-size: 0.88rem
   display: grid
   grid-template-columns: 1fr
@@ -193,7 +206,7 @@ a:visited /* Цвет посещенных ссылок */
   padding: 12px
   background-color: $container
 
-.content-item-text
+.content-item.lawArticle .content-item-text
   color: $text_color_light_gray
   overflow: hidden
   font-weight: 600
@@ -201,9 +214,9 @@ a:visited /* Цвет посещенных ссылок */
   border-radius: 5px
 
 
-.content-item-text-num,
-.content-item-text-title,
-.content-item-text-snippet
+.content-item.lawArticle .content-item-text-num,
+.content-item.lawArticle .content-item-text-title,
+.content-item.lawArticle .content-item-text-snippet
   border: none
   background-color: $bg_dark
   display: block
@@ -212,18 +225,18 @@ a:visited /* Цвет посещенных ссылок */
   border-radius: 5px
   color: $text_color_light_gray
 
-.content-item-text-snippet
+.content-item.lawArticle .content-item-text-snippet
   overflow: hidden
   height: auto
   max-height: 150px
   transition: .7s
 
-.expend-block
+.content-item.lawArticle .expend-block
   max-height: 1000px
   overflow: scroll
 
 
-.content-item-buttons
+.content-item.lawArticle .content-item-buttons
   display: block
   background-color: $bg_dark
   border-radius: 5px
@@ -231,7 +244,7 @@ a:visited /* Цвет посещенных ссылок */
   font-weight: 600
   text-align: right
 
-.content-item-buttons a
+.content-item.lawArticle .content-item-buttons a
   display: inline-block
   padding: 5px 20px 5px
   background-color: $bg_dark
@@ -240,23 +253,105 @@ a:visited /* Цвет посещенных ссылок */
   color: $text_color_light_gray - 12%
   border-left: 5px solid $container
 
-.content-item-buttons a:nth-child(2)
-  width: 125px
+.content-item.lawArticle .content-item-buttons a:nth-child(2)
+  min-width: 125px
   text-align: center
 
 
-.content-item-buttons a:hover
+.content-item.lawArticle .content-item-buttons a:hover
   background-color: $green
   color: $bg_dark
 
 
-.content-item-buttons a:active
+.content-item.lawArticle .content-item-buttons a:active
   background-color: $green
   color: $bg_dark
 
 
-.content-item-buttons a:last-child
+.content-item.lawArticle .content-item-buttons a:last-child
   border-radius: 0 5px 5px 0
+
+
+//// Стили блока выдачи для продуктов
+
+.content-item.product
+  font-size: 0.88rem
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: minmax(auto, auto) minmax(auto, auto)
+  border-radius: 5px
+  margin-bottom: 20px
+  padding: 12px
+  background-color: $container
+
+.content-item.product .content-item-text
+  color: $text_color_light_gray
+  overflow: hidden
+  font-weight: 600
+  margin-bottom: 5px
+  border-radius: 5px
+
+
+.content-item.product .content-item-text-num,
+.content-item.product .content-item-text-title,
+.content-item.product .content-item-text-snippet
+  border: none
+  background-color: $bg_dark
+  display: block
+  margin-bottom: 5px
+  padding: 5px 20px 5px
+  border-radius: 5px
+  color: $text_color_light_gray
+
+.content-item.product .content-item-text-snippet
+  overflow: hidden
+  height: auto
+  max-height: 150px
+  transition: .7s
+
+.content-item.product .expend-block
+  max-height: 1000px
+  overflow: scroll
+
+
+.content-item.product .content-item-buttons
+  display: block
+  background-color: $bg_dark
+  border-radius: 5px
+  font-size: 1em
+  font-weight: 600
+  text-align: right
+
+.content-item.product .content-item-buttons a
+  display: inline-block
+  padding: 5px 20px 5px
+  background-color: $bg_dark
+  cursor: pointer
+  transition: 0.7s
+  color: $text_color_light_gray - 12%
+  border-left: 5px solid $container
+
+.content-item.product .content-item-buttons a:nth-child(2)
+  min-width: 125px
+  text-align: center
+
+
+.content-item.product .content-item-buttons a:hover
+  background-color: $green
+  color: $bg_dark
+
+
+.content-item.product .content-item-buttons a:active
+  background-color: $green
+  color: $bg_dark
+
+
+.content-item.product .content-item-buttons a:last-child
+  border-radius: 0 5px 5px 0
+
+
+
+//// Стили блока выдачи для закладок
 
 .search-and-bookmarks
   display: grid
@@ -304,6 +399,86 @@ a:visited /* Цвет посещенных ссылок */
 .search-and-bookmarks .bookmarks a:active
   background-color: $green
   color: $bg_dark
+
+
+
+
+// Стили для списка законов у блока выдачи product
+
+.main-toggle-container
+  overflow: scroll
+  max-height: 950px
+  margin: 0
+  margin-top: 5px
+
+
+.laws-list-toggle-for-product-block
+  //background-color: $bg_dark
+  font-size: 1em
+  font-weight: 600
+  color: $text_color_light_gray
+
+
+.laws-list-toggle-for-product-block h2
+  margin: 0
+
+.laws-list-toggle-article h5
+  background-color: $bg_dark
+  margin: 5px 0px
+  padding: 6px 0px
+  text-align: center
+  border-radius: 5px
+  font-size: 1em
+  z-index: 10
+  border-radius: 5px
+  display: block
+
+
+.laws-list-toggle-article:first-child
+  margin-top: 10px
+
+.laws-list-toggle-article:last-child
+  margin-bottom: 5px
+
+.laws-list-toggle-for-product-block .laws-list-toggle-chapter:last-child .laws-list-toggle-article:last-child h5
+  margin-bottom: -5px
+
+.laws-list-toggle-chapter:last-child
+  margin-top: 5px
+
+.laws-list-toggle-chapter .inner
+  margin-bottom: 0
+
+.laws-list-toggle-chapter .inner li
+  height: auto
+
+
+.laws-list-toggle-chapter .toggle
+  margin-bottom: 0
+  width: 100%
+  display: block
+  background: $bg_dark
+  padding: 0
+  border-radius: 5px
+  transition: 0.7s
+  text-align: center
+  font-weight: 600
+
+
+.laws-list-toggle-text
+  width: 100%
+  display: block
+  background: $bg_dark
+  padding: 10px 20px
+  border-radius: 5px
+  transition: 0.7s
+  font-weight: 600
+
+.laws-list-toggle-for-product-block .laws-list-toggle-chapter:last-child .laws-list-toggle-article:last-child .laws-list-toggle-text
+  margin-top: 10px
+  margin-bottom: 0px
+
+
 
 
 ///// Стили колонки ШАБЛОНЫ

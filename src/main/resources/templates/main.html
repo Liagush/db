@@ -78,7 +78,7 @@
 						</div>
 					</div>
 
-					<div class="content-item" th:each="item : ${searchResults}">
+					<div class="content-item" th:classappend="${item.type}" th:each="item : ${searchResults}">
 
 						<div class="content-item-text">
 
@@ -104,7 +104,8 @@
 						</div>
 						<div class="content-item-buttons">
 							<a href="#" class="content-item-button">сохранить в закладках</a>
-							<a href="javascript:void(0);" class="content-item-button expand-button">развернуть</a>
+							<a href="javascript:void(0);" class="content-item-button expand-button" th:if="${item.type} == 'lawArticle'">развернуть</a>
+							<a href="#" class="content-item-button list-of-law-expand-button" th:if="${item.type} == 'product'">список законов</a>
 							<a href="#" class="content-item-button">открыть в новой вкладке</a>
 						</div>
 					</div>
@@ -189,7 +190,7 @@
 
 
 
-			<div>
+			<div class="logout">
 				<form th:action="@{/logout}" method="post">
 					<input type="submit" value="Sign Out"/>
 				</form>
