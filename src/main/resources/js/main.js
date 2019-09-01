@@ -24,11 +24,11 @@ $('.content-item-button.expand-button').click(function(e) {
     }
 });
 
-// схлопывающиеся блоки
-$('.toggle').click(function(e) {
-    e.preventDefault();
 
-    var $this = $(this);
+// схлопывающиеся блоки
+$('.toggle').click(function(e){ toggleFunction($(this)); return false; });
+
+function toggleFunction($this) {
 
     if ($this.next().hasClass('show')) {
         $this.next().removeClass('show');
@@ -39,7 +39,10 @@ $('.toggle').click(function(e) {
         $this.next().toggleClass('show');
         $this.next().slideToggle(350);
     }
-});
+}
+
+
+
 
 // Получить список законов в блоке выдачи поиска product
 $('.content-item-button.list-of-law-expand-button').click(function(e){ downloadListOfLaw($(this)); return false; });
@@ -99,6 +102,8 @@ function downloadListOfLaw(buttonForAppendListOfLaw) {
                     lawsListToggleArticle.appendChild(aSecondList);
                     lawsListToggleArticle.appendChild(innerSecondList);
                     innerMainList.appendChild(lawsListToggleArticle);
+
+                    $(aSecondList).click(function(e){ toggleFunction($(this)); return false; });
                 }
             }, "json" );
 
@@ -106,9 +111,12 @@ function downloadListOfLaw(buttonForAppendListOfLaw) {
             lawsListToggleChapter.appendChild(aMainList);
             lawsListToggleChapter.appendChild(innerMainList);
             lawsListToggleForProductBlock.appendChild(lawsListToggleChapter);
+
+            $(aMainList).click(function(e){ toggleFunction($(this)); return false; });
         }
     }, "json" );
 
     mainToggleContainer.appendChild(lawsListToggleForProductBlock);
     contentItemProduct.append(mainToggleContainer);
+
 }
