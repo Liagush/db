@@ -2,11 +2,13 @@
 //$('.expand-block').filter(':first').next().show();
 
 // растягивание блок выдачи поиска lawArticle по контенту
-$('.content-item-button.expand-button').click(function(e) {
-    e.preventDefault();
+$('.content-item-button.expand-button').click(function(e){ toggleLawItem($(this)); return false; });
 
-    var contentItemText = $(this).parent().parent().find('.content-item-text-snippet');
-    var expandButton = $(this).parent().parent().find('.content-item-button.expand-button');
+function toggleLawItem(cklickButton) {
+
+
+    var contentItemText = $(cklickButton).parent().parent().find('.content-item-text-snippet');
+    var expandButton = $(cklickButton).parent().parent().find('.content-item-button.expand-button');
 
     if (contentItemText.hasClass('expend-block')) {
         contentItemText.removeClass('expend-block');
@@ -22,7 +24,7 @@ $('.content-item-button.expand-button').click(function(e) {
             expandButton.text('свернуть');
         }, 1000);
     }
-});
+}
 
 
 // схлопывающиеся блоки
@@ -145,105 +147,69 @@ function downloadListOfLaw(buttonForAppendListOfLaw) {
     }
 }
 
-//////////////////////////////////////////////
-
-    //Получить список законов в блоке выдачи поиска product
-    // $('.content-item-button.list-of-law-expand-button').click(function(e){ downloadListOfLaw($(this)); return false; });
-    //
-    // function downloadListOfLaw(buttonForAppendListOfLaw) {
-    //
-    //     var contentItemProduct = buttonForAppendListOfLaw.parent().parent();
-    //
-    //
-    //     if (!contentItemProduct.find('.main-toggle-container').length) {
-    //
-    //         var mainToggleContainer = document.createElement('div');
-    //         mainToggleContainer.setAttribute('class', 'main-toggle-container');
-    //         var lawsListToggleForProductBlock = document.createElement('ul');
-    //         lawsListToggleForProductBlock.setAttribute('class', 'laws-list-toggle-for-product-block');
-    //
-    //
-    //         $.get("/getlistarticlelawOfReceivedCategory", {receivedCategory: recivedCategory}, function (data) {
-    //             var chapterOfRecivedCategory = new Array();
-    //
-    //             for (var i = 0; i < data.length; i++) {
-    //                 if (!chapterOfRecivedCategory.includes(data[i].lawChapter)) {
-    //                     chapterOfRecivedCategory.push(data[i].lawChapter);
-    //                 }
-    //             }
-    //             for (var m = 0; m < chapterOfRecivedCategory.length; m++) {
-    //
-    //                 // Главный список
-    //                 var lawsListToggleChapter = document.createElement('li');
-    //                 lawsListToggleChapter.setAttribute('class', 'laws-list-toggle-chapter');
-    //                 var aMainList = document.createElement('a');
-    //                 aMainList.setAttribute('class', 'toggle');
-    //                 aMainList.setAttribute('href', '#');
-    //                 var h2 = document.createElement('h2');
-    //                 h2.innerHTML = chapterOfRecivedCategory[m].lawChapter;
-    //                 var innerMainList = document.createElement('div');
-    //                 innerMainList.setAttribute('class', 'inner');
-    //
-    //                 for (var h = 0; h < data.length; h++) {
-    //
-    //                     if (data[h].lawChapter == chapterOfRecivedCategory[i].lawChapter) {
-    //
-    //                         // Подсписок
-    //                         var lawsListToggleArticle = document.createElement('li');
-    //                         lawsListToggleArticle.setAttribute('class', 'laws-list-toggle-article');
-    //                         var aSecondList = document.createElement('a');
-    //                         aSecondList.setAttribute('class', 'toggle');
-    //                         aSecondList.setAttribute('href', '#');
-    //                         var h5 = document.createElement('h5');
-    //                         h5.innerHTML = data[h].article;
-    //                         var innerSecondList = document.createElement('div');
-    //                         innerSecondList.setAttribute('class', 'inner');
-    //                         var lawsListToggleText = document.createElement('div');
-    //                         lawsListToggleText.setAttribute('class', 'laws-list-toggle-text');
-    //
-    //
-    //                         var articleLaw = data[h].id;
-    //
-    //
-    //                         $.get("/getParagraphlaw", {articleLawSelect: articleLaw}, function (dataLawText) {
-    //                             lawsListToggleText.innerHTML = dataLawText.lawText;
-    //                         }, "json");
-    //
-    //                         innerSecondList.appendChild(lawsListToggleText);
-    //                         aSecondList.appendChild(h5);
-    //                         lawsListToggleArticle.appendChild(aSecondList);
-    //                         lawsListToggleArticle.appendChild(innerSecondList);
-    //                         innerMainList.appendChild(lawsListToggleArticle);
-    //
-    //                         $(aSecondList).click(function (e) {
-    //                             toggleFunction($(this));
-    //                             return false;
-    //                         });
-    //
-    //                     }
-    //                 }
-    //
-    //                 aMainList.appendChild(h2);
-    //                 lawsListToggleChapter.appendChild(aMainList);
-    //                 lawsListToggleChapter.appendChild(innerMainList);
-    //                 lawsListToggleForProductBlock.appendChild(lawsListToggleChapter);
-    //
-    //                 $(aMainList).click(function (e) {
-    //                     toggleFunction($(this));
-    //                     return false;
-    //                 });
-    //
-    //             }
-    //         }, "json");
-    //
-    //         mainToggleContainer.appendChild(lawsListToggleForProductBlock);
-    //         contentItemProduct.append(mainToggleContainer);
-    //     }
-    // }
 
 
+// Вывод закона при нажатии на ссылку в левой колонке с законами
+$('.law-item-link').click(function(e){ openLawItem($(this)); return false; });
 
-// Получить список законов в блоке выдачи поиска product
+function openLawItem(lawItemLink) {
+
+    var idArticleInput = $(lawItemLink).parent().find('input[type=hidden]').val();
+
+    $.get("/getLawItem", {idArticle: idArticleInput}, function (data) {
+
+
+        if($('.content-item').length)
+        $('.content').find('.content-item').remove();
+
+
+        // блок закона
+        var contentItemLawArticle = document.createElement('div');
+        contentItemLawArticle.setAttribute('class', 'content-item lawArticle');
+        var contentItemText = document.createElement('div');
+        contentItemText.setAttribute('class', 'content-item-text');
+        var contentItemTextNum = document.createElement('div');
+        contentItemTextNum.setAttribute('class', 'content-item-text-num');
+        var contentItemTextTitle = document.createElement('div');
+        contentItemTextTitle.setAttribute('class', 'content-item-text-title');
+        var contentItemTextSnippet = document.createElement('div');
+        contentItemTextSnippet.setAttribute('class', 'content-item-text-snippet');
+
+        var contentItemButtons = document.createElement('div');
+        contentItemButtons.setAttribute('class', 'content-item-buttons');
+        var saveToBookmarksButton = document.createElement('a');
+        saveToBookmarksButton.setAttribute('class', 'content-item-button');
+        saveToBookmarksButton.setAttribute('href', '#');
+        saveToBookmarksButton.innerText = 'сохранить в закладках';
+        var expandButton = document.createElement('a');
+        expandButton.setAttribute('class', 'content-item-button expand-button');
+        expandButton.setAttribute('href', 'javascript:void(0);');
+        expandButton.innerText = 'развернуть';
+        var newTabButton = document.createElement('a');
+        newTabButton.setAttribute('class', 'content-item-button');
+        newTabButton.setAttribute('href', '#');
+        newTabButton.innerText = 'открыть в новой вкладке';
+
+        contentItemText.appendChild(contentItemTextNum);
+        contentItemText.appendChild(contentItemTextTitle);
+        contentItemText.appendChild(contentItemTextSnippet);
+        contentItemTextNum.innerHTML = data.lawChapter.chapter;
+        contentItemTextTitle.innerHTML = data.article;
+        contentItemTextSnippet.innerHTML = data.lawText;
+        contentItemButtons.appendChild(saveToBookmarksButton);
+        contentItemButtons.appendChild(expandButton);
+        contentItemButtons.appendChild(newTabButton);
+        contentItemLawArticle.appendChild(contentItemText);
+        contentItemLawArticle.appendChild(contentItemButtons);
+        $(expandButton).click(function(e){ toggleLawItem($(this)); return false; });
+
+        $('.content').append(contentItemLawArticle);
+
+
+    }, "json");
+}
+
+// Получить список абсолютно всех законов из базы данных в блоке выдачи поиска product
 // $('.content-item-button.list-of-law-expand-button').click(function(e){ downloadListOfLaw($(this)); return false; });
 //
 // function downloadListOfLaw(buttonForAppendListOfLaw) {

@@ -57,10 +57,12 @@
 
 
 
-
 			<div class="side-menu">
 				<ul class="list-of-laws" th:if="${not #lists.isEmpty(listOfLaws)}">
-					<li class="law-item" th:each="law : ${listOfLaws}"><a href="#" th:text="${law.article}"></a></li>
+					<li class="law-item" th:each="law : ${listOfLaws}">
+						<a href="#" class="law-item-link" th:text="${law.article}"></a>
+						<input type="hidden" th:value="${law.id}">
+					</li>
 				</ul>
 			</div>
 
@@ -119,59 +121,6 @@
 						шаблоны
 					</div>
 
-
-					<a href="#">
-						<div class="template">
-							<div>
-								<div class="template-icon">
-									<img src="../static/img/document.png">
-								</div>
-								<div class="template-name">
-									Заявление на возврат товара надлежащего качества
-								</div>
-							</div>
-						</div>
-					</a>
-
-					<a href="#">
-						<div class="template">
-							<div>
-								<div class="template-icon">
-									<img src="../static/img/document.png">
-								</div>
-								<div class="template-name">
-									Заявление на возврат товара надлежащего качества
-								</div>
-							</div>
-						</div>
-					</a>
-
-
-					<a href="#">
-						<div class="template">
-							<div>
-								<div class="template-icon">
-									<img src="../static/img/document.png">
-								</div>
-								<div class="template-name">
-									Заявление на возврат товара надлежащего качества
-								</div>
-							</div>
-						</div>
-					</a>
-
-					<a href="#">
-						<div class="template">
-							<div>
-								<div class="template-icon">
-									<img src="../static/img/document.png">
-								</div>
-								<div class="template-name">
-									Заявление на возврат товара надлежащего качества
-								</div>
-							</div>
-						</div>
-					</a>
 
 					<a href="#">
 						<div class="template">

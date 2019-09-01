@@ -65,4 +65,15 @@ public class MainController {
         model.put("lawArticles", lawsArticles);
         return lawsArticles;
     }
+
+
+    @RequestMapping("/getLawItem")
+    public @ResponseBody
+    LawArticle getLawItem (Integer idArticle, Map<String,Object> model) {
+
+        LawArticle lawArticle = lawArticleRepo.findById(idArticle).get();
+        model.put("lawArticles", lawArticle);
+
+        return lawArticle;
+    }
 }
