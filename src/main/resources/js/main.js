@@ -209,6 +209,30 @@ function openLawItem(lawItemLink) {
     }, "json");
 }
 
+
+
+// Вывод закона при нажатии на ссылку в левой колонке с законами
+$('.template-name').click(function(e){ sendAndOpenButtonForTemplate ($(this)); return false; });
+
+function sendAndOpenButtonForTemplate(templateClick) {
+    var divTemplateName = $(templateClick);
+    divTemplateName.empty();
+    divTemplateName.parent().addClass('choice-template');
+
+    var sendButton = document.createElement('a');
+    var openButton = document.createElement('a');
+    sendButton.setAttribute('class', 'template-send-button');
+    sendButton.setAttribute('href', '#');
+    sendButton.innerText = 'отправить';
+    openButton.setAttribute('class', 'template-open-button');
+    openButton.setAttribute('href', '#');
+    openButton.innerText = 'загрузить';
+
+    $(divTemplateName).append(sendButton);
+    $(divTemplateName).append(openButton);
+
+}
+
 // Получить список абсолютно всех законов из базы данных в блоке выдачи поиска product
 // $('.content-item-button.list-of-law-expand-button').click(function(e){ downloadListOfLaw($(this)); return false; });
 //

@@ -508,13 +508,14 @@ a:visited /* Цвет посещенных ссылок */
   top: 0
 
 .templates .template
+  background-color: $bg_dark
   transition: .7s
   display: block
   background-color: $container
   padding: 4px 0
 
 
-.templates .template .template-name
+.templates .template .template-name .template-button
   color: $text_color_light_gray
   font-weight: bold
   line-height: 1.1rem
@@ -524,6 +525,7 @@ a:visited /* Цвет посещенных ссылок */
   background-color: $bg_dark
   margin: 0px 12px
   border-radius: 5px
+  display: block
 
 .templates .template:hover
   background-color: $green
@@ -553,19 +555,49 @@ a:visited /* Цвет посещенных ссылок */
   border-radius: 5px
   overflow: scroll
 
-
 ::-webkit-scrollbar
   display: none
-
 
 .template-button:hover
   color: $text_color_light_gray
 
 
 
-
-
 // Стили кнопок Отправить и Открыть в колонке ШАБЛОНЫ
+
+.templates .choice-template:hover
+  background-color: $container
+
+.templates .choice-template a
+  background-color: $container
+  display: block
+  transition: .7s
+  border-radius: 5px
+  margin: 5px 4px
+  padding: 10px
+
+.templates .choice-template a:first-child
+  margin-bottom: 10px
+
+
+.templates .choice-template a:hover
+  background-color: $green
+  color: $bg_dark
+
+.templates .choice-template .template-name
+  color: $text_color_light_gray
+  font-weight: bold
+  line-height: 1.1rem
+  font-size: 0.88rem
+  padding: 10px 5px
+  transition: .7s
+  background-color: $bg_dark
+  margin: 0px 12px
+  border-radius: 5px
+  display: block
+
+
+
 
 
 /* СОВЙСТВА ГРИДА С КОНТЕНТОМ: КОНЕЦ */
