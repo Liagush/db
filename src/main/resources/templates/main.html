@@ -125,7 +125,8 @@
 						<div class="template" th:each="template : ${claimTemplates}">
 							<div class="template-name">
 								<a href="#" class="template-button" th:text="${template.filename}"></a>
-								<input type="hidden" th:value="${template.getId()}">
+								<input class="inputIdTemplate" type="hidden" th:value="${template.getId()}">
+                                <input class="inputNameTemplate" type="hidden" th:value="${template.filename}">
 							</div>
 						</div>
 					</div>

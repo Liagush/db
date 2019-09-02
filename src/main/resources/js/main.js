@@ -212,11 +212,11 @@ function openLawItem(lawItemLink) {
 
 
 // Вывод закона при нажатии на ссылку в левой колонке с законами
-$('.template-name').click(function(e){ sendAndOpenButtonForTemplate ($(this)); return false; });
+$('.template-button').click(function(e){ sendAndOpenButtonForTemplate ($(this)); return false; });
 
 function sendAndOpenButtonForTemplate(templateClick) {
-    var divTemplateName = $(templateClick);
-    divTemplateName.empty();
+    var divTemplateName = $(templateClick).parent();
+    divTemplateName.find('a').remove();
     divTemplateName.parent().addClass('choice-template');
 
     var sendButton = document.createElement('a');
@@ -231,6 +231,30 @@ function sendAndOpenButtonForTemplate(templateClick) {
     $(divTemplateName).append(sendButton);
     $(divTemplateName).append(openButton);
 
+    var teamplate = $(divTemplateName).parent();
+    var timer;
+
+    $(teamplate).on({
+        'mouseout': function () {
+            timer = setTimeout(function () {
+
+                divTemplateName.find('a').remove();
+
+                var templateButton = document.createElement('a');
+                templateButton.setAttribute('class', 'template-button');
+                templateButton.setAttribute('href', '#');
+                templateButton.innerText = divTemplateName.find('.inputNameTemplate').val();
+                divTemplateName.parent().removeClass('choice-template');
+                $(divTemplateName).append(templateButton);
+
+                $(templateButton).click(function(e){ sendAndOpenButtonForTemplate ($(this)); return false; });
+
+            }, 1000);
+        },
+        'mouseover' : function () {
+            clearTimeout(timer);
+        }
+    });
 }
 
 // Получить список абсолютно всех законов из базы данных в блоке выдачи поиска product
