@@ -117,27 +117,20 @@
 
 
 				<div class="templates">
-					<div class="template-column-name">
+					<div class="templates-column-name">
 						шаблоны
 					</div>
 
-
-					<a href="#">
-						<div class="template">
-							<div>
-								<div class="template-icon">
-									<img src="../static/img/document.png">
-								</div>
-								<div class="template-name">
-									Заявление на возврат товара надлежащего качества
-								</div>
+					<div class="templates-column-container">
+						<div class="template" th:each="template : ${claimTemplates}">
+							<div class="template-name">
+								<a href="#" class="template-button" th:text="${template.filename}"></a>
+								<input type="hidden" th:value="${template.getId()}">
 							</div>
 						</div>
-					</a>
-
+					</div>
 				</div>
 			</div>
-
 
 
 			<div class="logout">

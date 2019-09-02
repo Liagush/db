@@ -1,18 +1,11 @@
 package com.db.controllers;
-import com.db.model.Category;
-import com.db.model.LawArticle;
-import com.db.model.LawChapter;
-import com.db.model.Product;
-import com.db.repos.CategoryRepo;
-import com.db.repos.LawArticleRepo;
-import com.db.repos.LawChapterRepo;
-import com.db.repos.ProductRepo;
+import com.db.model.*;
+import com.db.repos.*;
 import com.db.search.classes.HibernateSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +32,9 @@ public class MainController {
     @Autowired
     private HibernateSearchService hibernateSearchService;
 
+    @Autowired
+    private ClaimTemplatesRepo claimTemplatesRepo;
+
     @GetMapping("/main")
     public String main(String q, Map<String,Object> model) {
 
@@ -49,6 +45,9 @@ public class MainController {
             List searchResults = hibernateSearchService.search(q);
             model.put("searchResults", searchResults);
         }
+
+        Iterable<ClaimTemplates> claimTemplates = claimTemplatesRepo.findAll();
+        model.put("claimTemplates", claimTemplates);
 
         return "main";
     }
@@ -76,4 +75,42 @@ public class MainController {
 
         return lawArticle;
     }
+
+
+
+
+
+
+
+
+//    @Autowired
+//    private ClaimTemplatesRepo claimTemplatesRepo;
+//
+//    @Value("${upload.path}")
+//    private String uploadPath;
+//
+//    @GetMapping("/editfiletemplates")
+//    public String editFileTemplates (Map<String,Object> model) {
+//
+//        Iterable<ClaimTemplates> claimTemplatesList = claimTemplatesRepo.findAll();
+//        model.put("claimTemplatesList", claimTemplatesList);
+//
+//        return "editfiletemplates";
+//    }
+//
+//    @PostMapping("deletefiletemplate")
+//    public String deleteFileTemplate(@RequestParam List<Integer> claimTemplate) {
+//
+//
+//        for (Integer item : claimTemplate) {
+//            if(claimTemplatesRepo.existsById(item)){
+//                claimTemplatesRepo.deleteById(item);
+//            }
+//        }
+//
+//        return "redirect:/editfiletemplates";
+//    }
+
+
+
 }
