@@ -152,62 +152,164 @@ function selectChoiceChapterOfLaw() {
     document.getElementById("categoryChoice").submit();
 }
 
+// функция selectChoiceChapterOfLaw срабатывает при нажатии на кнопку "выбор из списка"
+// в блоке добавления нового закона и заменяет блок кнопок на выпадающий список
+$('.newChapterOfLawButton').click(function(e){ addNewInputChapterOfLaw($(this)); return false; });
+
+function addNewInputChapterOfLaw(newChapterOfLawButton) {
+
+
+    var divContainer = $(newChapterOfLawButton).parent().parent();
+
+    var chapterOfLaw = document.createElement("input");
+
+    chapterOfLaw.setAttribute("name", "chapterOfLaw");
+    chapterOfLaw.setAttribute("placeholder", "Глава закона");
+
+    $(newChapterOfLawButton).parent().remove();
+    $(divContainer).prepend(chapterOfLaw);
+
+}
+
+
+// функция selectChoiceChapterOfLaw срабатывает при нажатии на кнопку "добавить новую главу"
+// в блоке добавления нового закона и заменяет блок кнопок на строку ввода новой главы
+$('.choiceChapterOfLawButton').click(function(e){ addChoiceChapterOfLawSelect($(this)); return false; });
+
+function addChoiceChapterOfLawSelect(choiceChapterOfLawButton) {
+
+    var divContainer = $(choiceChapterOfLawButton).parent().parent();
+
+    $(divContainer).find("input[name = 'articleOfTheLaw']").attr('name', 'articleOfTheLawForAddNewLawBlockWithChapterSelect');
+
+    $(divContainer).find("textarea[name = 'textOfTheLaw']").attr('name', 'textOfTheLawForAddNewLawBlockWithChapterSelect');
+
+    var divDropdown = document.createElement("div");
+    var divSelect = document.createElement("div");
+    var span = document.createElement("span");
+    var i = document.createElement("i");
+    var inputChapterOfLawSelect = document.createElement("input");
+    var ulDropdownMenu = document.createElement("ul");
+
+
+    divDropdown.setAttribute("class", "dropdown");
+
+    divSelect.setAttribute("class", "select");
+
+    span.innerHTML = 'выберите главу';
+
+    i.setAttribute("class", "fa fa-chevron-left");
+
+    inputChapterOfLawSelect.setAttribute("name", "chapterOfLawForAddNewLawBlockWithChapterSelect");
+    inputChapterOfLawSelect.setAttribute("type", "hidden");
+
+    ulDropdownMenu.setAttribute("class", "dropdown-menu");
+
+
+    divSelect.appendChild(span);
+    divSelect.appendChild(i);
+    dropdownAddClick(divDropdown);
+    divDropdown.appendChild(divSelect);
+    divDropdown.appendChild(inputChapterOfLawSelect);
+    divDropdown.appendChild(ulDropdownMenu);
+
+    $(choiceChapterOfLawButton).parent().remove();
+    $(divContainer).prepend(divDropdown);
+
+
+    $.get( "/getlistchapterlaw", function(data) {
+        for(var i = 0; i < data.length; i++ ) {
+            var liLawOption = document.createElement("li");
+            liLawOption.setAttribute("id", data[i].id);
+            liLawOption.innerHTML = data[i].chapter;
+            ulDropdownMenu.appendChild(liLawOption);
+            liLawOption.onclick = onclickLiForNewLawBlock;
+        }
+    }, "json" );
+
+    //dropdownAddClick(divDropdown);
+
+}
+
 // Модуль добавления новых законов
 function addNewLaw() {
 
     var lawsFormContainer = document.createElement("div");
     var div = document.createElement("div");
-    var chapterOfLaw = document.createElement("input");
+
+    var ChapterOfLawButtonContainer = document.createElement("div");
     var articleOfTheLaw = document.createElement("input");
     var textOfTheLaw = document.createElement("textarea");
+    var newChapterOfLawButton = document.createElement("a");
+    var choiceChapterOfLawButton = document.createElement("a");
 
+
+    ChapterOfLawButtonContainer.setAttribute("class", "chapterOfLawButtonContainer");
+
+    newChapterOfLawButton.setAttribute('href', '#');
+    newChapterOfLawButton.setAttribute('class', 'newChapterOfLawButton');
+    newChapterOfLawButton.innerText = 'добавить новую главу';
+    $(newChapterOfLawButton).click(function(e){ addNewInputChapterOfLaw($(this)); return false; });
+    choiceChapterOfLawButton.setAttribute('href', '#');
+    choiceChapterOfLawButton.setAttribute('class', 'choiceChapterOfLawButton');
+    choiceChapterOfLawButton.innerText = 'выбрать из списка';
+    $(choiceChapterOfLawButton).click(function(e){ addChoiceChapterOfLawSelect($(this)); return false; });
 
     lawsFormContainer.setAttribute("name", "newLawForm");
     lawsFormContainer.setAttribute("class", "lawsFormContainer between-space");
-
-    chapterOfLaw.setAttribute("name", "chapterOfLaw");
-    chapterOfLaw.setAttribute("placeholder", "Глава закона");
 
     articleOfTheLaw.setAttribute("name", "articleOfTheLaw");
     articleOfTheLaw.setAttribute("placeholder", "Статья закона");
 
     textOfTheLaw.setAttribute("name", "textOfTheLaw");
     textOfTheLaw.setAttribute("placeholder", "Текст закона");
+    //$(textOfTheLaw).summernote();
 
-    // if($('textarea').length > 1) {
-    //     g = g + 1;
-    //     textOfTheLaw.setAttribute("id", "summernote" + g);
-    // } else if ($('textarea').length == 1 && g == 0){
-    //     textOfTheLaw.setAttribute("id", "summernote");
-    // } else if ($('textarea').length == 1 && g > 0) {
-    //     textOfTheLaw.setAttribute("id", "summernote" + g);
-    // }
+    if($('textarea').length > 1) {
+        g = g + 1;
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    } else if ($('textarea').length == 1 && g == 0){
+        textOfTheLaw.setAttribute("id", "summernote");
+    } else if ($('textarea').length == 1 && g > 0) {
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    }
 
-
-    div.appendChild(chapterOfLaw);
+    ChapterOfLawButtonContainer.appendChild(newChapterOfLawButton);
+    ChapterOfLawButtonContainer.appendChild(choiceChapterOfLawButton);
+    div.appendChild(ChapterOfLawButtonContainer);
     div.appendChild(articleOfTheLaw);
     div.appendChild(textOfTheLaw);
     deleteLawButton(div);
     lawsFormContainer.appendChild(div);
     wrapped.appendChild(lawsFormContainer);
 
-    if($('textarea').length > 1) {
-        g = g + 1;
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    } else if ($('textarea').length == 1 && g > 0) {
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    }
-
-    if ($('textarea').length == 1 && g == 0) {
-        textOfTheLaw.setAttribute("id", "summernote");
-    }
-
     if(g == 0 && $('#summernote')) {
-        $('#summernote').summernote();
+        $('#summernote').summernote({
+            lang: 'ru-RU',
+            height: 250,
+            minHeight: 200,
+            maxHeight: 500,
+            placeholder: 'Текст закона',
+            disableDragAndDrope: true,
+            dialogsFade: true,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
+        });
     } else if (g > 0) {
         $('#summernote' + g).summernote();
     }
-
 }
 
 // Модуль добавления кнопки построчного удаления НОВЫХ законов
@@ -317,6 +419,20 @@ function dropdownAddClick(divDropdown) {
     });
 }
 
+
+// функция onclickLiForNewLawBlock срабатывает при нажатии на пункт из выпадающего списка
+// в блоке добавления нового закона. Заменяет выбранный текст и значение скрытого input которое отправляется в запросе
+function onclickLiForNewLawBlock (event) {
+
+    var li = $(this);
+    $(this).parents('.dropdown').find('span').text($(this).text());
+    $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+}
+
+
+// функция onclickLi срабатывает при нажатии на пункт из выпадающего списка
+// в блоке добавления закона из базы данных. Заменяет выбранный текст и значение скрытого input которое отправляется в запросе
+// а так же вызывает функцию articleOfLawSelection или textOfTheLawOutput
 function onclickLi (event) {
 
     var li = $(this);

@@ -74,6 +74,9 @@ public class EditingController {
                               @RequestParam(required = false) String[] articleOfTheLaw,
                               @RequestParam(required = false) String[] textOfTheLaw,
                               @RequestParam(required = false) Integer[] articleLawSelect,
+                              @RequestParam(required = false) Integer[] chapterOfLawForAddNewLawBlockWithChapterSelect,
+                              @RequestParam(required = false) String[] articleOfTheLawForAddNewLawBlockWithChapterSelect,
+                              @RequestParam(required = false) String[] textOfTheLawForAddNewLawBlockWithChapterSelect,
                               @RequestParam Integer[] categories,
                               Map<String,Object> model) {
 
@@ -97,6 +100,21 @@ public class EditingController {
                 LawArticle lawArticles = new LawArticle (lawChapter, lawArticle, lawText, lawCategories);
                 lawArticleRepo.save(lawArticles);
             }
+        }
+
+        if(chapterOfLawForAddNewLawBlockWithChapterSelect != null) {
+            for (int i = 0; i < chapterOfLawForAddNewLawBlockWithChapterSelect.length; i++) {
+                Optional<LawChapter> lawChapter = lawChapterRepo.findById(chapterOfLawForAddNewLawBlockWithChapterSelect[i]);
+
+                if(lawChapter.isPresent()) {
+                    String lawArticle = articleOfTheLawForAddNewLawBlockWithChapterSelect[i];
+                    String lawText = textOfTheLawForAddNewLawBlockWithChapterSelect[i];
+                    LawArticle lawArticles = new LawArticle (lawChapter.get(), lawArticle, lawText, lawCategories);
+                    lawArticleRepo.save(lawArticles);
+                }
+            }
+
+
         }
 
         if (articleLawSelect != null) {

@@ -1932,12 +1932,49 @@ ul
     font-size: 1em
     color: $text_color_light_gray
 
+
+.lawsFormContainer input:first-child
+    margin-bottom: 0px
+
+.lawsFormContainer input:nth-child(2)
+  margin-top: 5px
+
+
 .lawsFormContainer input::placeholder
     color: $bg_dark + 25%
 
 .lawsFormContainer textarea::placeholder
     color: $bg_dark + 25%
     padding-top: 7px
+
+.chapterOfLawButtonContainer
+  height: 36px
+  background-color: $bg_dark
+  border-radius: 5px
+
+
+.chapterOfLawButtonContainer a
+  display: inline-block
+  background-color: $bg_dark
+  vertical-align: middle
+  line-height: 36px
+  padding: 0px 20px
+  border-right: 5px solid $container
+  transition: .7s
+  margin: 0
+//margin-left: -4px
+
+
+.chapterOfLawButtonContainer a:first-child
+  border-radius: 5px 0 0 5px
+
+
+
+.chapterOfLawButtonContainer a:hover
+  background-color: $green
+  color: $bg_dark
+  border-right: 5px solid $container
+
 
 
 
