@@ -415,19 +415,31 @@ $('.dropdown.lawList').focusout(function () {
     $(this).removeClass('active');
     $(this).find('.dropdown-menu').slideUp(300);
 });
-$('.dropdown.lawList .dropdown-menu li').click(function () {
-    $(this).parents('.dropdown').find('span').text($(this).text());
-    $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+
+$('.dropdown.lawList .dropdown-menu li').click(function(e){ dropdownLiClick($(this)); return false; });
+
+function dropdownLiClick(e) {
+    if($(e).attr('id') != undefined) {
+        $(e).parents('.dropdown').find('span').text($(e).text());
+        $(e).parents('.dropdown').find('input').attr('value', $(e).attr('id'));
+    } else {
+        $(e).parents('.dropdown').find('span').text($(e).text());
+        $(e).parents('.dropdown').find('input').removeAttr('value');
+    }
     selectChange();
-});
+}
 
 if($('.dropdown.lawList').find('input').val() != '') {
     var inputVal = $('.dropdown.lawList').find('input').val();
-    // var liListOfCategory = $('.dropdown.lawList .dropdown-menu li').attr('id').indexOf(inputVal);
     var liId = '#' + inputVal;
     var liListOfCategory = $('.dropdown.lawList .dropdown-menu').find(liId);
 
     $('.dropdown.lawList').find('span').text($(liListOfCategory).text());
+
+    var liValueEmpty = document.createElement('li');
+    liValueEmpty.innerText = 'Отоборажение законов по всем категориям';
+    $('.dropdown.lawList').find('.dropdown-menu').prepend(liValueEmpty);
+    $(liValueEmpty).click(function(e){ dropdownLiClick($(this)); });
 }
 
 
