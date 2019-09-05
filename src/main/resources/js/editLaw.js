@@ -137,7 +137,7 @@ function textOfTheLawOutput(li) {
     var articleLaw = parentSelect.find('input[name=articleLawSelect]').val();
 
     $.get( "/getParagraphlaw", {articleLawSelect: articleLaw}, function(data) {
-        parentSelect.find("div[name=textOfTheLawSelect]").text(data.lawText);
+        parentSelect.find("div[name=textOfTheLawSelect]").html(data.lawText);
     }, "json" );
 
 
