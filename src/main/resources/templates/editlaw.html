@@ -55,32 +55,58 @@
             <li>
 
                 <form id="categoryChoice">
-                    <h5>Выбор категории товаров</h5>
-                    <div class="listCategory active">
-                        <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">
-                            <option value="" th:selected="${categoryId.empty()}">Все категории</option>
-                            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"
-                                    th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"></option>
-                            <br>
-                        </select>
-                        <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>
+<!--                    <div class="listCategory active">-->
+<!--                        <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">-->
+<!--                            <option value="" th:selected="${categoryId.empty()}">Все категории</option>-->
+<!--                            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"-->
+<!--                                    th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"></option>-->
+<!--                            <br>-->
+<!--                        </select>-->
+<!--                        <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>-->
+<!--                    </div>-->
+
+<!--                    <div class="listCategory active">-->
+<!--                        <select name="category" id="categoryId" th:if="${not #lists.isEmpty(categories)}" onchange="selectChange();">-->
+<!--                            <option value="" th:selected="${categoryId.empty()}">Все категории</option>-->
+<!--                            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"-->
+<!--                                    th:selected = "${categoryId.isPresent()} and ${cat.id} == ${categoryId.get()}"></option>-->
+<!--                            <br>-->
+<!--                        </select>-->
+<!--                        <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>-->
+<!--                    </div>-->
+
+                    <div class="dropdown lawList" tabindex="1">
+                        <div class="select">
+                            <span>Отоборажение законов по всем категориям</span>
+                            <i class="fa fa-chevron-left"></i>
+                        </div>
+                        <input type="hidden" name="category" th:if="${categoryId.isEmpty()}">
+                        <input type="hidden" name="category" th:value="${categoryId.get()}" th:if="${!categoryId.isEmpty()}">
+                        <ul class="dropdown-menu">
+                            <li th:each="cat : ${categories}" th:id="${cat.id}" th:text="${cat.category}"></li>
+                        </ul>
                     </div>
                 </form>
 
-                <h5>Список законов в базе данных</h5>
-                <div name="listOfLaws" class="listOfLaws" th:each="law : ${lawArticles}" th:if="${not #lists.isEmpty(lawArticles)}">
-                    <div th:class="lawChapter" th:text="${law.lawChapter.getChapter()}"></div>
-                    <div th:class="lawArticle" th:text="${law.getArticle()}"></div>
-                    <div class="law" th:classappend="${law.id}"></div>
+                <!--Список законов в базе данных-->
+                <div name="listOfLaws" class="content-item lawArticle" th:each="law : ${lawArticles}" th:if="${not #lists.isEmpty(lawArticles)}">
+                    <div class="content-item-text">
+                        <div th:class="content-item-text-num" th:text="${law.lawChapter.getChapter()}"></div>
+                        <div th:class="content-item-text-title" th:text="${law.getArticle()}"></div>
+                        <div class="content-item-text-snippet" th:classappend="${law.id}"></div>
 
-                    <script th:inline="javascript">
+                        <script th:inline="javascript">
 
-                        var lawText = [[${law.lawText}]];
-                        var idLawText = [[${law.id}]];
-                        var elemLawText = document.getElementsByClassName('law ' + idLawText);
-                        elemLawText[0].innerHTML = lawText;
+                            var lawText = [[${law.lawText}]];
+                            var idLawText = [[${law.id}]];
+                            var elemLawText = document.getElementsByClassName('content-item-text-snippet ' + idLawText);
+                            elemLawText[0].innerHTML = lawText;
 
-                    </script>
+                        </script>
+                    </div>
+                    <div class="content-item-buttons">
+                        <a href="#" class="content-item-button expand-button">развернуть</a>
+                    </div>
                 </div>
 
                 <div th:unless="${not #lists.isEmpty(lawArticles)}">Законы в базе данных отсутствуют.</div>

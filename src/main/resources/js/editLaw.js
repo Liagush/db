@@ -373,9 +373,9 @@ function deleteOneLawFromDB(event) {
 
 // Модуль отображения законов по выбранной категории
 function selectChange() {
-    $('input[type=text]').each(function(){
-        $(this).val('');
-    });
+    // $('input[type=text]').each(function(){
+    //     $(this).val('');
+    // });
     document.getElementById("categoryChoice").submit();
 }
 
@@ -406,8 +406,35 @@ $('.toggle').click(function(e) {
 
 // стилизация Select
 
+$('.dropdown.lawList').click(function () {
+    $(this).attr('tabindex', 1).focus();
+    $(this).toggleClass('active');
+    $(this).find('.dropdown-menu').slideToggle(300);
+});
+$('.dropdown.lawList').focusout(function () {
+    $(this).removeClass('active');
+    $(this).find('.dropdown-menu').slideUp(300);
+});
+$('.dropdown.lawList .dropdown-menu li').click(function () {
+    $(this).parents('.dropdown').find('span').text($(this).text());
+    $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+    selectChange();
+});
+
+if($('.dropdown.lawList').find('input').val() != '') {
+    var inputVal = $('.dropdown.lawList').find('input').val();
+    // var liListOfCategory = $('.dropdown.lawList .dropdown-menu li').attr('id').indexOf(inputVal);
+    var liId = '#' + inputVal;
+    var liListOfCategory = $('.dropdown.lawList .dropdown-menu').find(liId);
+
+    $('.dropdown.lawList').find('span').text($(liListOfCategory).text());
+}
+
+
+
+
 function dropdownAddClick(divDropdown) {
-    /*Dropdown Menu*/
+
     $(divDropdown).click(function () {
         $(this).attr('tabindex', 1).focus();
         $(this).toggleClass('active');
@@ -424,7 +451,6 @@ function dropdownAddClick(divDropdown) {
 // в блоке добавления нового закона. Заменяет выбранный текст и значение скрытого input которое отправляется в запросе
 function onclickLiForNewLawBlock (event) {
 
-    var li = $(this);
     $(this).parents('.dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
 }
@@ -452,7 +478,30 @@ $('#editLaw .dropdown').find("li").click(function () {
 })
 
 
+// растягивание блок закона по контенту во вкладке "Список законов в базе данных" при нажатии на кнопку развернуть
+$('.content-item-button.expand-button').click(function(e){ toggleLawItem($(this)); return false; });
 
+function toggleLawItem(cklickButton) {
+
+
+    var contentItemText = $(cklickButton).parent().parent().find('.content-item-text-snippet');
+    var expandButton = $(cklickButton).parent().parent().find('.content-item-button.expand-button');
+
+    if (contentItemText.hasClass('expend-block')) {
+        contentItemText.removeClass('expend-block');
+
+
+        setTimeout(function () {
+            expandButton.text('развернуть');
+        }, 1000);
+
+    } else {
+        contentItemText.addClass('expend-block');
+        setTimeout(function () {
+            expandButton.text('свернуть');
+        }, 1000);
+    }
+}
 
 
 
