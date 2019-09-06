@@ -229,3 +229,151 @@ $('.dropdown-menu li').click(function () {
         msg = '<span class="msg">Hidden input value: ';
     $('.msg').html(msg + input + '</span>');
 });
+
+
+
+function addDeleteProductRowButton () {
+    var $this = $('.deleteProductRowButton');
+    if (!$this.hasClass('show')) {
+        $this.toggleClass('show');
+        $this.slideDown(350);
+    }
+}
+
+function delDeleteProductRowButton() {
+    var $this = $('.deleteProductRowButton');
+    if ($this.hasClass('show')) {
+        $this.removeClass('show');
+        $this.slideUp(350);
+    }
+}
+
+
+// устанавливает все значения чекбоксов в списке продуктов из базы в значение true или false
+// по нажатию на главный чекбокс в заголовке таблицы
+// так же добавляет и убирает кнопку добавления выбранных продуктов
+$('.checkbox-circle-input.mainCheckboxOfProductList').change(function() {
+    if(this.checked) {
+        $('.checkbox-circle-input').prop('checked', true);
+        if(!$('.deleteProductRowButton').hasClass('show')) {
+            addDeleteProductRowButton();
+        }
+
+    } else {
+        $('.checkbox-circle-input').prop('checked', false);
+        delDeleteProductRowButton();
+    }
+});
+
+
+// устанавливает значение главного чекбокса в заголовке таблицы в false
+// если из всех продуктов из списка снимается выделение хотя бы одного из них
+$('.checkbox-circle-input').change(function() {
+    var chekProduct = this;
+    if($('.checkbox-circle-input.mainCheckboxOfProductList').prop("checked")) {
+        if(!chekProduct.checked) {
+            $('.checkbox-circle-input.mainCheckboxOfProductList').prop('checked', false);
+        }
+    }
+});
+
+
+// проверяет есть ли выбранные строки продуктов для удаления и добавляет кнопку удаления
+// и наоборот если нет выбранных чекбоксов то убирает кнопку удаления из формы
+$('.checkbox-circle-input').change(function() {
+    if(this.checked) {
+        if(!$('.deleteProductRowButton').hasClass('show')) {
+            addDeleteProductRowButton();
+        }
+    } else {
+        var checkboxChecked = 0;
+        $('.checkbox-circle-input').each(function( index ) {
+            if ($(this).prop('checked')){
+                checkboxChecked = 1;
+            }
+        });
+
+        if (checkboxChecked == 0) {
+            if($('.deleteProductRowButton').hasClass('show')) {
+                delDeleteProductRowButton();
+            }
+        }
+
+    }
+});
+
+
+// function addDeleteProductRowButton () {
+//     var deleteProductRowButton = document.createElement('input');
+//     deleteProductRowButton.setAttribute('class', 'deleteProductRowButton');
+//     deleteProductRowButton.setAttribute('type', 'submit');
+//     deleteProductRowButton.setAttribute('formaction', 'deleteProductRow');
+//     deleteProductRowButton.setAttribute('value', 'удалить выбранные строки');
+//     $('.productlListForm').prepend(deleteProductRowButton);
+// }
+//
+// function delDeleteProductRowButton() {
+//     $('.deleteProductRowButton').remove();
+// }
+
+
+// устанавливает все значения чекбоксов в списке продуктов из базы в значение true или false
+// по нажатию на главный чекбокс в заголовке таблицы
+// так же добавляет и убирает кнопку добавления выбранных продуктов
+// $('.checkbox-circle-input.mainCheckboxOfProductList').change(function() {
+//     if(this.checked) {
+//         $('.checkbox-circle-input').prop('checked', true);
+//         if(!$('.deleteProductRowButton').length) {
+//             addDeleteProductRowButton();
+//         }
+//
+//     } else {
+//         $('.checkbox-circle-input').prop('checked', false);
+//         delDeleteProductRowButton();
+//     }
+// });
+//
+//
+// // устанавливает значение главного чекбокса в заголовке таблицы в false
+// // если из всех продуктов из списка снимается выделение хотя бы одного из них
+// $('.checkbox-circle-input').change(function() {
+//     var chekProduct = this;
+//     if($('.checkbox-circle-input.mainCheckboxOfProductList').prop("checked")) {
+//         if(!chekProduct.checked) {
+//             $('.checkbox-circle-input.mainCheckboxOfProductList').prop('checked', false);
+//         }
+//     }
+// });
+//
+//
+// // проверяет есть ли выбранные строки продуктов для удаления и добавляет кнопку удаления
+// // и наоборот если нет выбранных чекбоксов то убирает кнопку удаления из формы
+// $('.checkbox-circle-input').change(function() {
+//     if(this.checked) {
+//         if(!$('.deleteProductRowButton').length) {
+//             addDeleteProductRowButton();
+//         }
+//     } else {
+//         var checkboxChecked = 0;
+//         $('.checkbox-circle-input').each(function( index ) {
+//             if ($(this).prop('checked')){
+//                 checkboxChecked = 1;
+//             }
+//         });
+//
+//         if (checkboxChecked == 0) {
+//             if($('.deleteProductRowButton').length) {
+//                 delDeleteProductRowButton();
+//             }
+//         }
+//
+//     }
+// });
+
+
+
+
+
+
+
+

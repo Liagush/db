@@ -43,7 +43,6 @@
                             <input type="hidden" name="categoryId">
                             <ul class="dropdown-menu">
                                 <li th:id="${cat.id}" th:each="cat : ${categories}" th:text="${cat.category}"></li>
-<!--                                <li th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></li>-->
                             </ul>
                         </div>
 
@@ -75,72 +74,39 @@
         </a>
         <ul class="inner">
             <li>
-                <table class="product-list-table">
-                    <tr>
-                        <th>check</th>
-                        <th>Артикул</th>
-                        <th>Наименование</th>
-                    </tr>
-                    <label>
-                        <tr th:each="prod : ${products}">
-                            <td><input type="checkbox"></td>
-                            <td th:text="${prod.vendorCode}"></td>
-                            <td th:text="${prod.productName}"></td>
+                <form class="productlListForm">
+                    <input type="submit" formaction="deleteProductRow" class="deleteProductRowButton" value="удалить выбранные строки">
+                    <table class="product-list-table">
+                        <tr>
+                            <th>
+                                <label class="checkbox-circle-lable">
+                                    <input type="checkbox" class="checkbox-circle-input mainCheckboxOfProductList">
+                                    <div class="checkbox-circle-div"></div>
+                                </label>
+                            </th>
+                            <th>Артикул</th>
+                            <th>Наименование</th>
+                            <th>категория</th>
                         </tr>
-                    </label>
+                        <label>
+                            <tr th:each="prod : ${products}">
+                                <td>
+                                    <label class="checkbox-circle-lable">
+                                        <input type="checkbox" class="checkbox-circle-input" th:value="${prod.id}" th:name="prodId">
+                                        <div class="checkbox-circle-div"></div>
+                                    </label>
+                                </td>
+                                <td th:text="${prod.vendorCode}"></td>
+                                <td th:text="${prod.productName}"></td>
+                                <td th:text="${prod.getCategory().category}"></td>
+                            </tr>
+                        </label>
                 </table>
-
+                </form>
             </li>
         </ul>
     </li>
 </ul>
-
-
-
-<!--<div>-->
-<!--    <form id="producteditingform" action="producteditingform" method="post">-->
-
-<!--        <div class="addOneProduct">-->
-<!--            <h5>Загрузка списка товаров</h5>-->
-<!--            <input type="file">-->
-<!--            <input type="button" value="Загрузить список" onclick="readListProduct();">-->
-<!--            <input type="button" value="Добавить товар" onclick="addOneProduct();">-->
-<!--            <br>-->
-<!--        </div>-->
-
-<!--        <div class="productEditList">-->
-
-<!--        </div>-->
-
-<!--        <h5>Выбор категории товаров</h5>-->
-<!--        <div class="listCategory active">-->
-<!--            <select name="categoryId" th:if="${not #lists.isEmpty(categories)}">-->
-<!--                <option selected value> &#45;&#45; выберите категорию &#45;&#45; </option>-->
-<!--                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.category}"></option>-->
-<!--                <br>-->
-<!--            </select>-->
-<!--            <p th:unless="${not #lists.isEmpty(categories)}">Категории в базе данных отсутствуют.</p>-->
-<!--            <input type="button" value="добавить новую категорию" onclick="switchOnAddNewCategoryProduct();">-->
-<!--        </div>-->
-<!--        <div class="addNewCategory">-->
-<!--            <lable for="categoryName">Название новой категории товаров</lable>-->
-<!--            <input id="categoryName">-->
-<!--            <br>-->
-<!--            <input type="button" value="Выбрать категорию из базы данных" onclick="switchOnListCategoryProduct();">-->
-<!--        </div>-->
-
-
-<!--        <input type="submit" value="Отправить форму">-->
-<!--    </form>-->
-<!--    <br>-->
-
-<!--    <tr th:each="prod : ${products}">-->
-<!--        <td th:text="${prod.id}"></td>-->
-<!--        <td th:text="${prod.vendorCode}"></td>-->
-<!--        <td th:text="${prod.productName}"></td>-->
-<!--        <br>-->
-<!--    </tr>-->
-<!--</div>-->
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="/static/js/editProduct.js"></script>
