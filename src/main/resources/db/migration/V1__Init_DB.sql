@@ -153,3 +153,12 @@ insert into status (id, status_name)
         (2, 'BLACK LIST'),
         (3, 'УВОЛЕН');
 
+insert into usr (id, activation_code, date_of_registration, email, login_allowed, online, password, username, status_id)
+    values
+        (1, NULL, '1567382400', 'iablophone@mail.ru', true, false, '$2a$10$bP4r9g0lXqYPP0PXoWgdIe9WFkffHNu96d85H2HJgCkOKv1vAcUd2', 'dmitry', 1);
+
+insert into usr_roles (users_id, roles_id)
+    values
+        (1, 1),
+        (1, 2),
+        (1, 3);
