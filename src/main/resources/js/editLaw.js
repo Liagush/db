@@ -263,16 +263,7 @@ function addNewLaw() {
 
     textOfTheLaw.setAttribute("name", "textOfTheLaw");
     textOfTheLaw.setAttribute("placeholder", "Текст закона");
-    //$(textOfTheLaw).summernote();
 
-    if($('textarea').length > 1) {
-        g = g + 1;
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    } else if ($('textarea').length == 1 && g == 0){
-        textOfTheLaw.setAttribute("id", "summernote");
-    } else if ($('textarea').length == 1 && g > 0) {
-        textOfTheLaw.setAttribute("id", "summernote" + g);
-    }
 
     ChapterOfLawButtonContainer.appendChild(newChapterOfLawButton);
     ChapterOfLawButtonContainer.appendChild(choiceChapterOfLawButton);
@@ -283,12 +274,22 @@ function addNewLaw() {
     lawsFormContainer.appendChild(div);
     wrapped.appendChild(lawsFormContainer);
 
+    if($('textarea').length > 1) {
+        g = g + 1;
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    } else if ($('textarea').length == 1 && g == 0){
+        textOfTheLaw.setAttribute("id", "summernote");
+    } else if ($('textarea').length == 1 && g > 0) {
+        textOfTheLaw.setAttribute("id", "summernote" + g);
+    }
+
     if(g == 0 && $('#summernote')) {
+
         $('#summernote').summernote({
             lang: 'ru-RU',
-            height: 250,
+            height: 200,
             minHeight: 200,
-            maxHeight: 500,
+            maxHeight: 600,
             placeholder: 'Текст закона',
             disableDragAndDrope: true,
             dialogsFade: true,
@@ -308,7 +309,29 @@ function addNewLaw() {
             fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
         });
     } else if (g > 0) {
-        $('#summernote' + g).summernote();
+        $('#summernote' + g).summernote({
+            lang: 'ru-RU',
+            height: 200,
+            minHeight: 200,
+            maxHeight: 600,
+            placeholder: 'Текст закона',
+            disableDragAndDrope: true,
+            dialogsFade: true,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
+        });
     }
 }
 
