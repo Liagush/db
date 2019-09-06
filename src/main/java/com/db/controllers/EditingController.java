@@ -199,6 +199,20 @@ public class EditingController {
         return "redirect:/productediting";
     }
 
+    @PostMapping("deleteProductRow")
+    public String deleteProductRow (@RequestParam List<Long> prodId) {
+
+        for (Long prod : prodId) {
+            if(productRepo.existsById(prod)){
+                productRepo.deleteById(prod);
+            }
+        }
+
+        return "redirect:/productediting";
+    }
+
+
+
     private Category getOrCreateCategory(@RequestParam(required = false) Optional<String> categoryName,
                                          @RequestParam(required = false) Optional<Integer> categoryId) {
         if (categoryId.isPresent()) {
